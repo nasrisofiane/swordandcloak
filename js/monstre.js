@@ -1,14 +1,18 @@
+// Création du monstre, affichage de l'image.
+var monsterChoosed; // variable qui contiendra une nouvelle instance de l'objet monstre
+var monsterImage; // chemin de l'image du monstre
 var getMonsterWindow = document.getElementById("monster");
 var getMonsterName = document.getElementById("monster-name");
 var getMonsterHealthBar = document.getElementById("monster-health-bar");
+var getHealthValueMonster = document.getElementById("health-value-monster"); //Element HTML pour afficher la vie actuel du monstre
 const monsters = [ // tableau des noms de monstres et infos
-    ['Le mage ancestral', 'images/disciple', 5], // premier index est égal au nom du monstre, le deuxième au chemin du sprite et le troisième au nombre de sprites pour l'animé.
-    ['La chèvre en robe', 'images/chevreWarrior', 1],
-    ['Le cancer', 'images/mage', 1],
-    ['La grosse tête', 'images/grosseTete', 1],
-    ['La diarhée hantée', 'images/diarhee', 1]
+    ['Le mage ancestral', 'images/sprites/disciple', 5], // premier index est égal au nom du monstre, le deuxième au chemin du sprite et le troisième au nombre de sprites pour l'animé.
+    ['La chèvre en robe', 'images/sprites/chevreWarrior', 1],
+    ['Le cancer', 'images/sprites/mage', 1],
+    ['La grosse tête', 'images/sprites/grosseTete', 1],
+    ['Le chien du concierge', 'images/sprites/chienBoss', 4]
 ];
-
+getMonsterWindow.onclick = damageOnMonster;
 class monster{ // Objet qui permet de créer un monstre en passant en paramètres son nom , level et sa difficulté.
     constructor(nom, level, difficulte){
         this.nom = nom;
@@ -35,32 +39,35 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
         this.elementHtml.style.backgroundSize = "contain";
         this.elementHtml.style.backgroundSize = "contain";
         this.elementHtml.style.backgroundRepeat = "no-repeat";
-        this.elementHtml.style.backgroundPosition = "center";
+        this.elementHtml.style.backgroundPosition = "bottom";
     }
 }
  
-var monsterChoosed;
-var monsterImage;
 function monsterRandomPop(){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
-    
+        var RandomDifficulte = Math.floor(Math.random()*5);
         var RandomMonsterNumber = Math.floor(Math.random()*5);
-        monsterChoosed = new monster( monsters[RandomMonsterNumber][0], 1 ,1);
+        monsterChoosed = new monster( monsters[RandomMonsterNumber][0], 1 ,RandomDifficulte);
         monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);// créer une instance de l'objet spriteImage.
-        monsterDisplayInfos(monsterChoosed);
         monsterImage.apply(0); //applique l'image 0 du monstre au lancement de la page, sinon le monstre ne s'afficher qu'àprès le premier setInterval.
         var intervalMonsterImage = startInterval(monsterImage,monsters[RandomMonsterNumber][2]);
-    
-    
-   
-  
-    
+        //infos du monstre
+            getMonsterHealthBar.max = monsterChoosed.vie;
+            getMonsterName.innerHTML = monsterChoosed.nom; 
+            checkMonsterHealth(monsterChoosed);
+            
 }
 
-function monsterDisplayInfos(monstreInfos){
+function checkMonsterHealth(monstreInfos){
+    if(monstreInfos.vie > 0){
+        getMonsterHealthBar.value = monstreInfos.vie;
+        getHealthValueMonster.innerHTML = `${monstreInfos.vie.toFixed(1)} / ${getMonsterHealthBar.max}`;
+    }
+    else{
+        clearActualMonster();
+        monsterRandomPop();
+    }
     
-    getMonsterHealthBar.max = monstreInfos.vie;
-    getMonsterHealthBar.value = monstreInfos.vie;
-    getMonsterName.innerHTML = monstreInfos.nom; 
+    
 }
 
 function animation(nbImage, monster){ // Paramètres nbImage qui définit le nombre de sprite possible pour que le random number n'aille pas chercher un sprite non existant ce paramètre est envoyé depuis la foncton "startInterval()"
@@ -69,7 +76,6 @@ function animation(nbImage, monster){ // Paramètres nbImage qui définit le nom
 }
 
 function startInterval(instanceName, nbImages){ //instanceName qui récupère l'instance créer pour l'envoyé en paramète dans les autres fonction et objets.
-    
     this.instanceName = instanceName;
     this.nbImages = nbImages;
     return test = setInterval(animation, 400, this.nbImages, this.instanceName);
@@ -81,7 +87,12 @@ function clearActualMonster(){
     monsterImage = null;
     getMonsterWindow.style.background = "none";
 }
-
-
-
 monsterRandomPop();
+
+
+//degats onclick sur le monstre à l'ecran
+function damageOnMonster(){
+    var degats = 1.3;
+    monsterChoosed.vie -= degats;
+    checkMonsterHealth(monsterChoosed);
+}
