@@ -38,6 +38,9 @@ body{
     height:100% ;
     flex:2;
     min-width: 500px;
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
 
 #zone-droite{
@@ -71,6 +74,52 @@ body{
 }
 
 /* FIN DE :partie gauche */
+
+/*zone de combat*/
+#monster-window{
+    border:solid purple;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#monster-infos{
+    margin-top:100px;
+    width: 100%;
+}
+
+#monster-name{
+    text-align: center;
+    margin:0px 0px 15px 0px;
+}
+
+#monster-health-bar{
+    width: 100%;
+    height:40px;
+}
+
+#monster{
+    border:solid red;
+    height: 150px;
+    width: 135px;
+    position: absolute;
+    bottom:200px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+#player-character-window{
+    border:solid purple;
+    height: 80px;
+    width: 50px;
+    position:absolute;
+    left: 0px;
+    bottom:200px;
+}
+
+/* FIN DE :zone de combat*/
 
 /*partie droite */
 
