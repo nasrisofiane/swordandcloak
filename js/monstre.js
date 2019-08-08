@@ -46,7 +46,7 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
 function monsterRandomPop(){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
         var RandomDifficulte = Math.floor(Math.random()*5);
         var RandomMonsterNumber = Math.floor(Math.random()*5);
-        monsterChoosed = new monster( monsters[RandomMonsterNumber][0], 1 ,RandomDifficulte);
+        monsterChoosed = new monster( monsters[RandomMonsterNumber][0], 1 , 1);
         monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);// créer une instance de l'objet spriteImage.
         monsterImage.apply(0); //applique l'image 0 du monstre au lancement de la page, sinon le monstre ne s'afficher qu'àprès le premier setInterval.
         var intervalMonsterImage = startInterval(monsterImage,monsters[RandomMonsterNumber][2]);
@@ -63,6 +63,7 @@ function checkMonsterHealth(monstreInfos){
         getHealthValueMonster.innerHTML = `${monstreInfos.vie.toFixed(1)} / ${getMonsterHealthBar.max}`;
     }
     else{
+        augmenterXp();
         clearActualMonster();
         monsterRandomPop();
     }
