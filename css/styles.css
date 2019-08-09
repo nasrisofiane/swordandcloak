@@ -1,3 +1,5 @@
+
+
 html{
     height: 100%;
     padding:0px;
@@ -7,8 +9,11 @@ html{
 
 body{
     height: 100%;
+    max-height: 1080px;
     padding:0px;
     margin:0px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
 }
 
 /* 3 parties du jeu.*/
@@ -44,6 +49,7 @@ body{
 }
 
 #zone-droite{
+    font-size:0.7em;
     height: 753px;
     align-self: flex-start;
     flex:1;
@@ -98,7 +104,9 @@ body{
     width: 100%;
     height:40px;
     background-color: white;
-    color:red;
+    border:solid black 1px;
+    border-radius: 50px;
+    overflow: hidden;
 }
 #monster-health-bar::-moz-progress-bar, #monster-health-bar::-webkit-progress-value , #monster-health-bar::-webkit-progress-bar{
     width: 100%;
@@ -127,7 +135,19 @@ body{
     background-repeat: no-repeat;
 
 }
-
+#degat-envoyer{
+    
+    width: 300px;
+    height: 700px;
+    position: absolute;
+    bottom:0px;
+    right: 0px;
+    overflow: hidden;
+}
+#degat-envoyer div{
+    font-weight: bold;
+    margin:0px;
+}
 #player-character-window{
    
     height: 80px;
@@ -192,53 +212,72 @@ body{
 
 #conteneur-life-xp{
     margin-top:20px;
-    
+    position: relative;
     width: 75%;
-    height: 100px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
 }
+
+#conteneur-life-xp #health-number{
+    position: absolute;
+    top:6px;
+    margin:0px;
+    z-index:12;
+    width: 100%;
+    text-align: center;
+}
+
+#conteneur-life-xp #experience-number{
+    position: absolute;
+    margin:0px;
+    z-index:12;
+    top:57px;
+    width: 100%;
+    text-align: center;
+}
+
     #barre-de-vie{
-        border:solid purple;
-        height: 35px;
+        border:solid black 1px;
+        border-radius: 4px;
+        height: 30px;
+        width:100%;
+        z-index:10;
+        margin-bottom: 20px;
     }
 
 
     #barre-xp{
-        border:solid orange;
-        height: 35px;
+        border:solid black 1px;
+        border-radius: 4px;
+        height: 30px;
+        
+        width:100%;
+        z-index:10;
     }
 
     /*Barre de vie + Xp*/
 
     
-#barre-de-vie{
-    width: 100%;
-    height:40px;
-    background-color: white;
-    color:red;
-}
+
 #barre-de-vie::-moz-progress-bar, #barre-de-vie::-webkit-progress-value , #barre-de-vie::-webkit-progress-bar{
     width: 100%;
-    height:40px;
     background-color: red;
     
 }
 
-#barre-xp{
-    width: 100%;
-    height:40px;
-    background-color: white;
-    color:rgb(0, 102, 255);
-}
 #barre-xp::-moz-progress-bar, #barre-xp::-webkit-progress-value , #barre-xp::-webkit-progress-bar{
     width: 100%;
-    height:40px;
     background-color: rgb(0, 102, 255);
     
 }
 
+#niveau-hero{
+    margin:auto;
+   
+    font-weight: bolder;
+}
 
 /*FIN DE : partie droite */
