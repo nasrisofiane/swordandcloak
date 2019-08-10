@@ -7,6 +7,8 @@ var heroCaracteristiquehtml = document.getElementById("stats");
 var heroStaminahtml = document.getElementById("stamina");
 var heroStrenghthtml = document.getElementById("strenght");
 var damageDeal = document.getElementById("degat-envoyer");
+var porteMonnaieArgent = document.getElementById("argent");
+var porteMonnaieLogo = document.getElementById("logo-porte-monnaie");
 
 var heroXpMax = 150;
 var heroXpActuel = 0;
@@ -18,6 +20,8 @@ var heroStrenght =0;
 var heroArgent = 0;
 var degatsHero = 1 + (heroStrenght*1.7) ;
 var heroXpRestant;
+
+
 
 heroBarreViehtml.max = heroBarreVie;
 heroBarreXphtml.max = heroXpMax;
@@ -32,13 +36,11 @@ function augmenterXp_Argent(){
     if(heroXpActuel >= heroXpMax){
         lvlUp();
      }
-
-    console.log(heroXpActuel);
     displayHeroInfo();
-    console.log(heroArgent);
 }
 
 function displayHeroInfo(){
+    porteMonnaieArgent.innerHTML = heroArgent;
     heroNiveauhtml.innerHTML = `LEVEL ${heroNiveau}`;
     heroBarreViehtml.value = heroBarreVie;
     heroHealthNumber.innerHTML =  `${heroBarreVie.toFixed(1)} / ${heroBarreViehtml.max}`;

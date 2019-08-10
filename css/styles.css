@@ -64,11 +64,29 @@ body{
 
 /* partie gauche */
 #porte-monnaie{
-    
-    
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
     background:darkgrey;
     height: 120px;
     width: 75%;
+}
+
+#argent{
+    flex:8;
+    font-size:2.4em;
+    text-align: center;
+}
+
+#logo-porte-monnaie{
+    flex:4;
+    width: 100px;
+    height: 100px;
+    background: url('../images/coin.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #boutique{
