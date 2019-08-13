@@ -17,7 +17,7 @@
         </div>
 
         <div id="zone-combat">
-            <div id="player-character-window"></div>
+            <div id="player-character-window"><div id="received-dmg"></div><div id="hero"></div><div id="weapon"></div></div>
             <div id="monster-window">
                 <div id="monster-infos">
                     <h3 id="monster-name">Monster</h3>
@@ -53,9 +53,12 @@
                             
                         </div>
                     </div>
-                    <div id="stats"></div>
-                    <div id="stamina"></div>
-                    <div id="strenght"></div>
+                    <div id="stats">
+                        <div id="stamina"><i class="stats-add-icon" id="add-stamina" ></i><div><i></i><p id="stamina-text">Stamina 784</p> </div></div>
+                        <div id="strength"><i class="stats-add-icon" id="add-strength"></i><div><i></i><p id="strength-text" onclick="caracteristique(event)">Strength 540</p></div></div>
+                        <div id="skill-point"><p id="skill-point-text">2 Skill point</p></div>
+                    </div>
+                    
                 </div>
         </div>
     </section>

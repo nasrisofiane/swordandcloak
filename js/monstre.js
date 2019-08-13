@@ -1,6 +1,7 @@
 // Création du monstre, affichage de l'image.
 var monsterChoosed; // variable qui contiendra une nouvelle instance de l'objet monstre
 var attackinterval;
+var monsterMove = [0,true, 40];
 var monsterImage; // chemin de l'image du monstre
 var getMonsterWindow = document.getElementById("monster");
 var getMonsterName = document.getElementById("monster-name");
@@ -28,18 +29,36 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
     }
 
     attack(){
-        heroBarreVie -= monsterChoosed.degats;
         
-        if(heroBarreVie <= 0){
+        heroVie -= monsterChoosed.degats;
+        if(heroVie <= 0){
             alert("GAME OVER");
-            heroBarreVie = 0;
+            heroVie = 0;
         }
         displayHeroInfo();
-        console.log("test");
+        // animation d'attaque
+        monsterChoosed.moveToHero();
+        create(monsterChoosed.degats, getReceivedDamage, 0, "static");
+        setTimeout(monsterChoosed.moveToHero, 300); 
     }
 
     autoAttack(){
         return attackinterval = setInterval(monsterChoosed.attack, 2600);
+    }
+
+    moveToHero(){
+        if(monsterMove[1] == true){
+            monsterMove[2] = 42;
+            getMonsterWindow.style.left = `${monsterMove[2]}%`;
+            monsterMove[1] = false;
+        }
+        else{
+            monsterMove[2] = 43;
+            getMonsterWindow.style.left = `${monsterMove[2]}%`;
+            clearInterval(monsterMove[0]);
+            monsterMove[1]  = true;
+        }
+        
     }
    
 }
@@ -114,11 +133,16 @@ monsterRandomPop();
 
 //degats onclick sur le monstre à l'ecran
 function damageOnMonster(){
-    
+    clearInterval(startHeroAnimation);// clear Interval pour eviter qu'il ne s'empile.
+    clearTimeout(heroTimeOutWalkBack); // clear Timeout pour eviter qu'il ne s'empile.
+    heroWalk[1] = true;
+    heroTimeOutWalkBack = setTimeout(function(){heroWalk[1] = false;},800); // si on ne clique plus pour attaquer, alors le hero revient à sa position initiale.
+    startAttackAnimation = setInterval(heroAnimation, 32); // execute la fonction qui donne un coup d'épée visuellement.
+    startHeroAnimation = setInterval(heroWalkAnimation,8);// execute la fonction qui deplace le héro jusqu'au monstre.
     monsterChoosed.vie -= degatsHero;
-    create(degatsHero);
+    create(degatsHero, damageDeal, 0, "scroll");
     checkMonsterHealth(monsterChoosed);
+    
 }
 
 
-clearInterval(attackinterval);
