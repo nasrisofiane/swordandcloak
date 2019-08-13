@@ -22,9 +22,9 @@ var heroXpMax = 150;
 var heroXpActuel = 0;
 var heroNiveau = 1;
 var heroStamina =0;
-var heroStrenght =0;
+var heroStrenght = 0;
 var heroCaracteristique = 2;
-var heroVieMax = 100 + (heroStamina * 1.3);
+var heroVieMax = 100 + (heroStamina * 1.3) ;
 var heroVie = heroVieMax;
 var heroArgent = 0;
 var degatsHero = 1 + (heroStrenght*1.7) ;
@@ -39,7 +39,6 @@ function augmenterXp_Argent(){
 
     heroXpActuel += monsterChoosed.experience;
     heroArgent += monsterChoosed.argent;
-    console.log("Il reste "+heroXpRestant + " xp a gagner");
     if(heroXpActuel >= heroXpMax){
         lvlUp();
      }
@@ -47,7 +46,7 @@ function augmenterXp_Argent(){
 }
 
 function displayHeroInfo(){
-    porteMonnaieArgent.innerHTML = heroArgent;
+    porteMonnaieArgent.innerHTML = Math.round(heroArgent);
     heroNiveauhtml.innerHTML = `LEVEL ${heroNiveau}`;
     heroBarreViehtml.max = heroVieMax;
     heroBarreViehtml.value = heroVie;
@@ -65,7 +64,7 @@ function lvlUp(){
     degatsHero = 1 + (heroStrenght*1.7) ;
     heroNiveau += 1;
     heroCaracteristique = heroCaracteristique +2;
-    heroVieMax += 5;
+    heroVieMax = 100 + (heroStamina * 1.3);
     heroBarreViehtml.max = heroVieMax;
     heroXpMax = heroXpMax +30;
     heroXpActuel = 0;
@@ -78,7 +77,6 @@ function regenHealthPoint(){ // regen toute la vie du hero.
 }
 
 function caracteristique(event){ // fonction qui depense un point de stats et qui ajoute dans la force ou la stamina
-    console.log(event.target.id);
     if(heroCaracteristique > 0){
         if(event.target.id == "add-strength"){
             heroStrenght += 1;
@@ -101,6 +99,18 @@ for(var i = 0; i <= 1; i++){
    
 }
 
+function gameOver(){
+    if(heroVie <= 0){
+        if(heroArgent < 1){
+            heroArgent = 0;
+        }
+        heroArgent = heroArgent / 2;
+        if(heroNiveau > 1){
+            heroNiveau -= 1;
+        }
+        heroVie = heroVieMax;
+    }
+}
 
 //creer un combat text à droite du monstre qui afficher les degats du hero en temps reel.
 var opacity = 1;

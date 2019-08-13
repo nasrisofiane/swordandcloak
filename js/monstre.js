@@ -31,10 +31,7 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
     attack(){
         
         heroVie -= monsterChoosed.degats;
-        if(heroVie <= 0){
-            alert("GAME OVER");
-            heroVie = 0;
-        }
+        gameOver();
         displayHeroInfo();
         // animation d'attaque
         monsterChoosed.moveToHero();
@@ -80,7 +77,7 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
 }
  
 function monsterRandomPop(){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
-        var RandomDifficulte = Math.floor(Math.random()*2);
+        var RandomDifficulte = Math.floor(Math.random()*200);
         var RandomMonsterNumber = Math.floor(Math.random()*5);
         monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
         monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);// créer une instance de l'objet spriteImage.
@@ -119,11 +116,11 @@ function animation(nbImage, monster){ // Paramètres nbImage qui définit le nom
 function startInterval(instanceName, nbImages){ //instanceName qui récupère l'instance créer pour l'envoyé en paramète dans les autres fonction et objets.
     this.instanceName = instanceName;
     this.nbImages = nbImages;
-    return test = setInterval(animation, 400, this.nbImages, this.instanceName);
+    return startIntervalAnimation = setInterval(animation, 400, this.nbImages, this.instanceName);
 }
 
 function clearActualMonster(){
-    clearInterval(test);
+    clearInterval(startIntervalAnimation);
     monsterChoosed = null;
     monsterImage = null;
     getMonsterWindow.style.background = "none";
