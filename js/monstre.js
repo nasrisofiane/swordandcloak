@@ -135,9 +135,10 @@ monsterRandomPop();
 function damageOnMonster(){
     clearInterval(startHeroAnimation);// clear Interval pour eviter qu'il ne s'empile.
     clearTimeout(heroTimeOutWalkBack); // clear Timeout pour eviter qu'il ne s'empile.
+    clearInterval(startAttackAnimation);
     heroWalk[1] = true;
     heroTimeOutWalkBack = setTimeout(function(){heroWalk[1] = false;},800); // si on ne clique plus pour attaquer, alors le hero revient à sa position initiale.
-    startAttackAnimation = setInterval(heroAnimation, 32); // execute la fonction qui donne un coup d'épée visuellement.
+    startAttackAnimation = setInterval(heroAnimation, 45); // execute la fonction qui donne un coup d'épée visuellement.
     startHeroAnimation = setInterval(heroWalkAnimation,8);// execute la fonction qui deplace le héro jusqu'au monstre.
     monsterChoosed.vie -= degatsHero;
     create(degatsHero, damageDeal, 0, "scroll");
