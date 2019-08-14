@@ -1,5 +1,7 @@
 // Création du monstre, affichage de l'image.
 var monsterChoosed; // variable qui contiendra une nouvelle instance de l'objet monstre
+var attackinterval;
+var monsterMove = [0,true, 40];
 var monsterImage; // chemin de l'image du monstre
 var getMonsterWindow = document.getElementById("monster");
 var getMonsterName = document.getElementById("monster-name");
@@ -21,10 +23,41 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
         this.stamina = (10 + level) * difficulte;
         this.strength = (4 + level) * difficulte;
         this.vie = this.stamina * 1.7 * level * this.difficulte;
-        this.degats = this.strength * 1.2 * level * this.difficulte;
-        this.experience = (30 * this.level) * this.difficulte;
-        this.argent = (this.level * this.difficulte) * 4.5;
+        this.degats = this.strength * 1.2 + level * this.difficulte;
+        this.experience = (15 + this.level) * this.difficulte;
+        this.argent = (this.level * this.difficulte) * 10;
     }
+
+    attack(){
+        
+        heroVie -= monsterChoosed.degats;
+        gameOver();
+        displayHeroInfo();
+        // animation d'attaque
+        monsterChoosed.moveToHero();
+        create(monsterChoosed.degats, getReceivedDamage, 0, "static");
+        setTimeout(monsterChoosed.moveToHero, 300); 
+    }
+
+    autoAttack(){
+        return attackinterval = setInterval(monsterChoosed.attack, 2600);
+    }
+
+    moveToHero(){
+        if(monsterMove[1] == true){
+            monsterMove[2] = 42;
+            getMonsterWindow.style.left = `${monsterMove[2]}%`;
+            monsterMove[1] = false;
+        }
+        else{
+            monsterMove[2] = 43;
+            getMonsterWindow.style.left = `${monsterMove[2]}%`;
+            clearInterval(monsterMove[0]);
+            monsterMove[1]  = true;
+        }
+        
+    }
+   
 }
 
 class spriteImage{ //Objet qui récupère le background et lui applique le css qui lui permet de bien centrer l'image sur la DIV.
@@ -44,11 +77,16 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
 }
  
 function monsterRandomPop(){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
-        var RandomDifficulte = Math.floor(Math.random()*5);
+        var RandomDifficulte = Math.floor(Math.random()*200);
         var RandomMonsterNumber = Math.floor(Math.random()*5);
+<<<<<<< HEAD
         monsterChoosed = new monster( monsters[RandomMonsterNumber][0], 1 , 1);
+=======
+        monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
+>>>>>>> 0747aacdc59265de02bbe6d00f75ceec6ce42678
         monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);// créer une instance de l'objet spriteImage.
         monsterImage.apply(0); //applique l'image 0 du monstre au lancement de la page, sinon le monstre ne s'afficher qu'àprès le premier setInterval.
+        monsterChoosed.autoAttack();
         var intervalMonsterImage = startInterval(monsterImage,monsters[RandomMonsterNumber][2]);
         //infos du monstre
             getMonsterHealthBar.max = monsterChoosed.vie;
@@ -61,11 +99,18 @@ function checkMonsterHealth(monstreInfos){
     if(monstreInfos.vie > 0){
         getMonsterHealthBar.value = monstreInfos.vie;
         getHealthValueMonster.innerHTML = `${monstreInfos.vie.toFixed(1)} / ${getMonsterHealthBar.max}`;
+        
     }
     else{
+<<<<<<< HEAD
         augmenterXp();
+=======
+        augmenterXp_Argent();
+>>>>>>> 0747aacdc59265de02bbe6d00f75ceec6ce42678
         clearActualMonster();
+        clearInterval(attackinterval);
         monsterRandomPop();
+        regenHealthPoint();
     }
     
     
@@ -79,11 +124,11 @@ function animation(nbImage, monster){ // Paramètres nbImage qui définit le nom
 function startInterval(instanceName, nbImages){ //instanceName qui récupère l'instance créer pour l'envoyé en paramète dans les autres fonction et objets.
     this.instanceName = instanceName;
     this.nbImages = nbImages;
-    return test = setInterval(animation, 400, this.nbImages, this.instanceName);
+    return startIntervalAnimation = setInterval(animation, 400, this.nbImages, this.instanceName);
 }
 
 function clearActualMonster(){
-    clearInterval(test);
+    clearInterval(startIntervalAnimation);
     monsterChoosed = null;
     monsterImage = null;
     getMonsterWindow.style.background = "none";
@@ -93,7 +138,17 @@ monsterRandomPop();
 
 //degats onclick sur le monstre à l'ecran
 function damageOnMonster(){
-    var degats = 1.3;
-    monsterChoosed.vie -= degats;
+    clearInterval(startHeroAnimation);// clear Interval pour eviter qu'il ne s'empile.
+    clearTimeout(heroTimeOutWalkBack); // clear Timeout pour eviter qu'il ne s'empile.
+    clearInterval(startAttackAnimation);
+    heroWalk[1] = true;
+    heroTimeOutWalkBack = setTimeout(function(){heroWalk[1] = false;},800); // si on ne clique plus pour attaquer, alors le hero revient à sa position initiale.
+    startAttackAnimation = setInterval(heroAnimation, 45); // execute la fonction qui donne un coup d'épée visuellement.
+    startHeroAnimation = setInterval(heroWalkAnimation,8);// execute la fonction qui deplace le héro jusqu'au monstre.
+    monsterChoosed.vie -= degatsHero;
+    create(degatsHero, damageDeal, 0, "scroll");
     checkMonsterHealth(monsterChoosed);
+    
 }
+
+

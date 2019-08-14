@@ -1,3 +1,5 @@
+
+
 html{
     height: 100%;
     padding:0px;
@@ -7,8 +9,11 @@ html{
 
 body{
     height: 100%;
+    max-height: 1080px;
     padding:0px;
     margin:0px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
 }
 
 /* 3 parties du jeu.*/
@@ -44,6 +49,7 @@ body{
 }
 
 #zone-droite{
+    font-size:0.7em;
     height: 753px;
     align-self: flex-start;
     flex:1;
@@ -58,11 +64,30 @@ body{
 
 /* partie gauche */
 #porte-monnaie{
-    
-    
-    background:darkgrey;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    background:#ffffff42;
     height: 120px;
     width: 75%;
+}
+
+#argent{
+    flex:8;
+    font-size:2.4em;
+    color: gold;
+    text-align: center;
+}
+
+#logo-porte-monnaie{
+    flex:4;
+    width: 100px;
+    height: 100px;
+    background: url('../images/coin.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #boutique{
@@ -98,7 +123,9 @@ body{
     width: 100%;
     height:40px;
     background-color: white;
-    color:red;
+    border:solid black 1px;
+    border-radius: 50px;
+    overflow: hidden;
 }
 #monster-health-bar::-moz-progress-bar, #monster-health-bar::-webkit-progress-value , #monster-health-bar::-webkit-progress-bar{
     width: 100%;
@@ -117,7 +144,7 @@ body{
 }
 
 #monster{
-    
+    left:43%;
     height: 150px;
     width: 135px;
     position: absolute;
@@ -127,14 +154,62 @@ body{
     background-repeat: no-repeat;
 
 }
+#degat-envoyer{
+    
+    width: 300px;
+    height: 700px;
+    position: absolute;
+    bottom:0px;
+    right: 0px;
+    overflow: hidden;
+}
+#degat-envoyer div{
+    font-weight: bold;
+    margin:0px;
+}
+
+#received-dmg{
+    top:0px;
+    left: -50px;
+    position: absolute;
+    width: 150px;
+    height: 12px;
+}
+
+#received-dmg div{
+    width: 100%;
+    text-align: center;
+    color : darkred;
+    font-size: 1.4em;
+}
 
 #player-character-window{
-   
-    height: 80px;
-    width: 50px;
-    position:absolute;
+    position: absolute;
     left: 0px;
-    bottom:200px;
+    bottom:170px;
+    height: 90px;
+}
+#hero{ 
+    height: 65px;
+    width: 50px;
+    position: absolute;
+    bottom:0px;
+  
+}
+
+#weapon{
+    background:url('../images/weapons/sword1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(30deg);
+    /*top:26px;
+    left:18px;*/
+    position: absolute;
+    width: 60px;
+    height: 40px;
+   
+    
 }
 
 /* FIN DE :zone de combat*/
@@ -180,40 +255,140 @@ body{
 /*FIN DE : inventaire */
 
 #stats{
-    
+    display: flex;
     background:darkgrey;
     height: 150px;
+    flex-wrap: wrap;
     
-  
+}
+#stamina, #strength{
+    width:50%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
 }
 
+#stamina div, #strength div{
+    width: 70%;
+    text-align: center;
+    font-size:1.4em;
+    line-height: 25px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+}
+
+#stamina div p, #strength div p{
+    margin:0px;
+    font-weight: bold;
+}
+
+#stamina div i{
+    margin:auto;
+    background: url('../images/shieldIcon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width:30px;
+    height: 30px;
+   
+}
+
+#strength div i{
+    margin:auto;
+    background: url('../images/swordIcon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width:30px;
+    height: 30px;
+}
+
+.stats-add-icon{
+    align-self: center;
+    background: url('../images/plusIcon.png');
+    background-size:40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.stats-add-icon:active{
+    background-size:30px;
+}
+
+#skill-point{
+    background:orange;
+    text-align: center;
+    width:100%;
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#skill-point p{
+    margin:0px;
+}
 /*FIN de: conteneur Inventaire et stats */
 
 
 #conteneur-life-xp{
     margin-top:20px;
-    
+    position: relative;
     width: 75%;
-    height: 100px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
 }
+
+#conteneur-life-xp #health-number{
+    position: absolute;
+    top:6px;
+    margin:0px;
+    z-index:12;
+    width: 100%;
+    text-align: center;
+}
+
+#conteneur-life-xp #experience-number{
+    position: absolute;
+    margin:0px;
+    z-index:12;
+    top:57px;
+    width: 100%;
+    text-align: center;
+}
+
     #barre-de-vie{
-        border:solid purple;
-        height: 35px;
+        border:solid black 1px;
+        border-radius: 4px;
+        height: 30px;
+        width:100%;
+        z-index:10;
+        margin-bottom: 20px;
     }
 
 
     #barre-xp{
-        border:solid orange;
-        height: 35px;
+        border:solid black 1px;
+        border-radius: 4px;
+        height: 30px;
+        
+        width:100%;
+        z-index:10;
     }
 
     /*Barre de vie + Xp*/
 
     
+<<<<<<< HEAD
 #barre-de-vie{
     width: 100%;
     height:40px;
@@ -223,10 +398,16 @@ body{
 #barre-de-vie::-moz-progress-bar, #barre-de-vie::-webkit-progress-value , #barre-de-vie::-webkit-progress-bar{
     width: 100%;
     height:40px;
+=======
+
+#barre-de-vie::-moz-progress-bar, #barre-de-vie::-webkit-progress-value , #barre-de-vie::-webkit-progress-bar{
+    width: 100%;
+>>>>>>> 0747aacdc59265de02bbe6d00f75ceec6ce42678
     background-color: red;
     
 }
 
+<<<<<<< HEAD
 #barre-xp{
     width: 100%;
     height:40px;
@@ -236,9 +417,18 @@ body{
 #barre-xp::-moz-progress-bar, #barre-xp::-webkit-progress-value , #barre-xp::-webkit-progress-bar{
     width: 100%;
     height:40px;
+=======
+#barre-xp::-moz-progress-bar, #barre-xp::-webkit-progress-value , #barre-xp::-webkit-progress-bar{
+    width: 100%;
+>>>>>>> 0747aacdc59265de02bbe6d00f75ceec6ce42678
     background-color: rgb(0, 102, 255);
     
 }
 
+#niveau-hero{
+    margin:auto;
+   
+    font-weight: bolder;
+}
 
 /*FIN DE : partie droite */
