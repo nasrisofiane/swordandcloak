@@ -1,52 +1,11 @@
 var heroBarreViehtml = document.getElementById("barre-de-vie");
 var heroBarreXphtml = document.getElementById("barre-xp");
-<<<<<<< HEAD
-=======
 var heroXpNumber = document.getElementById("experience-number");
 var heroHealthNumber = document.getElementById("health-number");
->>>>>>> 0747aacdc59265de02bbe6d00f75ceec6ce42678
 var heroNiveauhtml = document.getElementById("niveau-hero");
 var heroCaracteristiquehtml = document.getElementById("stats");
 var heroStaminahtml = document.getElementById("stamina");
 var heroStrenghthtml = document.getElementById("strenght");
-<<<<<<< HEAD
-var heroXpMax = 150;
-var heroXpActuel = 0;
-var heroNiveau = 0;
-var heroCaracteristique = 0;
-var heroBarreVie = 150;
-var heroStamina =0;
-var heroStrenght =0;
-
-
-
-
-function augmenterXp(){
-    // action xp +10 a chaque mort du monstre//  
-
-    heroXpActuel += monsterChoosed.experience;
-
-    if(heroXpActuel >= heroXpMax){
-        lvlUp();
-    }
-
-    console.log(heroXpActuel);
-    console.log(heroNiveau);
-}
-
-
-function lvlUp(){
-   
-    heroNiveau += 1;
-    heroCaracteristique = heroCaracteristique +2;
-    heroBarreVie = heroBarreVie +100;
-    heroXpMax = heroXpMax +30;
-    heroXpActuel = 0;
-}
-
-function caracteristique(){
-
-=======
 var damageDeal = document.getElementById("degat-envoyer");
 var porteMonnaieArgent = document.getElementById("argent");
 var porteMonnaieLogo = document.getElementById("logo-porte-monnaie");
@@ -102,7 +61,6 @@ function displayHeroInfo(){
 }
 
 function lvlUp(){  
-    degatsHero = 1 + (heroStrenght*1.7) ;
     heroNiveau += 1;
     heroCaracteristique = heroCaracteristique +2;
     heroVieMax = 100 + (heroStamina * 1.3);
@@ -210,17 +168,10 @@ function staticCombatText(objet, deleteDmg){
        objet.para.parentNode.removeChild(objet.para);
        clearInterval(objet.interval);
     }
->>>>>>> 0747aacdc59265de02bbe6d00f75ceec6ce42678
     
 }
 
 
-<<<<<<< HEAD
-// //action si la vie du joueur est a zero (a faire le systeme de perte de vie)
-// if (heroBarreVie >= 0){
-//     //GameOVER//
-// }
-=======
 function create(degat, elementHtml, positionDmg, ScrollOrStatic){
     if(ScrollOrStatic == "scroll"){
         dmgToText= new combatText(degat, elementHtml, positionDmg, ScrollOrStatic);
@@ -299,4 +250,3 @@ function heroWalkAnimation(){
 
 
 
->>>>>>> 0747aacdc59265de02bbe6d00f75ceec6ce42678
