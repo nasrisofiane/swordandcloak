@@ -61,7 +61,6 @@ function displayHeroInfo(){
 }
 
 function lvlUp(){  
-    degatsHero = 1 + (heroStrenght*1.7) ;
     heroNiveau += 1;
     heroCaracteristique = heroCaracteristique +2;
     heroVieMax = 100 + (heroStamina * 1.3);

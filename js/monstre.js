@@ -77,7 +77,7 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
 }
  
 function monsterRandomPop(){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
-        var RandomDifficulte = Math.floor(Math.random()*200);
+        var RandomDifficulte = Math.floor(Math.random()*4);
         var RandomMonsterNumber = Math.floor(Math.random()*5);
         monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
         monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);// créer une instance de l'objet spriteImage.
