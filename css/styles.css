@@ -1,3 +1,5 @@
+
+
 html{
     height: 100%;
     padding:0px;
@@ -9,12 +11,16 @@ body{
     height: 100%;
     padding:0px;
     margin:0px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
 }
 
 /* 3 parties du jeu.*/
 #conteneur-principal{
     background:url("../images/background.png");
-    background-position-y: -100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -44,6 +50,7 @@ body{
 }
 
 #zone-droite{
+    font-size:0.7em;
     height: 753px;
     align-self: flex-start;
     flex:1;
@@ -58,26 +65,103 @@ body{
 
 /* partie gauche */
 #porte-monnaie{
-    
-    border:solid black;
-    background:darkgrey;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    background:#2e1a00;
+    border-radius: 4px 4px 4px 4px;
     height: 120px;
     width: 75%;
 }
 
+#argent{
+    flex:8;
+    font-size:2.4em;
+    color: gold;
+    text-align: center;
+}
+
+#logo-porte-monnaie{
+    flex:4;
+    width: 100px;
+    height: 100px;
+    background: url('../images/coin.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 #boutique{
-    border:solid black;
-    background:darkgrey;
-    height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    background:#2e1a00;
     width: 75%;
+    padding-bottom: 24px;
     
+}
+
+#titre-boutique{
+    border-radius: 4px 4px 0px 0px;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    top:-48px;
+    margin:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#603106;
+    color:white;
+}
+
+.objet  {
+    height: 100px;
+    width: 100px;
+    margin-top:20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    position: relative;
+
+}
+
+.prix-objet{
+    width: 100%;
+    height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    background-image: url('../images/coin.png');
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: right 5px;
+    background-color:#603106;
+    position: absolute;
+    bottom: -18px;
+    color:white;
+    
+}
+.objet:hover{
+    box-shadow:-1px 2px 5px 1px rgba(100, 100, 100, 1); 
+}
+.objet:active{
+    height: 90px;
+    width: 90;
+    box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
 }
 
 /* FIN DE :partie gauche */
 
 /*zone de combat*/
 #monster-window{
-    border:solid purple;
+    
     width: 500px;
     display: flex;
     flex-direction: row;
@@ -86,6 +170,7 @@ body{
 #monster-infos{
     margin-top:100px;
     width: 100%;
+    position: relative;
 }
 
 #monster-name{
@@ -96,27 +181,94 @@ body{
 #monster-health-bar{
     width: 100%;
     height:40px;
+    background-color: white;
+    border:solid black 1px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+#monster-health-bar::-moz-progress-bar, #monster-health-bar::-webkit-progress-value , #monster-health-bar::-webkit-progress-bar{
+    width: 100%;
+    height:40px;
+    background-color: red;
+    
+}
+
+#health-value-monster{
+    margin:0px;
+    text-align: center;
+    width: 100%;
+    align-self: center;
+    top:42px;
+    position: absolute;
 }
 
 #monster{
-    border:solid red;
+    left:43%;
     height: 150px;
     width: 135px;
     position: absolute;
-    bottom:200px;
+    bottom:8%;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 
 }
+#degat-envoyer{
+    
+    width: 300px;
+    height: 700px;
+    position: absolute;
+    bottom:0px;
+    right: 0px;
+    overflow: hidden;
+}
+#degat-envoyer div{
+    font-weight: bold;
+    margin:0px;
+}
+
+#received-dmg{
+    top:0px;
+    left: -50px;
+    position: absolute;
+    width: 150px;
+    height: 12px;
+}
+
+#received-dmg div{
+    width: 100%;
+    text-align: center;
+    color : darkred;
+    font-size: 1.4em;
+}
 
 #player-character-window{
-    border:solid purple;
-    height: 80px;
-    width: 50px;
-    position:absolute;
+    position: absolute;
     left: 0px;
-    bottom:200px;
+    bottom:8%;
+    height: 90px;
+}
+#hero{ 
+    height: 65px;
+    width: 50px;
+    position: absolute;
+    bottom:0px;
+  
+}
+
+#weapon{
+    background:url('../images/weapons/sword1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(30deg);
+    /*top:26px;
+    left:18px;*/
+    position: absolute;
+    width: 60px;
+    height: 40px;
+   
+    
 }
 
 /* FIN DE :zone de combat*/
@@ -135,64 +287,275 @@ body{
 }
 
 /*Inventaire*/
-#inventaire{
-    background:darkgrey;
-    height: 100px;
+#conteneur-inventaire{
+    height: 120px;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch ;
+    
+}
+
+#conteneur-inventaire h2{
+    flex:1;
+    border-radius:3px 3px 0px 0px;
+    margin:0px;
+    display: flex;
+    justify-content: center;
+    background:#603106;
+    align-items: center;
+    color:white;
+}
+
+#inventaire{
+    background:#603106;
+    height: 100px;
+    flex: 2;
+    display: flex;
+    color:white;
+    border-radius:8px;
+    position: relative;
+
 }
     #inventaire-part-gauche{
         height: 100%;
-        background:white;
-        flex:1;
+        background:#2e1a00;
+        flex:2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      
+    }
+
+    #inventaire-part-gauche strong, #inventaire-part-droite strong{
+        font-size: 0.7em;
+        display: block;
+        color: darkgray;
+        margin-top:2px;
+        width: 100%;
+        text-align: center;
+    }
+
+    #inventaire-part-gauche p, #inventaire-part-droite p{
+        font-size: 0.7em;
+        text-align: center;
+        
     }
 
     #inventaire-part-milieu{
         height: 100%;
-        background:white;
+        background:#2e1a00;
         flex:2;
         margin:0px 5px 0px 5px;
+        display : flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #epee-equipe, #cape-equipe{
+        width: 60px;
+        height: 60px;
+        border-radius:7px;
+        margin:0px 3px 0px 3px;
+        box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+        display: block;
     }
 
     #inventaire-part-droite{
         height: 100%;
-        background:white;
-        flex:1;
+        background:#2e1a00;
+        flex:2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       
     }
+
+   
+    
+
+    
 
 /*FIN DE : inventaire */
 
 #stats{
-    border:solid black;
-    background:darkgrey;
+    display: flex;
+    background:#2e1a00;
+    color: white;
     height: 150px;
-    
-  
+    flex-wrap: wrap;
+    border-radius: 0px 0px 3px 3px;
 }
 
+#up-stats{
+    flex:3;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 4px;
+}
+
+#infos-stats{
+    box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    background: #753c07;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex:2;
+}
+
+#stamina, #strength{
+    width:100%;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+#stamina div, #strength div{
+    text-align: center;
+    font-size:1.4em;
+    line-height: 25px;
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#vie-text, #degats-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0px 5px 0px 10px;
+}
+
+#stamina div p, #strength div p{
+    margin:0px;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+#stamina div i{
+    background: url('../images/shieldIcon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width:30px;
+    height: 30px;
+   
+}
+
+#strength div i{
+    background: url('../images/swordIcon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width:30px;
+    height: 30px;
+}
+
+.stats-add-icon{
+    align-self: center;
+    background: url('../images/plusIcon.png');
+    background-size:30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.stats-add-icon:active{
+    background-size:20px;
+}
+
+#skill-point{
+    background:#603106;
+    text-align: center;
+    width:100%;
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius:0px 0px 3px 3px;
+}
+
+#skill-point p{
+    margin:0px;
+}
 /*FIN de: conteneur Inventaire et stats */
 
 
 #conteneur-life-xp{
     margin-top:20px;
-    
+    position: relative;
     width: 75%;
-    height: 100px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
 }
+
+#conteneur-life-xp #health-number{
+    position: absolute;
+    top:6px;
+    margin:0px;
+    z-index:12;
+    width: 100%;
+    text-align: center;
+}
+
+#conteneur-life-xp #experience-number{
+    position: absolute;
+    margin:0px;
+    z-index:12;
+    top:57px;
+    width: 100%;
+    text-align: center;
+}
+
     #barre-de-vie{
-        border:solid purple;
-        height: 35px;
+        border:solid black 1px;
+        border-radius: 4px;
+        height: 30px;
+        width:100%;
+        z-index:10;
+        margin-bottom: 20px;
     }
 
 
     #barre-xp{
-        border:solid orange;
-        height: 35px;
+        border:solid black 1px;
+        border-radius: 4px;
+        height: 30px;
+        
+        width:100%;
+        z-index:10;
     }
 
+    /*Barre de vie + Xp*/
 
+    
 
-/*FIN DE : partie droite */
+#barre-de-vie::-moz-progress-bar, #barre-de-vie::-webkit-progress-value , #barre-de-vie::-webkit-progress-bar{
+    width: 100%;
+    background-color: reàààààààd;
+    
+}
+
+#barre-xp::-moz-progress-bar, #barre-xp::-webkit-progress-value , #barre-xp::-webkit-progress-bar{
+    width: 100%;
+    background-color: rgb(0, 102, 255);
+    
+}
+
+#niveau-hero{
+    margin:auto;
+   
+    font-weight: bolder;
+}
+
+/*FIN DE : partie droite */à

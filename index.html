@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet"> 
     <link href="css/styles.css" rel="stylesheet"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sword & Cloak XI</title>
@@ -10,52 +11,80 @@
 <body>
     <section id="conteneur-principal">
         <div id="zone-gauche">
-            <div id="porte-monnaie"></div>
+            <div id="porte-monnaie"><div id="argent"></div><div id="logo-porte-monnaie"></div></div>
             <div id="boutique">
+                <h2 id="titre-boutique">Boutique</h2>
 
             </div>
         </div>
 
         <div id="zone-combat">
-            <div id="player-character-window"></div>
+            <div id="player-character-window"><div id="received-dmg"></div><div id="hero"></div><div id="weapon"></div></div>
             <div id="monster-window">
                 <div id="monster-infos">
                     <h3 id="monster-name">Monster</h3>
+                    <h2 id="health-value-monster">test</h2>
                     <progress id="monster-health-bar" value=""></progress>
                 </div>
                 <div id="monster"></div>
+                <div id="degat-envoyer"></div>
             </div>
            
         </div>
 
         <div id="zone-droite">
             <div id="conteneur-life-xp">
-                <div id="barre-de-vie"></div>
-                <div id="barre-xp"></div>
+                <h2 id="health-number">test</h2>
+                <progress id="barre-de-vie"></progress>
+                <h2 id="experience-number">test</h2>
+                <progress id="barre-xp" value="70" max="100"></progress>
+                <div id="niveau-hero"></div>
             </div>
             <div>
 
             </div>
                 <div id="conteneur-inventaire-stats">
-                    <div id="inventaire">
-                        <div id="inventaire-part-gauche">
-
-                        </div>
-                        <div id="inventaire-part-milieu">
-                            
-                        </div>
-                        <div id="inventaire-part-droite">
-                            
+                    <div id="conteneur-inventaire">
+                        <h2>Objets équipé</h2>
+                        <div id="inventaire">
+                            <div id="inventaire-part-gauche" class="show-infos">
+                                <strong>Epée bonus</strong>
+                                <p></p>
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div id="inventaire-part-milieu">
+                                <div id="epee-equipe"></div>
+                                <div id="cape-equipe"></div>
+                            </div>
+                            <div id="inventaire-part-droite" class="show-infos">
+                                <strong>Cape bonus</strong>
+                                <p></p>
+                                <p></p>
+                                <p></p>
+                            </div>
                         </div>
                     </div>
-                    <div id="stats"></div>
+                    <div id="stats">
+                        <div id="up-stats">
+                                <div id="stamina"><strong class="stats-add-icon" id="add-stamina" ></strong><div><i></i><p id="stamina-text">Stamina 784</p></div></div>
+                                <div id="strength"><strong class="stats-add-icon" id="add-strength"></strong><div><i></i><p id="strength-text" onclick="caracteristique(event)">Strength 540</p></div></div>
+                        </div>
+                        <div id="infos-stats">
+                                <div id="vie-text">Vie max 100</div> 
+                                <div id="degats-text">Degats 15</div>
+                        </div>
+                        <div id="skill-point"><p id="skill-point-text">2 Skill point</p></div>
+                    </div>
+                    
                 </div>
         </div>
     </section>
-    
+    <script src="js/shop_et_inventaire.js" type="text/javascript"></script>
     <script src="js/hero.js" type="text/javascript"></script>
     <script src="js/hero_stats.js" type="text/javascript"></script>
     <script src="js/monstre.js" type="text/javascript"></script>
-    <script src="js/shop_et_inventaire.js" type="text/javascript"></script>
+    <script src="js/animation.js" type="text/javascript"></script>
+
 </body>
 </html>
