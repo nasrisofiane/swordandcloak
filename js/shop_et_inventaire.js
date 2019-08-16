@@ -23,15 +23,18 @@ class items{
         this.bought = false;
         this.objetContainer = document.createElement("div");
         this.objetContainerPrix = document.createElement("div");
+        this.objetContainerInfos = document.createElement("div");
         this.itemId = itemNumber;
         itemNumber +=1;
         if(this.type == "epee"){
             this.degat = bonus;
             this.elementHTML = epeeEquipe;
+            this.objetContainerInfos.innerHTML = `<div>Degats : ${this.degat} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
         }
         else{
             this.vie = bonus
             this.elementHTML = capeEquipe;
+            this.objetContainerInfos.innerHTML = `<div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
         }
         
         this.imageObjet();
@@ -48,7 +51,9 @@ class items{
         //fin de test
         this.objetContainerPrix.innerHTML = `${this.prix}`;
         this.objetContainerPrix.className = "prix-objet";
+        this.objetContainerInfos.className = "infos-objet";
         this.objetContainer.appendChild(this.objetContainerPrix);
+        this.objetContainer.appendChild(this.objetContainerInfos);
         boutique.appendChild(this.objetContainer);
         
     }
@@ -96,7 +101,7 @@ class items{
                 this.elementHTML.style.backgroundPosition  = "center";
             }
             else{
-                alert("Pas de bras pas de chocolat");
+                alert("Pas assez d'or");
             }
         }
         displayHeroInfo();
