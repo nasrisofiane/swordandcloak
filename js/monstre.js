@@ -22,8 +22,8 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
         this.difficulte = difficulte;
         this.stamina = (10 + level) * difficulte;
         this.strength = (4 + level) * difficulte;
-        this.vie = this.stamina * 1.7 * level * this.difficulte;
-        this.degats = this.strength * 1.2 + level * this.difficulte;
+        this.vie = this.stamina * 0.6 * level * this.difficulte;
+        this.degats = this.strength * 0.2 + level * this.difficulte;
         this.experience = (15 + this.level) * this.difficulte;
         this.argent = (this.level * this.difficulte) * 10;
     }
@@ -40,7 +40,7 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
     }
 
     autoAttack(){
-        return attackinterval = setInterval(monsterChoosed.attack, 2600);
+        return attackinterval = setInterval(monsterChoosed.attack, 3600);
     }
 
     moveToHero(){

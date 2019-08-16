@@ -69,7 +69,8 @@ body{
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    background:#ffffff42;
+    background:#2e1a00;
+    border-radius: 4px 4px 4px 4px;
     height: 120px;
     width: 75%;
 }
@@ -92,22 +93,68 @@ body{
 }
 
 #boutique{
+    position: relative;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
-    background:darkgrey;
-    height: 400px;
+    background:#2e1a00;
     width: 75%;
+    padding-bottom: 24px;
     
 }
 
+#titre-boutique{
+    border-radius: 4px 4px 0px 0px;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    top:-48px;
+    margin:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#603106;
+    color:white;
+}
+
 .objet  {
-    height: 120px;
-    width: 120px;
-    border : solid;
+    height: 100px;
+    width: 100px;
+    margin-top:20px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    position: relative;
+
+}
+
+.prix-objet{
+    width: 100%;
+    height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    background-image: url('../images/coin.png');
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: right 5px;
+    background-color:#603106;
+    position: absolute;
+    bottom: -18px;
+    color:white;
+    
+}
+.objet:hover{
+    box-shadow:-1px 2px 5px 1px rgba(100, 100, 100, 1); 
+}
+.objet:active{
+    height: 90px;
+    width: 90;
+    box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
 }
 
 /* FIN DE :partie gauche */
@@ -160,7 +207,7 @@ body{
     height: 150px;
     width: 135px;
     position: absolute;
-    bottom:170px;
+    bottom:8%;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -198,7 +245,7 @@ body{
 #player-character-window{
     position: absolute;
     left: 0px;
-    bottom:170px;
+    bottom:8%;
     height: 90px;
 }
 #hero{ 
@@ -240,68 +287,146 @@ body{
 }
 
 /*Inventaire*/
-#inventaire{
-    background:darkgrey;
-    height: 100px;
+#conteneur-inventaire{
+    height: 120px;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch ;
+    
+}
+
+#conteneur-inventaire h2{
+    flex:1;
+    border-radius:3px 3px 0px 0px;
+    margin:0px;
+    display: flex;
+    justify-content: center;
+    background:#603106;
+    align-items: center;
+    color:white;
+}
+
+#inventaire{
+    background:#603106;
+    height: 100px;
+    flex: 2;
+    display: flex;
+    color:white;
+    border-radius:8px;
+    position: relative;
+
 }
     #inventaire-part-gauche{
         height: 100%;
-        background:white;
-        flex:1;
+        background:#2e1a00;
+        flex:2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      
+    }
+
+    #inventaire-part-gauche strong, #inventaire-part-droite strong{
+        font-size: 0.7em;
+        display: block;
+        color: darkgray;
+        margin-top:2px;
+        width: 100%;
+        text-align: center;
+    }
+
+    #inventaire-part-gauche p, #inventaire-part-droite p{
+        font-size: 0.7em;
+        text-align: center;
+        
     }
 
     #inventaire-part-milieu{
         height: 100%;
-        background:white;
+        background:#2e1a00;
         flex:2;
         margin:0px 5px 0px 5px;
         display : flex;
-        justify-content: space-between;
-    }ààà
-
-    #epee-equipe{
-        width: 60px;
-        height: 60px;
-        border : solid;
+        justify-content: space-around;
+        align-items: center;
     }
 
-    #cape-equipe{
+    #epee-equipe, #cape-equipe{
         width: 60px;
         height: 60px;
-        border : solid;
+        border-radius:7px;
+        margin:0px 3px 0px 3px;
+        box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+        display: block;
     }
 
     #inventaire-part-droite{
         height: 100%;
-        background:white;
-        flex:1;
+        background:#2e1a00;
+        flex:2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       
     }
+
+   
+    
+
+    
 
 /*FIN DE : inventaire */
 
 #stats{
     display: flex;
-    background:darkgrey;
+    background:#2e1a00;
+    color: white;
     height: 150px;
     flex-wrap: wrap;
-    
+    border-radius: 0px 0px 3px 3px;
 }
-#stamina, #strength{
-    width:50%;
+
+#up-stats{
+    flex:3;
     height: 100px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 4px;
+}
+
+#infos-stats{
+    box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+    background: #753c07;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex:2;
+}
+
+#stamina, #strength{
+    width:100%;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
 }
 
 #stamina div, #strength div{
-    width: 70%;
     text-align: center;
     font-size:1.4em;
     line-height: 25px;
     display: block;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#vie-text, #degats-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0px 5px 0px 10px;
 }
 
 #stamina div p, #strength div p{
@@ -311,7 +436,6 @@ body{
 }
 
 #stamina div i{
-    margin:auto;
     background: url('../images/shieldIcon.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -323,7 +447,6 @@ body{
 }
 
 #strength div i{
-    margin:auto;
     background: url('../images/swordIcon.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -336,7 +459,7 @@ body{
 .stats-add-icon{
     align-self: center;
     background: url('../images/plusIcon.png');
-    background-size:40px;
+    background-size:30px;
     background-repeat: no-repeat;
     background-position: center;
     display: block;
@@ -345,17 +468,18 @@ body{
 }
 
 .stats-add-icon:active{
-    background-size:30px;
+    background-size:20px;
 }
 
 #skill-point{
-    background:orange;
+    background:#603106;
     text-align: center;
     width:100%;
    height: 50px;
    display: flex;
    justify-content: center;
    align-items: center;
+   border-radius:0px 0px 3px 3px;
 }
 
 #skill-point p{

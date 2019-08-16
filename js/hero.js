@@ -23,12 +23,18 @@ var heroXpActuel = 0;
 var heroNiveau = 1;
 var heroStamina =0;
 var heroStrenght = 0;
-var heroCaracteristique = 2;
-var heroVieMax = 100 + (heroStamina * 1.3) ;
+var heroCaracteristique = 0;
+var staminaToHp = 1;
+var strenghtToDmg = 1;
+var hpWithoutStamina = 100;
+var dmgWithoutStrength = 1;
+var heroVieMax = hpWithoutStamina + staminaToHp;
 var heroVie = heroVieMax;
 var heroArgent = 0;
-var degatsHero = 1 + (heroStrenght*1.7) ;
+var degatsHero = dmgWithoutStrength + strenghtToDmg ;
 var heroXpRestant;
+var equippedSword;
+var equippedCloak;
 
 heroBarreViehtml.max = heroVieMax;
 heroBarreXphtml.max = heroXpMax;
@@ -46,6 +52,8 @@ function augmenterXp_Argent(){
 }
 
 function displayHeroInfo(){
+    updateSta();
+    updateStr();
     porteMonnaieArgent.innerHTML = Math.round(heroArgent);
     heroNiveauhtml.innerHTML = `LEVEL ${heroNiveau}`;
     heroBarreViehtml.max = heroVieMax;
@@ -56,14 +64,19 @@ function displayHeroInfo(){
     heroBarreXphtml.max = heroXpMax;
     strengthText.innerHTML = `Strength ${heroStrenght}`;
     staminaText.innerHTML = `Stamina ${heroStamina}`;
-    skillPointText.innerHTML = `${heroCaracteristique} stat point(s)`;
+    skillPointText.innerHTML = `${heroCaracteristique} point(s) de statistique disponible`;
+    vieTextStats.innerHTML = `Vie Max ${heroVieMax}`;
+    degatTextStats.innerHTML= `Degats ${degatsHero}`;
+
+   
     
 }
 
 function lvlUp(){  
     heroNiveau += 1;
     heroCaracteristique = heroCaracteristique +2;
-    heroVieMax = 100 + (heroStamina * 1.3);
+    hpWithoutStamina += 15;
+    heroVieMax = hpWithoutStamina + staminaToHp;
     heroBarreViehtml.max = heroVieMax;
     heroXpMax = heroXpMax +30;
     heroXpActuel = 0;
@@ -83,7 +96,6 @@ function caracteristique(event){ // fonction qui depense un point de stats et qu
         }
         else if(event.target.id == "add-stamina"){
             heroStamina += 1;
-            heroVieMax += 1 * 1.4;
         }
         heroCaracteristique -=1;
     }
@@ -98,6 +110,20 @@ for(var i = 0; i <= 1; i++){
    
 }
 
+function updateSta(){
+    staminaToHp = heroStamina * 1.4;
+    heroVieMax = hpWithoutStamina + staminaToHp;
+    if(heroVie > heroVieMax){
+        heroVie = heroVieMax;
+    }
+   
+}
+
+function updateStr(){
+    strenghtToDmg = heroStrenght * 1.9;
+    degatsHero = dmgWithoutStrength + strenghtToDmg ;
+}
+
 function gameOver(){
     if(heroVie <= 0){
         if(heroArgent < 1){
@@ -106,6 +132,7 @@ function gameOver(){
         heroArgent = heroArgent / 2;
         if(heroNiveau > 1){
             heroNiveau -= 1;
+            hpWithoutStamina -= 15;
         }
         heroVie = heroVieMax;
     }
