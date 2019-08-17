@@ -1,12 +1,18 @@
 // Création du monstre, affichage de l'image.
 var monsterChoosed; // variable qui contiendra une nouvelle instance de l'objet monstre
 var attackinterval;
+var MonsterAttackSpeed = Math.floor(Math.random() * 1800) + 2300 ;
+var MonsterAttackSpeedToSecond;
+var nombreMonstreTue = 0;
 var monsterMove = [0,true, 40];
 var monsterImage; // chemin de l'image du monstre
 var getMonsterWindow = document.getElementById("monster");
 var getMonsterName = document.getElementById("monster-name");
 var getMonsterHealthBar = document.getElementById("monster-health-bar");
 var getHealthValueMonster = document.getElementById("health-value-monster"); //Element HTML pour afficher la vie actuel du monstre
+var getDifficulteMonster = document.getElementById("difficulte-monstre");
+var getDegatsTexteMonster = document.getElementById("degats-monstre");
+var getVitesseAttaqueTexteMonster = document.getElementById("monstre-vitesse-attaque");
 const monsters = [ // tableau des noms de monstres et infos
     ['Le mage ancestral', 'images/sprites/disciple', 5], // premier index est égal au nom du monstre, le deuxième au chemin du sprite et le troisième au nombre de sprites pour l'animé.
     ['La chèvre en robe', 'images/sprites/chevreWarrior', 1],
@@ -14,6 +20,7 @@ const monsters = [ // tableau des noms de monstres et infos
     ['La grosse tête', 'images/sprites/grosseTete', 1],
     ['Le chien du concierge', 'images/sprites/chienBoss', 4]
 ];
+
 getMonsterWindow.onclick = damageOnMonster;
 class monster{ // Objet qui permet de créer un monstre en passant en paramètres son nom , level et sa difficulté.
     constructor(nom, level, difficulte){
@@ -29,7 +36,6 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
     }
 
     attack(){
-        
         heroVie -= monsterChoosed.degats;
         gameOver();
         displayHeroInfo();
@@ -40,7 +46,7 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
     }
 
     autoAttack(){
-        return attackinterval = setInterval(monsterChoosed.attack, 3600);
+       attackinterval = setInterval(monsterChoosed.attack, MonsterAttackSpeed);
     }
 
     moveToHero(){
@@ -77,16 +83,29 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
 }
  
 function monsterRandomPop(){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
+        MonsterAttackSpeed = Math.floor(Math.random() * 1800) + 2300 ;
+        MonsterAttackSpeedToSecond = MonsterAttackSpeed/100;
         var RandomDifficulte = Math.floor(Math.random()*3);
         var RandomMonsterNumber = Math.floor(Math.random()*5);
-        monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
-        monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);// créer une instance de l'objet spriteImage.
+        if(nombreMonstreTue >= 5 && heroNiveau > 3){
+            monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , 6);
+            monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
+            nombreMonstreTue = 0;
+        }
+        else{
+            monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
+            monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
+        }
+        // créer une instance de l'objet spriteImage.
         monsterImage.apply(0); //applique l'image 0 du monstre au lancement de la page, sinon le monstre ne s'afficher qu'àprès le premier setInterval.
         monsterChoosed.autoAttack();
         var intervalMonsterImage = startInterval(monsterImage,monsters[RandomMonsterNumber][2]);
         //infos du monstre
             getMonsterHealthBar.max = monsterChoosed.vie;
             getMonsterName.innerHTML = monsterChoosed.nom; 
+            getDifficulteMonster.innerHTML = `${monsterChoosed.difficulte}`;
+            getDegatsTexteMonster.innerHTML = `Degats : ${monsterChoosed.degats}`;
+            getVitesseAttaqueTexteMonster.innerHTML = `Vitesse D'attaque : ${MonsterAttackSpeedToSecond.toString().charAt(0)}.${MonsterAttackSpeedToSecond.toString().charAt(1)}s`;
             checkMonsterHealth(monsterChoosed);
             
 }
@@ -98,6 +117,7 @@ function checkMonsterHealth(monstreInfos){
         
     }
     else{
+        nombreMonstreTue +=1;
         augmenterXp_Argent();
         clearActualMonster();
         clearInterval(attackinterval);

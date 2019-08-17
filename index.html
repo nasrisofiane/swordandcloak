@@ -10,38 +10,51 @@
 </head>
 <body>
     <section id="conteneur-principal">
+        <div id="game-over">
+            <h2>Hero mort</h2>
+            <h3>Perte de 50% de l'or actuel</h3>
+            <h4 id="back-to-game">Cliquez sur l'écran pour continuer la partie</h4>
+        </div>
         <div id="zone-gauche">
+                <h2 id="titre-boutique">Boutique</h2>
             <div id="porte-monnaie"><div id="argent"></div><div id="logo-porte-monnaie"></div></div>
             <div id="boutique">
-                <h2 id="titre-boutique">Boutique</h2>
+                
 
             </div>
         </div>
 
         <div id="zone-combat">
-            <div id="player-character-window"><div id="received-dmg"></div><div id="hero"></div><div id="weapon"></div></div>
+            <div id="player-character-window"><div id="received-dmg"></div><div id="hero"><div id="bras-hero"></div></div><div id="weapon"></div></div>
             <div id="monster-window">
                 <div id="monster-infos">
                     <h3 id="monster-name">Monster</h3>
                     <h2 id="health-value-monster">test</h2>
-                    <progress id="monster-health-bar" value=""></progress>
+                    <div id="conteneur-infos-monstre">
+                        <div id="conteneur-monstre-difficulte">
+                                <div id="difficulte-monstre"></div>
+                                <div id="difficulte-monstre-tooltip"><p>Niveau de difficulté du monstre</p></div>
+                        </div>
+                        <progress id="monster-health-bar" value=""></progress>
+                    </div>
+                    <div id="monstre-stats"><div id="degats-monstre">10</div><div id="monstre-vitesse-attaque">2.6s</div></div>
                 </div>
                 <div id="monster"></div>
                 <div id="degat-envoyer"></div>
             </div>
-           
         </div>
 
         <div id="zone-droite">
-            <div id="conteneur-life-xp">
-                <h2 id="health-number">test</h2>
-                <progress id="barre-de-vie"></progress>
-                <h2 id="experience-number">test</h2>
-                <progress id="barre-xp" value="70" max="100"></progress>
+           <div id="infos-hero">
+                <div id="conteneur-life-xp">
+                    <h2 id="health-number">test</h2>
+                    <i id="vie-icon"></i>
+                    <progress id="barre-de-vie"></progress>
+                    <h2 id="experience-number">test</h2>
+                    <i id="exp-icon">XP</i>
+                    <progress id="barre-xp" value="70" max="100"></progress>
+                </div>
                 <div id="niveau-hero"></div>
-            </div>
-            <div>
-
             </div>
                 <div id="conteneur-inventaire-stats">
                     <div id="conteneur-inventaire">
@@ -65,6 +78,7 @@
                             </div>
                         </div>
                     </div>
+                    <h2 id="stats-titre">Statistiques</h2>
                     <div id="stats">
                         <div id="up-stats">
                                 <div id="stamina"><strong class="stats-add-icon" id="add-stamina" ></strong><div><i></i><p id="stamina-text">Stamina 784</p></div></div>
