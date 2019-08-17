@@ -32,7 +32,7 @@ var hpWithoutStamina = 100;
 var dmgWithoutStrength = 1;
 var heroVieMax = hpWithoutStamina + staminaToHp;
 var heroVie = heroVieMax;
-var heroArgent = 1000000;
+var heroArgent = 0;
 var degatsHero = dmgWithoutStrength + strenghtToDmg ;
 var heroXpRestant;
 var equippedSword;
@@ -128,50 +128,48 @@ function updateStr(){
 var gameOverInterval;
 var die = true;
 function gameOver(){
-    if(heroVie <= 0){
         if(die == true){
             clearInterval(attackinterval);
             getGameOver.style.display = "flex";
+            clearInterval(gameOverInterval);
             gameOverInterval = setInterval(GameOverAnimation, 100);
             heroVie = 0;
         }
         else if(die == false){
+            clearInterval(attackinterval);
             monsterChoosed.autoAttack();
-            heroVie = heroVieMax;
+            clearInterval(gameOverInterval);
             gameOverInterval = setInterval(GameOverAnimation, 30);
         }
 
         if(heroArgent < 1){
             heroArgent = 0;
         }
-        heroArgent = heroArgent / 2;
-        displayHeroInfo();        
         
-    }
-
-    
-    
 }
 var gameOverOpacity = 0;
+getGameOver.onclick = gameOver;
 function GameOverAnimation(){
     if(die == true){
         getGameOver.style.opacity = gameOverOpacity;
         gameOverOpacity +=0.1;
         if(gameOverOpacity >=1){
-            die = false;
             clearInterval(gameOverInterval);
+            die = false;
         }
     }
     else if(die == false){
         getGameOver.style.opacity = gameOverOpacity;
         gameOverOpacity -=0.1;
         if(gameOverOpacity <=0){
-            die = true;
+            heroArgent = heroArgent / 2;
+            heroVie = heroVieMax;
             getGameOver.style.display = "none";
             clearInterval(gameOverInterval);
+            die = true;
         }
     }
-    getGameOver.onclick = gameOver;
+    displayHeroInfo();     
 }
 
 //creer un combat text à droite du monstre qui afficher les degats du hero en temps reel.
@@ -310,7 +308,7 @@ function heroWalkAnimation(){
                     getHeroCompleteSKin.style.left = `${heroWalk[0]-5}%`;
                 }
                 else{
-                    getHeroCompleteSKin.style.left = `${heroWalk[0]}%`;
+                    getHeroCompleteSKin.style.left = `${heroWalk[0]-3}%`;
                 }
             }
             else{
