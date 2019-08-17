@@ -15,8 +15,10 @@ var skillPointText = document.getElementById("skill-point-text");
 var statsAddIcon = document.getElementsByClassName("stats-add-icon");
 var getHeroSkin = document.getElementById("hero");
 var getHeroWeapon = document.getElementById("weapon");
+var getHeroArm = document.getElementById("bras-hero");
 var getHeroCompleteSKin = document.getElementById("player-character-window");
 var getReceivedDamage = document.getElementById("received-dmg");
+var getGameOver = document.getElementById("game-over");
 
 var heroXpMax = 150;
 var heroXpActuel = 0;
@@ -30,7 +32,7 @@ var hpWithoutStamina = 100;
 var dmgWithoutStrength = 1;
 var heroVieMax = hpWithoutStamina + staminaToHp;
 var heroVie = heroVieMax;
-var heroArgent = 0;
+var heroArgent = 1000000;
 var degatsHero = dmgWithoutStrength + strenghtToDmg ;
 var heroXpRestant;
 var equippedSword;
@@ -123,19 +125,53 @@ function updateStr(){
     strenghtToDmg = heroStrenght * 1.9;
     degatsHero = dmgWithoutStrength + strenghtToDmg ;
 }
-
+var gameOverInterval;
+var die = true;
 function gameOver(){
     if(heroVie <= 0){
+        if(die == true){
+            clearInterval(attackinterval);
+            getGameOver.style.display = "flex";
+            gameOverInterval = setInterval(GameOverAnimation, 100);
+            heroVie = 0;
+        }
+        else if(die == false){
+            monsterChoosed.autoAttack();
+            heroVie = heroVieMax;
+            gameOverInterval = setInterval(GameOverAnimation, 30);
+        }
+
         if(heroArgent < 1){
             heroArgent = 0;
         }
         heroArgent = heroArgent / 2;
-        if(heroNiveau > 1){
-            heroNiveau -= 1;
-            hpWithoutStamina -= 15;
-        }
-        heroVie = heroVieMax;
+        displayHeroInfo();        
+        
     }
+
+    
+    
+}
+var gameOverOpacity = 0;
+function GameOverAnimation(){
+    if(die == true){
+        getGameOver.style.opacity = gameOverOpacity;
+        gameOverOpacity +=0.1;
+        if(gameOverOpacity >=1){
+            die = false;
+            clearInterval(gameOverInterval);
+        }
+    }
+    else if(die == false){
+        getGameOver.style.opacity = gameOverOpacity;
+        gameOverOpacity -=0.1;
+        if(gameOverOpacity <=0){
+            die = true;
+            getGameOver.style.display = "none";
+            clearInterval(gameOverInterval);
+        }
+    }
+    getGameOver.onclick = gameOver;
 }
 
 //creer un combat text à droite du monstre qui afficher les degats du hero en temps reel.
@@ -220,32 +256,47 @@ var startHeroAnimation;
 var startAttackAnimation; 
 var heroTimeOutWalkBack; // un set timeout est assigné quand on attack le monstre.
 
+                    
 heroAnimation();
 function heroAnimation(){
         getHeroWeapon.style.bottom = "0px";
-        getHeroSkin.style.background = `url('images/hero/heroFille${heroImageNb}.png')`;
+        getHeroSkin.style.background = `url('images/hero/heromodulable0.png')`;
         getHeroSkin.style.backgroundSize = "contain";
         getHeroSkin.style.backgroundRepeat = "no-repeat";
         getHeroSkin.style.backgroundPosition = "center";
         switch(heroImageNb){
             case 0:
-                    getHeroWeapon.style.left = "10px";
+                    getHeroArm.style.left ="10px";
+                    getHeroArm.style.transform = "rotate(0deg)";
+                    getHeroArm.style.top = "70px";
+                    getHeroWeapon.style.transform = "rotate(20deg)";
+                    getHeroWeapon.style.top = "30px";
+                    getHeroWeapon.style.left = "42px";
                     break;
             case 1: 
-                    getHeroWeapon.style.left = "15px";
+                    /*getHeroArm.style.left ="20px";
+                    getHeroArm.style.transform = "rotate(-20deg)";
+                    getHeroWeapon.style.left = "57px";*/
+                    getHeroArm.style.left ="20px";
+                    getHeroArm.style.transform = "rotate(-40deg)";
+                    getHeroArm.style.top = "70px";
+                    getHeroWeapon.style.transform = "rotate(0deg)";
+                    getHeroWeapon.style.top = "20px";
+                    getHeroWeapon.style.left = "54px";
                     break;
             case 2:
-                    getHeroWeapon.style.left = "21px";
+                    getHeroArm.style.left ="10px";
+                    getHeroArm.style.transform = "rotate(-80deg)";
+                    getHeroArm.style.top = "60px";
+                    getHeroWeapon.style.transform = "rotate(-10deg)";
+                    getHeroWeapon.style.top = "-5px";
                     break;
         }
         heroImageNb += 1;
         if(heroImageNb > 2){
             heroImageNb = 0;
-            getHeroSkin.style.background = `url('images/hero/heroFille${heroImageNb}.png')`;
-            getHeroWeapon.style.left = "10px";
-            getHeroSkin.style.backgroundSize = "contain";
-            getHeroSkin.style.backgroundRepeat = "no-repeat";
-            getHeroSkin.style.backgroundPosition = "center";
+            //getHeroSkin.style.background = `url('images/hero/heroFille${heroImageNb}.png')`;
+            heroAnimation();
             clearInterval(startAttackAnimation);
          }
          
@@ -253,9 +304,14 @@ function heroAnimation(){
 
 function heroWalkAnimation(){
         if(heroWalk[1] == true){
-            if(heroWalk[0] < 40){
-                getHeroCompleteSKin.style.left = `${heroWalk[0]}%`;
+            if(heroWalk[0] < 38){
                 heroWalk[0] +=2;
+                if(equippedSword != null && equippedSword != undefined){
+                    getHeroCompleteSKin.style.left = `${heroWalk[0]-5}%`;
+                }
+                else{
+                    getHeroCompleteSKin.style.left = `${heroWalk[0]}%`;
+                }
             }
             else{
               

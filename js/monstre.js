@@ -46,7 +46,7 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
     }
 
     autoAttack(){
-        return attackinterval = setInterval(monsterChoosed.attack, MonsterAttackSpeed);
+       attackinterval = setInterval(monsterChoosed.attack, MonsterAttackSpeed);
     }
 
     moveToHero(){

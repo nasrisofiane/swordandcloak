@@ -24,6 +24,38 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+#game-over{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:rgba(0, 0, 0, 0.90);
+    height: 100%;
+    width: 100%;
+    z-index: 999999;
+    color:gold;
+    display: none;
+    opacity: 0;
+}
+
+#game-over h2{
+    font-size:6em;
+}
+
+#game-over h3{
+    font-size: 2.6em;
+    color:#ef0007;
+}
+
+#back-to-game{
+    align-self: center;
+    justify-self: flex-end;
 }
 
 #zone-gauche{
@@ -281,8 +313,6 @@ body{
 
 }
 
-
-
 #degat-envoyer{
     
     min-width: 15%;
@@ -298,8 +328,8 @@ body{
 }
 
 #received-dmg{
-    top:0px;
-    left: -50px;
+    top:-50px;
+    left: -25px;
     position: absolute;
     width: 150px;
     height: 12px;
@@ -319,24 +349,35 @@ body{
     height: 90px;
 }
 #hero{ 
-    height: 65px;
-    width: 50px;
+    height: 115px;
+    width: 100px;
     position: absolute;
     bottom:0px;
   
 }
+
+ #bras-hero{
+     width: 100px;
+     height: 40px;
+     position: absolute;
+     top:72px;
+     background: url('../images/hero/brashero.png');
+     background-size: 100px;
+     background-repeat: no-repeat;
+     background-position: center;
+     z-index: 14000;
+ }
 
 #weapon{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     transform: rotate(30deg);
-    /*top:26px;
-    left:18px;*/
+    /*left:18px;*/
     position: absolute;
-    width: 60px;
-    height: 40px;
-   
+    width: 100px;
+    height: 60px;
+   z-index: 10000;
     
 }
 
@@ -681,7 +722,7 @@ body{
         
 
     html{
-        height: 654px;
+        height: 100%;
         padding:0px;
         margin:0px;
         min-height: 0px;
@@ -689,7 +730,7 @@ body{
     }
 
     body{
-        height: 654px;
+        height: 100%;
         padding:0px;
         margin:0px;
         font-family: 'Press Start 2P', cursive;
@@ -701,7 +742,7 @@ body{
         background-size: cover;
         background-repeat: no-repeat;
         background-position-y: -40px;
-        height: 654px;
+        height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
