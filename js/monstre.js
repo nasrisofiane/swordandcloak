@@ -37,7 +37,9 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
 
     attack(){
         heroVie -= monsterChoosed.degats;
-        gameOver();
+        if(heroVie <= 0){
+            gameOver();
+        }
         displayHeroInfo();
         // animation d'attaque
         monsterChoosed.moveToHero();
