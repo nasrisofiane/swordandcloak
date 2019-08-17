@@ -20,7 +20,6 @@ body{
     background:url("../images/background.png");
     background-size: cover;
     background-repeat: no-repeat;
-
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -33,7 +32,7 @@ body{
     min-width: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -69,8 +68,8 @@ body{
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    background:#2e1a00;
-    border-radius: 4px 4px 4px 4px;
+    background:#603106;
+    box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
     height: 120px;
     width: 75%;
 }
@@ -84,8 +83,8 @@ body{
 
 #logo-porte-monnaie{
     flex:4;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: url('../images/coin.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -106,9 +105,8 @@ body{
 
 #titre-boutique{
     border-radius: 4px 4px 0px 0px;
-    width: 100%;
+    width: 75%;
     height: 50px;
-    position: absolute;
     top:-38px;
     margin:0px;
     display: flex;
@@ -205,8 +203,8 @@ body{
     width: 100%;
     height:40px;
     background-color: white;
-    border:solid black 1px;
-    border-radius: 50px;
+    border:solid #603106 1px;
+    border-radius: 0px 0px 0px 0px;
     overflow: hidden;
 }
 #monster-health-bar::-moz-progress-bar, #monster-health-bar::-webkit-progress-value , #monster-health-bar::-webkit-progress-bar{
@@ -216,6 +214,41 @@ body{
     
 }
 
+#conteneur-infos-monstre{
+    display: flex;
+   
+}
+
+#conteneur-monstre-difficulte{
+    position: relative;
+}
+
+#difficulte-monstre{
+    background: #753c07;
+    border-radius: 0px 0px 0px 0px;
+    color:white;
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#difficulte-monstre-tooltip{
+    display: none;
+    width: 300px;
+    text-align: center;
+    background :rgba(0, 0, 0, 0.7); 
+    position: absolute;
+    font-size:0.7em;
+    color: white;
+}
+
+#conteneur-monstre-difficulte:hover #difficulte-monstre-tooltip{
+    display: block;
+}
+
 #health-value-monster{
     margin:0px;
     text-align: center;
@@ -223,6 +256,17 @@ body{
     align-self: center;
     top:42px;
     position: absolute;
+}
+
+#monstre-stats{
+    background:#603106;
+    color:white;
+    border-radius: 0px 0px 0px 0px;
+    font-size: 0.6em;
+    display: flex;
+    justify-content: space-around;
+    padding:10px 0px 10px 0px;
+    
 }
 
 #monster{
@@ -236,13 +280,16 @@ body{
     background-repeat: no-repeat;
 
 }
+
+
+
 #degat-envoyer{
     
-    width: 300px;
-    height: 700px;
+    min-width: 15%;
+    height: 60%;
     position: absolute;
     bottom:0px;
-    right: 0px;
+    right: 10%;
     overflow: hidden;
 }
 #degat-envoyer div{
@@ -280,7 +327,6 @@ body{
 }
 
 #weapon{
-    background:url('../images/weapons/sword1.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -304,8 +350,7 @@ body{
     width: 75%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 280px;
+    height: 380px;
     
 }
 
@@ -316,6 +361,7 @@ body{
     flex-direction: column;
     justify-content: flex-end;
     align-items: stretch ;
+    margin-bottom: 40px;
     
 }
 
@@ -401,6 +447,17 @@ body{
 
 /*FIN DE : inventaire */
 
+#stats-titre{
+    background: #753c07;
+    color:white;
+    margin:0px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px 4px 0px 0px;
+}
+
 #stats{
     display: flex;
     background:#2e1a00;
@@ -421,7 +478,7 @@ body{
 
 #infos-stats{
     box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
-    background: #753c07;
+    background:#2e1a00;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -509,54 +566,89 @@ body{
     margin:0px;
 }
 /*FIN de: conteneur Inventaire et stats */
-
+#infos-hero{
+    width: 75%;
+    height: 145px;
+    margin-top:20px;
+    background:#2e1a00;
+}
 
 #conteneur-life-xp{
-    margin-top:20px;
     position: relative;
-    width: 75%;
-    height: 160px;
+    width:100%;
+    height: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
+    justify-content: space-around;
+    align-items: flex-end;
+    color:white;
+    
 }
 
 #conteneur-life-xp #health-number{
     position: absolute;
-    top:6px;
+    top:31px;
     margin:0px;
     z-index:12;
-    width: 100%;
+    width: 80%;
     text-align: center;
+    color:black;
+    margin-right: 20px;
 }
 
 #conteneur-life-xp #experience-number{
     position: absolute;
     margin:0px;
     z-index:12;
-    top:57px;
-    width: 100%;
+    top:72px;
+    width: 80%;
     text-align: center;
+    color:black;
+    margin-right: 20px;
+}
+
+#vie-icon{
+    background: url('../images/hearth.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left:6px;
+    top:20px;
+}
+
+#exp-icon{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left:16px;
+    top:76px;
+    color:rgb(0, 167, 223);
+    font-style: normal;
+    font-size: 1.4em;
 }
 
     #barre-de-vie{
         border:solid black 1px;
-        border-radius: 4px;
         height: 30px;
-        width:100%;
+        width: 80%;
+        position: absolute;
+        top:23px;
         z-index:10;
-        margin-bottom: 20px;
+        margin-right: 20px;
     }
 
 
     #barre-xp{
         border:solid black 1px;
-        border-radius: 4px;
         height: 30px;
-        
-        width:100%;
+        width:80%;
+        position: absolute;
+        top:65px;
         z-index:10;
+        margin-right: 20px;
     }
 
     /*Barre de vie + Xp*/
@@ -565,20 +657,121 @@ body{
 
 #barre-de-vie::-moz-progress-bar, #barre-de-vie::-webkit-progress-value , #barre-de-vie::-webkit-progress-bar{
     width: 100%;
-    background-color: reàààààààd;
+    background-color: red;
     
 }
 
 #barre-xp::-moz-progress-bar, #barre-xp::-webkit-progress-value , #barre-xp::-webkit-progress-bar{
     width: 100%;
-    background-color: rgb(0, 102, 255);
+    background-color: rgb(0, 167, 223);
     
 }
 
 #niveau-hero{
-    margin:auto;
-   
+    margin-top:20px;
+    width: 100%;
+    color:white;
+    text-align: center;
     font-weight: bolder;
 }
 
-/*FIN DE : partie droite */à
+/*FIN DE : partie droite */
+
+@media only screen and (max-width: 1400px) {
+        
+
+    html{
+        height: 654px;
+        padding:0px;
+        margin:0px;
+        min-height: 0px;
+        
+    }
+
+    body{
+        height: 654px;
+        padding:0px;
+        margin:0px;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.8em;
+    }
+
+    #conteneur-principal{
+        background:url("../images/background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-y: -40px;
+        height: 654px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #infos-hero{
+        margin-top:0px;
+        width: 100%;
+        border-radius: 0px;
+
+    }
+
+    #titre-boutique{
+        width: 100%;
+        border-radius: 0px;
+
+    }
+
+    #porte-monnaie{
+        width: 100%;
+        border-radius: 0px;
+
+    }
+
+    #boutique{
+        width: 100%;
+        border-radius: 0px;
+
+    }
+    
+    #conteneur-inventaire-stats{
+        width: 100%;
+        border-radius: 0px;
+        
+    }
+        
+    #zone-gauche{
+        height: 100%;
+        flex:1;
+        min-width: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #zone-combat{
+        border:solid lightgrey 1px;
+        border-top:none;
+        border-bottom:none;
+        height:100%;
+        flex:2;
+        min-width: 500px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    #zone-droite{
+        font-size:0.7em;
+        height: 100%;
+        align-self: flex-start;
+        flex:1;
+        min-width: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+
+  }

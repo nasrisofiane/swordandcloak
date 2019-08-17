@@ -65,8 +65,8 @@ function displayHeroInfo(){
     strengthText.innerHTML = `Strength ${heroStrenght}`;
     staminaText.innerHTML = `Stamina ${heroStamina}`;
     skillPointText.innerHTML = `${heroCaracteristique} point(s) de statistique disponible`;
-    vieTextStats.innerHTML = `Vie Max ${heroVieMax}`;
-    degatTextStats.innerHTML= `Degats ${degatsHero}`;
+    vieTextStats.innerHTML = `Vie Max ${heroVieMax.toFixed(1)}`;
+    degatTextStats.innerHTML= `Degats ${degatsHero.toFixed(1)}`;
 
    
     
