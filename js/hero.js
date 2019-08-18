@@ -1,50 +1,6 @@
-var heroBarreViehtml = document.getElementById("barre-de-vie");
-var heroBarreXphtml = document.getElementById("barre-xp");
-var heroXpNumber = document.getElementById("experience-number");
-var heroHealthNumber = document.getElementById("health-number");
-var heroNiveauhtml = document.getElementById("niveau-hero");
-var heroCaracteristiquehtml = document.getElementById("stats");
-var heroStaminahtml = document.getElementById("stamina");
-var heroStrenghthtml = document.getElementById("strenght");
-var damageDeal = document.getElementById("degat-envoyer");
-var porteMonnaieArgent = document.getElementById("argent");
-var porteMonnaieLogo = document.getElementById("logo-porte-monnaie");
-var strengthText = document.getElementById("strength-text");
-var staminaText = document.getElementById("stamina-text");
-var skillPointText = document.getElementById("skill-point-text");
-var statsAddIcon = document.getElementsByClassName("stats-add-icon");
-var getHeroSkin = document.getElementById("hero");
-var getHeroWeapon = document.getElementById("weapon");
-var getHeroArm = document.getElementById("bras-hero");
-var getHeroCompleteSKin = document.getElementById("player-character-window");
-var getReceivedDamage = document.getElementById("received-dmg");
-var getGameOver = document.getElementById("game-over");
-
-var heroXpMax = 150;
-var heroXpActuel = 0;
-var heroNiveau = 1;
-var heroStamina =0;
-var heroStrenght = 0;
-var heroCaracteristique = 0;
-var staminaToHp = 1;
-var strenghtToDmg = 1;
-var hpWithoutStamina = 100;
-var dmgWithoutStrength = 1;
-var heroVieMax = hpWithoutStamina + staminaToHp;
-var heroVie = heroVieMax;
-var heroArgent = 0;
-var degatsHero = dmgWithoutStrength + strenghtToDmg ;
-var heroXpRestant;
-var equippedSword;
-var equippedCloak;
-
-heroBarreViehtml.max = heroVieMax;
-heroBarreXphtml.max = heroXpMax;
 displayHeroInfo();
-var dmgToText1;
-function augmenterXp_Argent(){
+function augmenterXp_Argent(){ // fonction d'incrémentation d'argent et d'exp à chaque mort de monstre, et appel levelUP si l'exp depasse 100%.
     //augement l'experience du hero a chaque mort du monstre//  
-
     heroXpActuel += monsterChoosed.experience;
     heroArgent += monsterChoosed.argent;
     if(heroXpActuel >= heroXpMax){
@@ -53,9 +9,8 @@ function augmenterXp_Argent(){
     displayHeroInfo();
 }
 
-function displayHeroInfo(){
-    updateSta();
-    updateStr();
+function displayHeroInfo(){ // function qui actualise toutes infos visuel avec les valeurs de variables actuel, fonction appelé à chaque fin d'action.
+    updateHeroStats();
     porteMonnaieArgent.innerHTML = Math.round(heroArgent);
     heroNiveauhtml.innerHTML = `LEVEL ${heroNiveau}`;
     heroBarreViehtml.max = heroVieMax;
@@ -69,18 +24,14 @@ function displayHeroInfo(){
     skillPointText.innerHTML = `${heroCaracteristique} point(s) de statistique disponible`;
     vieTextStats.innerHTML = `Vie Max ${heroVieMax.toFixed(1)}`;
     degatTextStats.innerHTML= `Degats ${degatsHero.toFixed(1)}`;
-
-   
-    
 }
 
-function lvlUp(){  
+function lvlUp(){  //Changements des stats ou autres au level up !
     heroNiveau += 1;
     heroCaracteristique = heroCaracteristique +2;
     hpWithoutStamina += 15;
     heroVieMax = hpWithoutStamina + staminaToHp;
-    heroBarreViehtml.max = heroVieMax;
-    heroXpMax = heroXpMax +30;
+    heroXpMax = heroXpMax +30; // A CHANGER
     heroXpActuel = 0;
     displayHeroInfo();
 }
@@ -94,7 +45,6 @@ function caracteristique(event){ // fonction qui depense un point de stats et qu
     if(heroCaracteristique > 0){
         if(event.target.id == "add-strength"){
             heroStrenght += 1;
-            degatsHero += 1 *1.7 ;
         }
         else if(event.target.id == "add-stamina"){
             heroStamina += 1;
@@ -104,29 +54,22 @@ function caracteristique(event){ // fonction qui depense un point de stats et qu
     else{
        
     }
+    updateHeroStats();
     displayHeroInfo();
 }
 
-for(var i = 0; i <= 1; i++){
+for(let i = 0; i <= 1; i++){ // boucle qui fait le tour de tout les element HTML présent pour la classe .stats-add-icon et lui ajoute la fonction  caracteristique() au click.
     statsAddIcon[i].onclick = caracteristique;
-   
 }
 
-function updateSta(){
-    staminaToHp = heroStamina * 1.4;
-    heroVieMax = hpWithoutStamina + staminaToHp;
-    if(heroVie > heroVieMax){
-        heroVie = heroVieMax;
-    }
-   
-}
-
-function updateStr(){
-    strenghtToDmg = heroStrenght * 1.9;
+function updateHeroStats(){//met à jour les stats du héro avec ses modificateur pour qu'à chaque points de stats les dmg et la vie soit bien recalculer. (fonction appelée dans displayHeroInfo())
+    staminaToHp = heroStamina;
+    heroVieMax = hpWithoutStamina + staminaToHp *2;
+    strenghtToDmg = heroStrenght * 1.7;
     degatsHero = dmgWithoutStrength + strenghtToDmg ;
 }
-var gameOverInterval;
-var die = true;
+
+// SYSTEM DE GAME OVER.
 function gameOver(){
         if(die == true){
             clearInterval(attackinterval);
@@ -147,8 +90,7 @@ function gameOver(){
         }
         
 }
-var gameOverOpacity = 0;
-getGameOver.onclick = gameOver;
+
 function GameOverAnimation(){
     if(die == true){
         getGameOver.style.opacity = gameOverOpacity;
@@ -171,11 +113,10 @@ function GameOverAnimation(){
     }
     displayHeroInfo();     
 }
+getGameOver.onclick = gameOver;
+//FIN DE SYSTEM DE GAMEOVER.
 
-//creer un combat text à droite du monstre qui afficher les degats du hero en temps reel.
-var opacity = 1;
-var fontSize = 1.9;
-var opacityDownInterval;
+//Creer un combat text à droite du monstre qui affiche les degats du hero en temps reel.
 class combatText{
     constructor(degat, elementHtml, positionDmg, ScrollOrStatic){
         this.pos = positionDmg;
@@ -201,14 +142,14 @@ class combatText{
     }
 
     opacityDown(){
-        fontSize -= 0.1;
-        opacity -= 0.1;
-        dmgToText1.para.style.opacity = opacity;
-        dmgToText1.para.style.fontSize = `${fontSize}em`;
-        if(opacity <=0){
+        combatTextfontSize -= 0.1;
+        combatTextOpacity -= 0.1;
+        dmgToText1.para.style.opacity = combatTextOpacity;
+        dmgToText1.para.style.fontSize = `${combatTextfontSize}em`;
+        if(combatTextOpacity <=0){
             clearInterval(opacityDownInterval);
-            opacity = 1;
-            fontSize = 1.9;
+            combatTextOpacity = 1;
+            combatTextfontSize = 1.9;
         }
     }
 }
@@ -229,9 +170,7 @@ function staticCombatText(objet, deleteDmg){
        objet.para.parentNode.removeChild(objet.para);
        clearInterval(objet.interval);
     }
-    
 }
-
 
 function create(degat, elementHtml, positionDmg, ScrollOrStatic){
     if(ScrollOrStatic == "scroll"){
@@ -239,31 +178,23 @@ function create(degat, elementHtml, positionDmg, ScrollOrStatic){
         dmgToText.activate();
     }
     else if(ScrollOrStatic == "static"){
-        dmgToText1= new combatText(degat, elementHtml, positionDmg, ScrollOrStatic);
+        dmgToText1 = new combatText(degat, elementHtml, positionDmg, ScrollOrStatic);
         dmgToText1.activate();
     }
-    
 }
 // FIN DE :creer un combat text à droite du monstre qui afficher les degats du hero en temps reel.
 
 
-//skin hero, animation
-var heroImageNb = 0;
-var heroWalk = [0, true]; // premier index est egal à la distance parcourue depuis le côté gauche, et le deuxieme index est egal à true pour marche avant et false pour marche arrière.
-var startHeroAnimation;
-var startAttackAnimation; 
-var heroTimeOutWalkBack; // un set timeout est assigné quand on attack le monstre.
-
-                    
+//skin hero, animation             
 heroAnimation();
-function heroAnimation(){
+function heroAnimation(){ // créer l'animation d'attaque, le bras de héro est découpé de son corps, les mouvements de bras et d'épée sont précis.
         getHeroWeapon.style.bottom = "0px";
         getHeroSkin.style.background = `url('images/hero/heromodulable0.png')`;
         getHeroSkin.style.backgroundSize = "contain";
         getHeroSkin.style.backgroundRepeat = "no-repeat";
         getHeroSkin.style.backgroundPosition = "center";
         switch(heroImageNb){
-            case 0:
+            case 0: //chaque case représente une position différente du bras et de l'épée.
                     getHeroArm.style.left ="10px";
                     getHeroArm.style.transform = "rotate(0deg)";
                     getHeroArm.style.top = "70px";
@@ -297,12 +228,11 @@ function heroAnimation(){
             heroAnimation();
             clearInterval(startAttackAnimation);
          }
-         
 }
 
-function heroWalkAnimation(){
+function heroWalkAnimation(){ //créer l'animation de course jusqu'au monstre.
         if(heroWalk[1] == true){
-            if(heroWalk[0] < 38){
+            if(heroWalk[0] < 38/*représente la distance parcourue en pourcentage sur l'écran.*/){
                 heroWalk[0] +=2;
                 if(equippedSword != null && equippedSword != undefined){
                     getHeroCompleteSKin.style.left = `${heroWalk[0]-5}%`;
@@ -325,7 +255,6 @@ function heroWalkAnimation(){
                 clearInterval(startHeroAnimation);
             }
         }
-        
 }
 
 

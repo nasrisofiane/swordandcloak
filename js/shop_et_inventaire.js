@@ -1,18 +1,4 @@
-var boutique = document.getElementById("boutique");
-var epeeEquipe = document.getElementById("epee-equipe");
-var capeEquipe = document.getElementById("cape-equipe");
-var inventairePartGauche = document.getElementById("inventaire-part-gauche");
-var inventairePartDroite = document.getElementById("inventaire-part-droite");
-var inventaireShowInfos = document.getElementsByClassName("show-infos");
-var swordInfosText = document.getElementById("inventaire-part-gauche").childNodes;
-var cloakInfosText = document.getElementById("inventaire-part-droite").childNodes;
-var vieTextStats = document.getElementById("vie-text");
-var degatTextStats = document.getElementById("degats-text");
-
-
-
-var itemNumber = 0;
-class items{
+class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
     constructor(nom, prix, strenght, stamina ,image, type, bonus ){
         this.nom = nom;
         this.prix = prix; 
@@ -36,12 +22,11 @@ class items{
             this.elementHTML = capeEquipe;
             this.objetContainerInfos.innerHTML = `<div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
         }
-        
         this.imageObjet();
     }
 
-    imageObjet(){
-        this.objetContainer.style.background = `url(images/weapons/${this.image}.png)`;
+    imageObjet(){// affiche l'image de l'objet dans une div dans la boutique.
+        this.objetContainer.style.background = `url(images/items/${this.image}.png)`;
         this.objetContainer.style.backgroundSize = "contain";
         this.objetContainer.style.backgroundRepeat  = "no-repeat";
         this.objetContainer.className="objet";
@@ -55,13 +40,11 @@ class items{
         this.objetContainer.appendChild(this.objetContainerPrix);
         this.objetContainer.appendChild(this.objetContainerInfos);
         boutique.appendChild(this.objetContainer);
-        
     }
     
-    equipeItem(){
+    equipeItem(){ // fonction qui permet d'équipé l'objet(Jeu) visuellement et fonctionnellement. supprime l'objet de la boutique, le met dans les objets équipé et l'affiche sur héro.
         if(this.bought == false){
             if(heroArgent >= this.prix){
-                
                 heroArgent -= this.prix;
                 heroStrenght += this.strenght;
                 heroStamina += this.stamina;
@@ -78,11 +61,10 @@ class items{
                     swordInfosText[3].innerHTML = `Degats + ${this.degat}`;
                     swordInfosText[5].innerHTML = `Strength + ${this.strenght}`;
                     swordInfosText[7].innerHTML = `Stamina + ${this.stamina}`;
-                    getHeroWeapon.style.background = `url(images/weapons/${this.image}.png)`;
+                    getHeroWeapon.style.background = `url(images/items/${this.image}.png)`;
                     getHeroWeapon.style.backgroundSize = "contain";
                     getHeroWeapon.style.backgroundRepeat  = "no-repeat";
                     getHeroWeapon.style.backgroundPosition  = "center";
-                    
                 }
                 else{
                     if(equippedCloak != null || equippedCloak != undefined){
@@ -95,7 +77,7 @@ class items{
                     cloakInfosText[5].innerHTML = `Strength + ${this.strenght}`;
                     cloakInfosText[7].innerHTML = `Stamina + ${this.stamina}`;
                 }
-                this.elementHTML.style.background = `url(images/weapons/${this.image}.png)`;
+                this.elementHTML.style.background = `url(images/items/${this.image}.png)`;
                 this.elementHTML.style.backgroundSize = "contain";
                 this.elementHTML.style.backgroundRepeat  = "no-repeat";
                 this.elementHTML.style.backgroundPosition  = "center";
@@ -107,9 +89,8 @@ class items{
         displayHeroInfo();
     }
 
-    desequipeItem(){
+    desequipeItem(){ // Si objet est desequipper, retire toutes les stats que donnait l'objet, supprime visuellement l'objet, dans les objets équipé.
         if(this.bought == true){
-            
             heroStrenght -= this.strenght;
             heroStamina -= this.stamina;
             if(this.type == "epee"){
@@ -126,26 +107,8 @@ class items{
     }
 }
 
-var itemsShop = [
-    new items('Le Cure-dent', 500, 1, 1, "sword1", "epee",1),
-    new items('La Fisteuse', 5000, 40, 190, "sword0", "epee",200),
-    new items('La Defourailleuse de Fion', 50000, 499, 501, "sword2", "epee",500),
-    new items('Cape Haute', 500, 6, 1, "cloak0", "cloak",110),
-    new items('Cape Oral', 1800, 27, 4, "cloak1", "cloak",240),
-    new items('Cape Cake', 4700, 68, 12, "cloak2", "cloak",451)
-];
-
-/*var sword1 = new items('Le Cure-dent', 500, 4, 2, "sword1", "epee",70);
-var sword2 = new items('La Fisteuse', 5000, 40, 190, "sword0", "epee",200);
-var sword3 = new items('La Defourailleuse de Fion', 50000, 499, 501, "green", "epee",500);
-
-var cloak1 = new items('Cape Haute', 500, 4, 2, "red", "epee",70);
-var cloak2 = new items('Cape Oral', 500, 4, 2, "red", "epee",70);
-var cloak3 = new items('Cape Cake', 500, 4, 2, "red", "epee",70);
-
-
-*/
-for(let i = 0; i < itemsShop.length; i++){
+for(let i = 0; i < itemsShop.length; i++){ // boucle qui ajoute la fonction equipeItem() à tout les objets présent dans la boutique.
+    itemsShop[i] = new items(itemsShop[i][0], itemsShop[i][1], itemsShop[i][2], itemsShop[i][3], itemsShop[i][4], itemsShop[i][5], itemsShop[i][6]);
     itemsShop[i].objetContainer.addEventListener("click", function(){
         itemsShop[i].equipeItem();
     });
