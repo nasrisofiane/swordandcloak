@@ -1,5 +1,3 @@
-
-
 html{
     height: 100%;
     padding:0px;
@@ -89,8 +87,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    
+    align-items: center;  
 }
 /* fin de :3 parties du jeu.*/
 
@@ -117,7 +114,7 @@ body{
     flex:4;
     width: 80px;
     height: 80px;
-    background: url('../images/coin.png');
+    background: url('../images/icons/coin.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -131,8 +128,7 @@ body{
     flex-wrap: wrap;
     background:#2e1a00;
     width: 75%;
-    padding-bottom: 24px;
-    
+    padding-bottom: 24px;    
 }
 
 #titre-boutique{
@@ -157,7 +153,6 @@ body{
     background-position: center;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
     position: relative;
-
 }
 
 .infos-objet{
@@ -176,8 +171,8 @@ body{
 
 .infos-objet div{
     width:100%;
-   display: flex;
-   justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .objet:hover .infos-objet{
@@ -190,7 +185,7 @@ body{
     justify-content: center;
     align-items: center;
     font-size: 0.8em;
-    background-image: url('../images/coin.png');
+    background-image: url('../images/icons/coin.png');
     background-size: 13px;
     background-repeat: no-repeat;
     background-position-y: center;
@@ -199,8 +194,8 @@ body{
     position: absolute;
     bottom: -18px;
     color:white;
-    
 }
+
 .objet:hover{
     box-shadow:-1px 2px 5px 1px rgba(100, 100, 100, 1); 
 }
@@ -209,12 +204,10 @@ body{
     width: 90;
     box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
 }
-
 /* FIN DE :partie gauche */
 
 /*zone de combat*/
 #monster-window{
-    
     width: 500px;
     display: flex;
     flex-direction: row;
@@ -239,6 +232,7 @@ body{
     border-radius: 0px 0px 0px 0px;
     overflow: hidden;
 }
+
 #monster-health-bar::-moz-progress-bar, #monster-health-bar::-webkit-progress-value , #monster-health-bar::-webkit-progress-bar{
     width: 100%;
     height:40px;
@@ -248,7 +242,6 @@ body{
 
 #conteneur-infos-monstre{
     display: flex;
-   
 }
 
 #conteneur-monstre-difficulte{
@@ -298,7 +291,6 @@ body{
     display: flex;
     justify-content: space-around;
     padding:10px 0px 10px 0px;
-    
 }
 
 #monster{
@@ -310,11 +302,9 @@ body{
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-
 }
 
 #degat-envoyer{
-    
     min-width: 15%;
     height: 60%;
     position: absolute;
@@ -322,6 +312,7 @@ body{
     right: 10%;
     overflow: hidden;
 }
+
 #degat-envoyer div{
     font-weight: bold;
     margin:0px;
@@ -353,7 +344,6 @@ body{
     width: 100px;
     position: absolute;
     bottom:0px;
-  
 }
 
  #bras-hero{
@@ -377,116 +367,103 @@ body{
     position: absolute;
     width: 100px;
     height: 60px;
-   z-index: 10000;
-    
+    z-index: 10000;
 }
-
 /* FIN DE :zone de combat*/
 
 /*partie droite */
-
-/*conteneur Inventaire et stats */
-
-#conteneur-inventaire-stats{
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    height: 380px;
-    
-}
-
-/*Inventaire*/
-#conteneur-inventaire{
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: stretch ;
-    margin-bottom: 40px;
-    
-}
-
-#conteneur-inventaire h2{
-    flex:1;
-    border-radius:3px 3px 0px 0px;
-    margin:0px;
-    display: flex;
-    justify-content: center;
-    background:#603106;
-    align-items: center;
-    color:white;
-}
-
-#inventaire{
-    background:#603106;
-    height: 100px;
-    flex: 2;
-    display: flex;
-    color:white;
-    border-radius:8px;
-    position: relative;
-
-}
-    #inventaire-part-gauche{
-        height: 100%;
-        background:#2e1a00;
-        flex:2;
+    /*conteneur Inventaire et stats */
+    #conteneur-inventaire-stats{
+        width: 75%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-      
+        height: 380px;
     }
+        /*Inventaire*/
+        #conteneur-inventaire{
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: stretch ;
+            margin-bottom: 40px;
+        }
 
-    #inventaire-part-gauche strong, #inventaire-part-droite strong{
-        font-size: 0.7em;
-        display: block;
-        color: darkgray;
-        margin-top:2px;
-        width: 100%;
-        text-align: center;
-    }
+        #conteneur-inventaire h2{
+            flex:1;
+            border-radius:3px 3px 0px 0px;
+            margin:0px;
+            display: flex;
+            justify-content: center;
+            background:#603106;
+            align-items: center;
+            color:white;
+        }
 
-    #inventaire-part-gauche p, #inventaire-part-droite p{
-        font-size: 0.7em;
-        text-align: center;
+        #inventaire{
+            background:#603106;
+            height: 100px;
+            flex: 2;
+            display: flex;
+            color:white;
+            border-radius:8px;
+            position: relative;
+
+        }
+        #inventaire-part-gauche{
+            height: 100%;
+            background:#2e1a00;
+            flex:2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         
-    }
+        }
 
-    #inventaire-part-milieu{
-        height: 100%;
-        background:#2e1a00;
-        flex:2;
-        margin:0px 5px 0px 5px;
-        display : flex;
-        justify-content: space-around;
-        align-items: center;
-    }
+        #inventaire-part-gauche strong, #inventaire-part-droite strong{
+            font-size: 0.7em;
+            display: block;
+            color: darkgray;
+            margin-top:2px;
+            width: 100%;
+            text-align: center;
+        }
 
-    #epee-equipe, #cape-equipe{
-        width: 60px;
-        height: 60px;
-        border-radius:7px;
-        margin:0px 3px 0px 3px;
-        box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
-        display: block;
-    }
+        #inventaire-part-gauche p, #inventaire-part-droite p{
+            font-size: 0.7em;
+            text-align: center;
+            
+        }
 
-    #inventaire-part-droite{
-        height: 100%;
-        background:#2e1a00;
-        flex:2;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-       
-    }
+        #inventaire-part-milieu{
+            height: 100%;
+            background:#2e1a00;
+            flex:2;
+            margin:0px 5px 0px 5px;
+            display : flex;
+            justify-content: space-around;
+            align-items: center;
+        }
 
-   
-    
+        #epee-equipe, #cape-equipe{
+            width: 60px;
+            height: 60px;
+            border-radius:7px;
+            margin:0px 3px 0px 3px;
+            box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+            display: block;
+        }
 
-    
+        #inventaire-part-droite{
+            height: 100%;
+            background:#2e1a00;
+            flex:2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        /*FIN DE : inventaire */
 
-/*FIN DE : inventaire */
 
 #stats-titre{
     background: #753c07;
@@ -557,18 +534,17 @@ body{
 }
 
 #stamina div i{
-    background: url('../images/shieldIcon.png');
+    background: url('../images/icons/shieldIcon.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     display: block;
     width:30px;
     height: 30px;
-   
 }
 
 #strength div i{
-    background: url('../images/swordIcon.png');
+    background: url('../images/icons/swordIcon.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -579,7 +555,7 @@ body{
 
 .stats-add-icon{
     align-self: center;
-    background: url('../images/plusIcon.png');
+    background: url('../images/icons/plusIcon.png');
     background-size:30px;
     background-repeat: no-repeat;
     background-position: center;
@@ -607,6 +583,7 @@ body{
     margin:0px;
 }
 /*FIN de: conteneur Inventaire et stats */
+
 #infos-hero{
     width: 75%;
     height: 145px;
@@ -623,7 +600,6 @@ body{
     justify-content: space-around;
     align-items: flex-end;
     color:white;
-    
 }
 
 #conteneur-life-xp #health-number{
@@ -649,7 +625,7 @@ body{
 }
 
 #vie-icon{
-    background: url('../images/hearth.png');
+    background: url('../images/icons/hearth.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -693,19 +669,14 @@ body{
     }
 
     /*Barre de vie + Xp*/
-
-    
-
 #barre-de-vie::-moz-progress-bar, #barre-de-vie::-webkit-progress-value , #barre-de-vie::-webkit-progress-bar{
     width: 100%;
     background-color: red;
-    
 }
 
 #barre-xp::-moz-progress-bar, #barre-xp::-webkit-progress-value , #barre-xp::-webkit-progress-bar{
     width: 100%;
     background-color: rgb(0, 167, 223);
-    
 }
 
 #niveau-hero{
@@ -715,18 +686,14 @@ body{
     text-align: center;
     font-weight: bolder;
 }
-
 /*FIN DE : partie droite */
 
 @media only screen and (max-width: 1400px) {
-        
-
     html{
         height: 100%;
         padding:0px;
         margin:0px;
-        min-height: 0px;
-        
+        min-height: 0px;  
     }
 
     body{
@@ -752,31 +719,26 @@ body{
         margin-top:0px;
         width: 100%;
         border-radius: 0px;
-
     }
 
     #titre-boutique{
         width: 100%;
         border-radius: 0px;
-
     }
 
     #porte-monnaie{
         width: 100%;
         border-radius: 0px;
-
     }
 
     #boutique{
         width: 100%;
         border-radius: 0px;
-
     }
     
     #conteneur-inventaire-stats{
         width: 100%;
         border-radius: 0px;
-        
     }
         
     #zone-gauche{
@@ -811,8 +773,5 @@ body{
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        
     }
-
-
-  }
+}

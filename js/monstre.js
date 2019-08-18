@@ -1,26 +1,3 @@
-// Création du monstre, affichage de l'image.
-var monsterChoosed; // variable qui contiendra une nouvelle instance de l'objet monstre
-var attackinterval;
-var MonsterAttackSpeed = Math.floor(Math.random() * 1800) + 2300 ;
-var MonsterAttackSpeedToSecond;
-var nombreMonstreTue = 0;
-var monsterMove = [0,true, 40];
-var monsterImage; // chemin de l'image du monstre
-var getMonsterWindow = document.getElementById("monster");
-var getMonsterName = document.getElementById("monster-name");
-var getMonsterHealthBar = document.getElementById("monster-health-bar");
-var getHealthValueMonster = document.getElementById("health-value-monster"); //Element HTML pour afficher la vie actuel du monstre
-var getDifficulteMonster = document.getElementById("difficulte-monstre");
-var getDegatsTexteMonster = document.getElementById("degats-monstre");
-var getVitesseAttaqueTexteMonster = document.getElementById("monstre-vitesse-attaque");
-const monsters = [ // tableau des noms de monstres et infos
-    ['Le mage ancestral', 'images/sprites/disciple', 5], // premier index est égal au nom du monstre, le deuxième au chemin du sprite et le troisième au nombre de sprites pour l'animé.
-    ['La chèvre en robe', 'images/sprites/chevreWarrior', 1],
-    ['Le cancer', 'images/sprites/mage', 1],
-    ['La grosse tête', 'images/sprites/grosseTete', 1],
-    ['Le chien du concierge', 'images/sprites/chienBoss', 4]
-];
-
 getMonsterWindow.onclick = damageOnMonster;
 class monster{ // Objet qui permet de créer un monstre en passant en paramètres son nom , level et sa difficulté.
     constructor(nom, level, difficulte){
@@ -63,16 +40,14 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
             clearInterval(monsterMove[0]);
             monsterMove[1]  = true;
         }
-        
     }
-   
 }
 
 class spriteImage{ //Objet qui récupère le background et lui applique le css qui lui permet de bien centrer l'image sur la DIV.
     constructor(elementHtml, backgroundImage){
         this.elementHtml = elementHtml;
         this.backgroundImage = backgroundImage; // url de l'image sans l'extension
-        this.urlImage = `url(${this.backgroundImage}`; // ajoute le préfixe css + le chemin de l'image sans l'extension
+        this.urlImage = `url(${this.backgroundImage}`; // ajoute la syntaxe css + le chemin de l'image sans l'extension
     }
     apply(init){
         this.initImage = init; // numéro de l'image généré aleatoirement depuis la fonction animation.
@@ -85,23 +60,23 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
 }
  
 function monsterRandomPop(){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
+        //Propriétés du monstre généré plus ou moins aléatoirement.
         MonsterAttackSpeed = Math.floor(Math.random() * 1800) + 2300 ;
         MonsterAttackSpeedToSecond = MonsterAttackSpeed/100;
-        var RandomDifficulte = Math.floor(Math.random()*3);
-        var RandomMonsterNumber = Math.floor(Math.random()*5);
+        RandomDifficulte = Math.floor(Math.random()*3);
+        RandomMonsterNumber = Math.floor(Math.random()*5);
+        //FIN DE :Propriétés du monstre généré plus ou moins aléatoirement.
         if(nombreMonstreTue >= 5 && heroNiveau > 3){
-            monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , 6);
-            monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
+            RandomDifficulte = 6;
             nombreMonstreTue = 0;
         }
-        else{
-            monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
-            monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
-        }
         // créer une instance de l'objet spriteImage.
+        monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
+        monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
+        //fin de la création de l'instance spriteImage.
         monsterImage.apply(0); //applique l'image 0 du monstre au lancement de la page, sinon le monstre ne s'afficher qu'àprès le premier setInterval.
         monsterChoosed.autoAttack();
-        var intervalMonsterImage = startInterval(monsterImage,monsters[RandomMonsterNumber][2]);
+        intervalMonsterImage = startInterval(monsterImage,monsters[RandomMonsterNumber][2]);
         //infos du monstre
             getMonsterHealthBar.max = monsterChoosed.vie;
             getMonsterName.innerHTML = monsterChoosed.nom; 
@@ -109,14 +84,12 @@ function monsterRandomPop(){ // fonction avec un random number qui récupère al
             getDegatsTexteMonster.innerHTML = `Degats : ${monsterChoosed.degats}`;
             getVitesseAttaqueTexteMonster.innerHTML = `Vitesse D'attaque : ${MonsterAttackSpeedToSecond.toString().charAt(0)}.${MonsterAttackSpeedToSecond.toString().charAt(1)}s`;
             checkMonsterHealth(monsterChoosed);
-            
 }
 
-function checkMonsterHealth(monstreInfos){
+function checkMonsterHealth(monstreInfos){ //vérifie la vie du monstre. fonction appelé à chaque degats infligé.
     if(monstreInfos.vie > 0){
         getMonsterHealthBar.value = monstreInfos.vie;
-        getHealthValueMonster.innerHTML = `${monstreInfos.vie.toFixed(1)} / ${getMonsterHealthBar.max}`;
-        
+        getHealthValueMonster.innerHTML = `${monstreInfos.vie.toFixed(1)} / ${getMonsterHealthBar.max}`;   
     }
     else{
         nombreMonstreTue +=1;
@@ -125,13 +98,11 @@ function checkMonsterHealth(monstreInfos){
         clearInterval(attackinterval);
         monsterRandomPop();
         regenHealthPoint();
-    }
-    
-    
+    } 
 }
 
 function animation(nbImage, monster){ // Paramètres nbImage qui définit le nombre de sprite possible pour que le random number n'aille pas chercher un sprite non existant ce paramètre est envoyé depuis la foncton "startInterval()"
-    var imageAlea = Math.floor(Math.random(+1)*nbImages);
+    imageAlea = Math.floor(Math.random(+1)*nbImages);
     monster.apply(imageAlea); // nombre aleatoire sera envoyé à la fonction de l'objet et affichera l'image généré aléatoirement.
 }
 
@@ -141,7 +112,7 @@ function startInterval(instanceName, nbImages){ //instanceName qui récupère l'
     return startIntervalAnimation = setInterval(animation, 400, this.nbImages, this.instanceName);
 }
 
-function clearActualMonster(){
+function clearActualMonster(){ // nettoire les variables de fonction du monstres et son apparence. fonction appelé avant la gerenation d'un nouveau monstre.
     clearInterval(startIntervalAnimation);
     monsterChoosed = null;
     monsterImage = null;
@@ -160,9 +131,8 @@ function damageOnMonster(){
     startAttackAnimation = setInterval(heroAnimation, 45); // execute la fonction qui donne un coup d'épée visuellement.
     startHeroAnimation = setInterval(heroWalkAnimation,8);// execute la fonction qui deplace le héro jusqu'au monstre.
     monsterChoosed.vie -= degatsHero;
-    create(degatsHero, damageDeal, 0, "scroll");
+    create(degatsHero, damageDeal, 0, "scroll"); // créer une instance qui permet d'afficher un degats à l'écran.
     checkMonsterHealth(monsterChoosed);
-    
 }
 
 
