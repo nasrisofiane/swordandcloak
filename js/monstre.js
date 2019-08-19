@@ -98,6 +98,7 @@ function checkMonsterHealth(monstreInfos){ //vérifie la vie du monstre. fonctio
         clearInterval(attackinterval);
         monsterRandomPop();
         regenHealthPoint();
+        save();
     } 
 }
 

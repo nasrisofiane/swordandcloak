@@ -48,9 +48,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 heroArgent -= this.prix;
                 heroStrenght += this.strenght;
                 heroStamina += this.stamina;
-                this.bought = true;
-                this.objetContainer.style.backgroundColor = "grey";
-                this.objetContainer.style.visibility = "hidden";
+                this.hideItem();
                 if(this.type == "epee"){
                     if(equippedSword != null || equippedSword != undefined){
                         console.log("cleared");
@@ -87,6 +85,14 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
             }
         }
         displayHeroInfo();
+    }
+
+    hideItem(){
+        this.bought = true;
+        this.objetContainer.style.backgroundColor = "grey";
+        this.objetContainer.style.visibility = "hidden";
+        itemsShopBought[incremenationItemShopBought] = (itemsShop[this.itemId]);
+        incremenationItemShopBought +=1;
     }
 
     desequipeItem(){ // Si objet est desequipper, retire toutes les stats que donnait l'objet, supprime visuellement l'objet, dans les objets équipé.
