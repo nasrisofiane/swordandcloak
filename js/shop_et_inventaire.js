@@ -15,22 +15,23 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         if(this.type == "epee"){
             this.degat = bonus;
             this.elementHTML = epeeEquipe;
-            this.objetContainerInfos.innerHTML = `<div>Degats : ${this.degat} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Degats : ${this.degat} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
         }
         else{
             this.vie = bonus
             this.elementHTML = capeEquipe;
-            this.objetContainerInfos.innerHTML = `<div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            this.objetContainerInfos.innerHTML = `<div>${this.nom}</div> <div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            
         }
         this.imageObjet();
     }
 
     imageObjet(){// affiche l'image de l'objet dans une div dans la boutique.
         this.objetContainer.style.background = `url(images/items/${this.image}.png)`;
-        this.objetContainer.style.backgroundSize = "contain";
+        this.objetContainer.style.backgroundSize = "80px";
         this.objetContainer.style.backgroundRepeat  = "no-repeat";
         this.objetContainer.className="objet";
-        this.objetContainer.style.backgroundPosition  = "center";
+        this.objetContainer.style.backgroundPosition  = "top";
         //test
         this.objetContainer.id = this.itemId;
         //fin de test
