@@ -59,3 +59,7 @@ var itemsShop = [//Contient les informations des objets(boutique) en forme de ta
     ['Cape Oral', 1800, 27, 4, "cloak1", "cloak",240],
     ['Cape Cake', 4700, 68, 12, "cloak2", "cloak",451]
 ];
+var itemsShopBought = [];
+var incremenationItemShopBought = 0;
+//4.0 Cookies system
+var allValues; //var qui contiendra toutes les valeurs de vars.

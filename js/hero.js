@@ -11,7 +11,7 @@ function augmenterXp_Argent(){ // fonction d'incrémentation d'argent et d'exp �
 
 function displayHeroInfo(){ // function qui actualise toutes infos visuel avec les valeurs de variables actuel, fonction appelé à chaque fin d'action.
     updateHeroStats();
-    porteMonnaieArgent.innerHTML = Math.round(heroArgent);
+    porteMonnaieArgent.innerHTML = parseInt(Math.round(heroArgent));
     heroNiveauhtml.innerHTML = `LEVEL ${heroNiveau}`;
     heroBarreViehtml.max = heroVieMax;
     heroBarreViehtml.value = heroVie;
@@ -50,9 +50,6 @@ function caracteristique(event){ // fonction qui depense un point de stats et qu
             heroStamina += 1;
         }
         heroCaracteristique -=1;
-    }
-    else{
-       
     }
     updateHeroStats();
     displayHeroInfo();
@@ -96,6 +93,7 @@ function GameOverAnimation(){
         getGameOver.style.opacity = gameOverOpacity;
         gameOverOpacity +=0.1;
         if(gameOverOpacity >=1){
+            heroArgent = heroArgent / 2;
             clearInterval(gameOverInterval);
             die = false;
         }
@@ -104,14 +102,14 @@ function GameOverAnimation(){
         getGameOver.style.opacity = gameOverOpacity;
         gameOverOpacity -=0.1;
         if(gameOverOpacity <=0){
-            heroArgent = heroArgent / 2;
             heroVie = heroVieMax;
             getGameOver.style.display = "none";
             clearInterval(gameOverInterval);
             die = true;
         }
     }
-    displayHeroInfo();     
+    displayHeroInfo();
+    save();     
 }
 getGameOver.onclick = gameOver;
 //FIN DE SYSTEM DE GAMEOVER.
