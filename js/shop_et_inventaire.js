@@ -20,7 +20,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         else{
             this.vie = bonus
             this.elementHTML = capeEquipe;
-            this.objetContainerInfos.innerHTML = `<div>${this.nom}</div> <div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div> <div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
             
         }
         this.imageObjet();
