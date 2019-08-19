@@ -128,6 +128,8 @@ body{
     flex-wrap: wrap;
     background:#2e1a00;
     width: 75%;
+    max-height:300px;
+    height: 300px;
     padding-bottom: 24px;    
 }
 
@@ -148,7 +150,6 @@ body{
     height: 100px;
     width: 100px;
     margin-top:30px;
-    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
@@ -156,7 +157,7 @@ body{
 }
 
 .infos-objet{
-   background: rgba(0, 0, 0, 0.6);
+   background:#2e1a00;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -167,16 +168,44 @@ body{
     justify-content: space-around;
     align-items: center;
     display: none;
+    left: 100px;
+    z-index: 10000;
+    border:solid gold 2px;
+    border-style: inset;
+    border-left: none;
+    top: -2px;
+    
+}
+.objet:hover{
+    border:solid gold 2px;
+    border-style: inset;
+    border-right: none;
+ 
+}
+.objet:active{
+    height: 90px;
+    width: 90;
+    box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+}
+
+.objet:hover .infos-objet .nom{
+    color: yellow;
+    font-size: 8px;
+    width: 100%;
+    
 }
 
 .infos-objet div{
     width:100%;
     display: flex;
     justify-content: center;
+    
 }
 
 .objet:hover .infos-objet{
     display: flex;
+    width: 200px;
+    
 }
 .prix-objet{
     width: 100%;
@@ -192,18 +221,11 @@ body{
     background-position-x: right 5px;
     background-color:#603106;
     position: absolute;
-    bottom: -18px;
+    bottom: 0px;
     color:white;
 }
 
-.objet:hover{
-    box-shadow:-1px 2px 5px 1px rgba(100, 100, 100, 1); 
-}
-.objet:active{
-    height: 90px;
-    width: 90;
-    box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
-}
+
 /* FIN DE :partie gauche */
 
 /*zone de combat*/
