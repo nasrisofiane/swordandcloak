@@ -31,7 +31,7 @@ var getHealthValueMonster = document.getElementById("health-value-monster"); //E
 var getDifficulteMonster = document.getElementById("difficulte-monstre");
 var getDegatsTexteMonster = document.getElementById("degats-monstre");
 var getVitesseAttaqueTexteMonster = document.getElementById("monstre-vitesse-attaque");
-
+var getZoneCombat = document.getElementById("zone-combat");
 //3.0 Variables d'éléments HTML de la boutique.
 var boutique = document.getElementById("boutique");
 var epeeEquipe = document.getElementById("epee-equipe");
