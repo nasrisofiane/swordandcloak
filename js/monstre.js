@@ -22,6 +22,9 @@ class monster{ // Objet qui permet de créer un monstre en passant en paramètre
         monsterChoosed.moveToHero();
         create(monsterChoosed.degats, getReceivedDamage, 0, "static");
         setTimeout(monsterChoosed.moveToHero, 300); 
+        if(equippedCloak != null || equippedCloak != undefined){
+        itemsShop[equippedCloak].priseDeNiveau();
+        }
     }
 
     autoAttack(){
@@ -85,15 +88,23 @@ function monsterRandomPop(){ // fonction avec un random number qui récupère al
             getVitesseAttaqueTexteMonster.innerHTML = `Vitesse D'attaque : ${MonsterAttackSpeedToSecond.toString().charAt(0)}.${MonsterAttackSpeedToSecond.toString().charAt(1)}s`;
             checkMonsterHealth(monsterChoosed);
 }
-
+var monsterKilled;
 function checkMonsterHealth(monstreInfos){ //vérifie la vie du monstre. fonction appelé à chaque degats infligé.
     if(monstreInfos.vie > 0){
         getMonsterHealthBar.value = monstreInfos.vie;
         getHealthValueMonster.innerHTML = `${monstreInfos.vie.toFixed(1)} / ${getMonsterHealthBar.max}`;   
     }
-    else{
+    else if(monstreInfos.vie <= 0){
         nombreMonstreTue +=1;
         augmenterXp_Argent();
+        clearTimeout(monsterKilled);
+        if(equippedSword != null || equippedSword != undefined){
+        monsterKilled = setTimeout(() => {
+            itemsShop[equippedSword].monstreTue += 1;
+        }, 50);
+            itemsShop[equippedSword].priseDeNiveau();
+        }
+        
         clearActualMonster();
         clearInterval(attackinterval);
         monsterRandomPop();

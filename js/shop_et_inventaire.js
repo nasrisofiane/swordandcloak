@@ -11,9 +11,14 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         this.objetContainerPrix = document.createElement("div");
         this.objetContainerInfos = document.createElement("div");
         this.itemId = itemNumber;
+        this.niveau = 1;
+        this.monstreTue = 0;
+        this.nombreTue = 10;
+        this.nombreDeCoup = 0;
+        this.nombreCoupMax = 5;
         itemNumber +=1;
         if(this.type == "epee"){
-            this.degat = bonus;
+            this.degat = bonus * this.niveau;
             this.elementHTML = epeeEquipe;
             this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Degats : ${this.degat} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
         }
@@ -41,6 +46,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         this.objetContainer.appendChild(this.objetContainerPrix);
         this.objetContainer.appendChild(this.objetContainerInfos);
         boutique.appendChild(this.objetContainer);
+        this.objetLevel = 0;
     }
     
     equipeItem(){ // fonction qui permet d'équipé l'objet(Jeu) visuellement et fonctionnellement. supprime l'objet de la boutique, le met dans les objets équipé et l'affiche sur héro.
@@ -55,7 +61,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                         console.log("cleared");
                         itemsShop[equippedSword].desequipeItem();
                     }
-                    dmgWithoutStrength += this.degat;
+                    this.updateDmgandVie();
                     equippedSword = this.itemId;
                     swordInfosText[3].innerHTML = `Degats + ${this.degat}`;
                     swordInfosText[5].innerHTML = `Strength + ${this.strenght}`;
@@ -110,6 +116,45 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
             this.elementHTML.style.backgroundSize = "contain";
             this.elementHTML.style.backgroundRepeat  = "no-repeat";
         }
+        displayHeroInfo();
+    }
+
+    niveauObjet(){
+        console.log(this.objetLevel);
+    }
+  
+    priseDeNiveau(){
+        if(this.type == "epee"){   
+
+            if(this.monstreTue == this.nombreTue-1){
+                this.nombreTue =this.nombreTue * 2;
+                this.niveau += 1;
+                this.degat += (this.degat * 20) /100;
+                this.updateDmgandVie(); 
+                
+            }   
+            console.log("Monstre tue = "+this.monstreTue);
+            console.log("Nombre a tué = "+this.nombreTue);
+        } 
+
+
+        if(this.type == "cloak"){
+
+            this.nombreDeCoup += 1;
+
+            if(this.nombreDeCoup == this.nombreCoupMax){
+                this.nombreCoupMax = this.nombreCoupMax * 2;
+                this.niveau += 1;
+                this.vie = (this.vie *20) /100;
+                hpWithoutStamina += this.vie; 
+                displayHeroInfo();
+                
+            }
+        }
+    }
+
+    updateDmgandVie(){
+        dmgWithoutStrength += this.degat;
         displayHeroInfo();
     }
 }
