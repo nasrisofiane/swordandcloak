@@ -1,5 +1,5 @@
 class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
-    constructor(nom, prix, strenght, stamina ,image, type, bonus ){
+    constructor(nom, prix, strenght, stamina ,image, type, bonus){
         this.nom = nom;
         this.prix = prix; 
         this.image = image;
@@ -46,14 +46,11 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         this.objetContainerInfos.className = "infos-objet";
         this.objetContainer.appendChild(this.objetContainerPrix);
         this.objetContainer.appendChild(this.objetContainerInfos);
-
         boutique.appendChild(this.objetContainer);
         this.objetLevel = 0;
-
         this.objetContainerParent.appendChild(this.objetContainer);
         this.objetContainerParent.className = "objet-parent";
         boutique.appendChild(this.objetContainerParent);
-
     }
     
     equipeItem(){ // fonction qui permet d'équipé l'objet(Jeu) visuellement et fonctionnellement. supprime l'objet de la boutique, le met dans les objets équipé et l'affiche sur héro.
@@ -101,6 +98,39 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         displayHeroInfo();
     }
 
+    showVisuel(){
+                this.hideItem();
+                if(this.type == "epee"){
+                    if(equippedSword != null || equippedSword != undefined){
+                        console.log("cleared");
+                        itemsShop[equippedSword].desequipeItem();
+                    }
+                    equippedSword = this.itemId;
+                    swordInfosText[3].innerHTML = `Degats + ${this.degat}`;
+                    swordInfosText[5].innerHTML = `Strength + ${this.strenght}`;
+                    swordInfosText[7].innerHTML = `Stamina + ${this.stamina}`;
+                    getHeroWeapon.style.background = `url(images/items/${this.image}.png)`;
+                    getHeroWeapon.style.backgroundSize = "contain";
+                    getHeroWeapon.style.backgroundRepeat  = "no-repeat";
+                    getHeroWeapon.style.backgroundPosition  = "center";
+                }
+                else{
+                    if(equippedCloak != null || equippedCloak != undefined){
+                        console.log("cleared");
+                        itemsShop[equippedCloak].desequipeItem();
+                    }
+                    equippedCloak = this.itemId;
+                    cloakInfosText[3].innerHTML = `vie + ${this.vie}`;
+                    cloakInfosText[5].innerHTML = `Strength + ${this.strenght}`;
+                    cloakInfosText[7].innerHTML = `Stamina + ${this.stamina}`;
+                }
+                this.elementHTML.style.background = `url(images/items/${this.image}.png)`;
+                this.elementHTML.style.backgroundSize = "contain";
+                this.elementHTML.style.backgroundRepeat  = "no-repeat";
+                this.elementHTML.style.backgroundPosition  = "center";
+                displayHeroInfo();
+    }
+
     hideItem(){
         this.bought = true;
         this.objetContainer.style.backgroundColor = "grey";
@@ -146,16 +176,13 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
 
 
         if(this.type == "cloak"){
-
             this.nombreDeCoup += 1;
-
             if(this.nombreDeCoup == this.nombreCoupMax){
                 this.nombreCoupMax = this.nombreCoupMax * 2;
                 this.niveau += 1;
                 this.vie = (this.vie *20) /100;
                 hpWithoutStamina += this.vie; 
                 displayHeroInfo();
-                
             }
         }
     }
