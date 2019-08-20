@@ -145,19 +145,23 @@ body{
     background:#603106;
     color:white;
 }
-
+.objet-parent{
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
 .objet  {
     height: 100px;
     width: 100px;
-    margin-top:30px;
     background-repeat: no-repeat;
     background-position: center;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
-    position: relative;
+    position: absolute;
+    
 }
 
 .infos-objet{
-   background:#2e1a00;
+    background:#603106;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -171,21 +175,19 @@ body{
     left: 100px;
     z-index: 10000;
     border:solid gold 2px;
-    border-style: inset;
+    border-style: ridge;
     border-left: none;
     top: -2px;
-    
 }
+
 .objet:hover{
     border:solid gold 2px;
-    border-style: inset;
+    border-style: ridge;
     border-right: none;
- 
 }
 .objet:active{
     height: 90px;
     width: 90;
-    box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
 }
 
 .objet:hover .infos-objet .nom{

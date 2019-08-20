@@ -7,6 +7,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         this.stamina = stamina;
         this.type = type;
         this.bought = false;
+        this.objetContainerParent = document.createElement("div");
         this.objetContainer = document.createElement("div");
         this.objetContainerPrix = document.createElement("div");
         this.objetContainerInfos = document.createElement("div");
@@ -45,8 +46,14 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         this.objetContainerInfos.className = "infos-objet";
         this.objetContainer.appendChild(this.objetContainerPrix);
         this.objetContainer.appendChild(this.objetContainerInfos);
+
         boutique.appendChild(this.objetContainer);
         this.objetLevel = 0;
+
+        this.objetContainerParent.appendChild(this.objetContainer);
+        this.objetContainerParent.className = "objet-parent";
+        boutique.appendChild(this.objetContainerParent);
+
     }
     
     equipeItem(){ // fonction qui permet d'équipé l'objet(Jeu) visuellement et fonctionnellement. supprime l'objet de la boutique, le met dans les objets équipé et l'affiche sur héro.
