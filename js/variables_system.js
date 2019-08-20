@@ -11,7 +11,7 @@ var hpWithoutStamina = 100;
 var dmgWithoutStrength = 1;
 var heroVieMax = hpWithoutStamina + staminaToHp;
 var heroVie = heroVieMax;
-var heroArgent = 0;
+var heroArgent = 500000;
 var degatsHero = dmgWithoutStrength + strenghtToDmg ;
 var heroXpRestant;
 var equippedSword;
