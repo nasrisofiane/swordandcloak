@@ -80,13 +80,10 @@ heroXpRestant = parseInt(getCookie("heroXpRestant"));
 equippedSword = null;
 equippedCloak = null;
 if(!isNaN(getCookie("equippedSword")) &&  getCookie("equippedSword") != ""){
-    
-    heroArgent += itemsShop[parseInt(getCookie("equippedSword"))].prix;
-    itemsShop[parseInt(getCookie("equippedSword"))].equipeItem();
+    itemsShop[parseInt(getCookie("equippedSword"))].showVisuel();
 }
 if(!isNaN(getCookie("equippedCloak")) &&  getCookie("equippedCloak") != ""){
-    heroArgent += itemsShop[parseInt(getCookie("equippedCloak"))].prix;
-    itemsShop[parseInt(getCookie("equippedCloak"))].equipeItem();
+    itemsShop[parseInt(getCookie("equippedCloak"))].showVisuel();
 }
 
 clearActualMonster();

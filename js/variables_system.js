@@ -28,6 +28,8 @@ var heroWalk = [0, true]; // premier index est egal à la distance parcourue dep
 var startHeroAnimation;
 var startAttackAnimation; 
 var heroTimeOutWalkBack; // un set timeout est assigné quand on attack le monstre.
+var bonus = true;
+var degatsBonus;
 
 //2.0 Variables de fonctionnement des monstres.
 var monsterChoosed; // variable qui contiendra toutes les informations du monstre sur lequel on tape.
@@ -41,6 +43,7 @@ var RandomDifficulte;
 var RandomMonsterNumber; // nombre aléatoire entre 0 et la longueur du tableau qui contient les monstres, pour faire aparaitre un monstre aléatoirement.
 var intervalMonsterImage;
 var imageAlea; //nombre aleatoire generer qui sera égal à une image aléatoire du monstre actuel, pour que son animation ne soit pas pareil à chaque fois.
+
 const monsters = [ // tableau des noms de monstres et infos
     ['Le mage ancestral', 'images/sprites/disciple', 5], // premier index est égal au nom du monstre, le deuxième au chemin de l'image et le troisième au nombre d'image disponible pour l'animé.
     ['La chèvre en robe', 'images/sprites/chevreWarrior', 1],

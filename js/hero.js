@@ -255,6 +255,54 @@ function heroWalkAnimation(){ //créer l'animation de course jusqu'au monstre.
         }
 }
 
+setInterval (randomBonus, 10000);
 
 
+function doubleDamage (){
+    if (bonus == true){
+        degatsBonus = degatsHero*2;
+        dmgWithoutStrength += degatsBonus;
+        bonus = false;
+    }
+    else {
+        dmgWithoutStrength -= degatsBonus;
+        bonus = true;
+    }
+    updateHeroStats();
+    displayHeroInfo();
+}
+
+function randomBonus () {
+    var chance = Math.floor(Math.random()*3);
+    if (chance == 1) {
+        addElement(true);
+    }
+    else {
+        
+    }
+    console.log(chance);
+}
+
+function addElement (addOrdelete) {
+    var newDiv = document.createElement("div");
+    newDiv.addEventListener("click", function(){
+        addElement(false); 
+        doubleDamage();
+        setTimeout (doubleDamage, 5000); 
+    });
+    if(addOrdelete == true){
+        setTimeout (addElement, 7000, false);
+        newDiv.style.width = "50px";
+        newDiv.style.height = "50px";
+        newDiv.style.border="solid red";
+        newDiv.id = "bonus";
+        getZoneCombat.appendChild(newDiv);
+       }
+    else if(addOrdelete == false){
+         // durée du bonus
+        var getBonus = document.getElementById("bonus");
+        getBonus.parentNode.removeChild(getBonus);
+    }
+    
+}
 
