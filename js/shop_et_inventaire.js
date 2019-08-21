@@ -177,6 +177,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 this.monstreTue =0;
                 
             }   
+
         } 
 
 
