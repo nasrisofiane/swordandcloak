@@ -26,7 +26,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         else{
             this.vie = bonus
             this.elementHTML = capeEquipe;
-            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div> <div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
             
         }
         this.imageObjet();
@@ -67,9 +67,8 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                     }
                     this.updateDmgandVie();
                     equippedSword = this.itemId;
-                    swordInfosText[3].innerHTML = `Degats + ${this.degat}`;
-                    swordInfosText[5].innerHTML = `Strength + ${this.strenght}`;
-                    swordInfosText[7].innerHTML = `Stamina + ${this.stamina}`;
+                    equippedSword = this.itemId;
+                    this.itemInfos();
                     getHeroWeapon.style.background = `url(images/items/${this.image}.png)`;
                     getHeroWeapon.style.backgroundSize = "contain";
                     getHeroWeapon.style.backgroundRepeat  = "no-repeat";
@@ -82,9 +81,8 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                     }
                     hpWithoutStamina += this.vie;
                     equippedCloak = this.itemId;
-                    cloakInfosText[3].innerHTML = `vie + ${this.vie}`;
-                    cloakInfosText[5].innerHTML = `Strength + ${this.strenght}`;
-                    cloakInfosText[7].innerHTML = `Stamina + ${this.stamina}`;
+                    this.itemInfos();
+
                 }
                 this.elementHTML.style.background = `url(images/items/${this.image}.png)`;
                 this.elementHTML.style.backgroundSize = "contain";
@@ -106,9 +104,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                         itemsShop[equippedSword].desequipeItem();
                     }   
                     equippedSword = this.itemId;
-                    swordInfosText[3].innerHTML = `Degats + ${this.degat}`;
-                    swordInfosText[5].innerHTML = `Strength + ${this.strenght}`;
-                    swordInfosText[7].innerHTML = `Stamina + ${this.stamina}`;
+                    this.itemInfos();
                     getHeroWeapon.style.background = `url(images/items/${this.image}.png)`;
                     getHeroWeapon.style.backgroundSize = "contain";
                     getHeroWeapon.style.backgroundRepeat  = "no-repeat";
@@ -120,15 +116,25 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                         itemsShop[equippedCloak].desequipeItem();
                     }
                     equippedCloak = this.itemId;
-                    cloakInfosText[3].innerHTML = `vie + ${this.vie}`;
-                    cloakInfosText[5].innerHTML = `Strength + ${this.strenght}`;
-                    cloakInfosText[7].innerHTML = `Stamina + ${this.stamina}`;
-                }
+                    this.itemInfos();
+
+                } 
                 this.elementHTML.style.background = `url(images/items/${this.image}.png)`;
                 this.elementHTML.style.backgroundSize = "contain";
                 this.elementHTML.style.backgroundRepeat  = "no-repeat";
                 this.elementHTML.style.backgroundPosition  = "center";
                 displayHeroInfo();
+    }
+
+    itemInfos(){
+        if(this.type == "epee"){
+            inventairePartGauche.innerHTML = `<strong>Epée bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>Degats + ${this.degat}</p><p> Strength + ${this.strenght}</p><p> Stamina + ${this.stamina}</p>`;
+
+        }
+        else{
+            inventairePartDroite.innerHTML = ` <strong>Cape bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>vie + ${this.vie}</p><p> Strength + ${this.strenght}</p><p> Stamina + ${this.stamina}</p>`;
+
+        }
     }
 
     hideItem(){
@@ -166,7 +172,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
             if(this.monstreTue == this.nombreTue-1){
                 this.nombreTue =this.nombreTue * 2;
                 this.niveau += 1;
-                this.degat += (this.degat * 20) /100;
+                this.degat += (this.degat * 10) /100;
                 this.updateDmgandVie(); 
                 
             }   
@@ -185,6 +191,8 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 displayHeroInfo();
             }
         }
+        this.itemInfos();
+
     }
 
     updateDmgandVie(){
