@@ -27,12 +27,18 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
             this.vie = bonus
             this.elementHTML = capeEquipe;
             this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
-            
         }
         this.imageObjet();
     }
 
     imageObjet(){// affiche l'image de l'objet dans une div dans la boutique.
+
+        
+        this.floutageDiv = document.createElement("div");
+        this.floutageDiv.style.position ="absolute";
+        this.floutageDiv.style.width ="100%";
+        this.floutageDiv.style.height = "100%";
+        this.objetContainer.appendChild(this.floutageDiv);
         this.objetContainer.style.background = `url(images/items/${this.image}.png)`;
         this.objetContainer.style.backgroundSize = "80px";
         this.objetContainer.style.backgroundRepeat  = "no-repeat";
@@ -57,14 +63,12 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         if(this.bought == false){
             if(heroArgent >= this.prix || saved == true){
                 if(saved == true){
-
                 }
                 else{
                     heroArgent -= this.prix;
                     heroStrenght += this.strenght;
                     heroStamina += this.stamina;
                 }
-                
                 this.hideItem();
                 if(this.type == "epee"){
                     if(equippedSword != null || equippedSword != undefined){
@@ -78,12 +82,14 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                         this.updateDmgandVie();
                     }
                     equippedSword = this.itemId;
-                    equippedSword = this.itemId;
                     this.itemInfos();
                     getHeroWeapon.style.background = `url(images/items/${this.image}.png)`;
                     getHeroWeapon.style.backgroundSize = "contain";
                     getHeroWeapon.style.backgroundRepeat  = "no-repeat";
                     getHeroWeapon.style.backgroundPosition  = "center";
+                    degatsHero -= itemsShopBought[itemsShopBought.length-1].degat;
+                    console.log(itemsShopBought[itemsShopBought.length-1]);
+                   
                 }
                 else{
                     if(equippedCloak != null || equippedCloak != undefined){
@@ -103,6 +109,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 this.elementHTML.style.backgroundSize = "contain";
                 this.elementHTML.style.backgroundRepeat  = "no-repeat";
                 this.elementHTML.style.backgroundPosition  = "center";
+                heroVie = heroVieMax;
             }
             else{
                 alert("Pas assez d'or");
@@ -132,7 +139,6 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                     }
                     equippedCloak = this.itemId;
                     this.itemInfos();
-
                 } 
                 this.elementHTML.style.background = `url(images/items/${this.image}.png)`;
                 this.elementHTML.style.backgroundSize = "contain";
@@ -148,14 +154,15 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         }
         else{
             inventairePartDroite.innerHTML = ` <strong>Cape bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>vie + ${this.vie}</p><p> Strength + ${this.strenght}</p><p> Stamina + ${this.stamina}</p>`;
-
         }
     }
 
     hideItem(){
         this.bought = true;
-        this.objetContainer.style.backgroundColor = "grey";
-        this.objetContainer.style.visibility = "hidden";
+        this.floutageDiv.style.backgroundColor = "rgba(114, 112, 112, 0.431)";
+        this.objetContainerPrix.innerHTML = `Acheté`;
+        this.objetContainerPrix.style.color = "green";
+        this.objetContainerPrix.style.background = "none";
         itemsShopBought[incremenationItemShopBought] = (itemsShop[this.itemId]);
         incremenationItemShopBought +=1;
     }
@@ -165,7 +172,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
             heroStrenght -= this.strenght;
             heroStamina -= this.stamina;
             if(this.type == "epee"){
-                dmgWithoutStrength -= this.degat;
+                dmgWithoutStrength -= dmgWithoutStrength - this.degat;
             }
             else{
                 hpWithoutStamina -= this.vie;
@@ -182,7 +189,6 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
     }
   
     priseDeNiveau(){
-        
         if(this.type == "epee"){   
             if(this.monstreTue == this.nombreTue-1){
                 this.nombreTue =this.nombreTue * 2;
@@ -190,12 +196,8 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 this.degat += (this.degat * 10) /100;
                 this.updateDmgandVie(); 
                 this.monstreTue =0;
-                
             }   
-
         } 
-
-
         if(this.type == "cloak"){
             this.nombreDeCoup += 1;
             if(this.nombreDeCoup == this.nombreCoupMax){
@@ -218,15 +220,17 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
 }
 
 function nextUpgrade(){
-    if(itemsShop[equippedSword].type == "epee"){
+    if(equippedSword != null && equippedSword != undefined && equippedSword != ""){
         var compteur = itemsShop[equippedSword].nombreTue;
         var decompte = itemsShop[equippedSword].monstreTue ;
         blocLvl[0].innerHTML=(`${decompte}/${compteur}`);
     }
     
+    if(equippedCloak != null && equippedCloak != undefined && equippedCloak != ""){
         var compteur2 = itemsShop[equippedCloak].nombreCoupMax;
         var decompte2 = itemsShop[equippedCloak].nombreDeCoup ;
         blocLvl[1].innerHTML=(`${decompte2}/${compteur2}`);
+    }
     
 }
 

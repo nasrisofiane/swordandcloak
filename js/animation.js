@@ -33,3 +33,4 @@ for(let i = 0; i < inventaireShowInfos.length; i++){
 //FIN DE: Animation inventaire sur MOUSEOVER montre les infos de l'item survolé.
 
 
+
