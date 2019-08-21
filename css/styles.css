@@ -384,12 +384,12 @@ body{
     height: 115px;
     width: 100px;
     position: absolute;
-    top : 0;
+    top : 0px;
     transition: top 1s, transform 1s;
-    transform: 100%
-    
-    
+    transform: 100%;
+
 }
+
 
  #bras-hero{
      width: 100px;

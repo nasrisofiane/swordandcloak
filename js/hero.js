@@ -1,4 +1,12 @@
 displayHeroInfo();
+
+function heroAtStartGame(){
+    heroArgent += itemsShop[0].prix;
+    itemsShop[0].equipeItem();
+    
+
+}
+heroAtStartGame();
 function augmenterXp_Argent(){ // fonction d'incrémentation d'argent et d'exp à chaque mort de monstre, et appel levelUP si l'exp depasse 100%.
     //augement l'experience du hero a chaque mort du monstre//  
     heroXpActuel += monsterChoosed.experience;
@@ -197,7 +205,7 @@ function heroAnimation(){ // créer l'animation d'attaque, le bras de héro est 
                     getHeroArm.style.transform = "rotate(0deg)";
                     getHeroArm.style.top = "70px";
                     getHeroWeapon.style.transform = "rotate(20deg)";
-                    getHeroWeapon.style.top = "30px";
+                    getHeroWeapon.style.top = "58px";
                     getHeroWeapon.style.left = "42px";
                     break;
             case 1: 
