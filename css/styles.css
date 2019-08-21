@@ -57,13 +57,14 @@ body{
 }
 
 #zone-gauche{
-    height: 550px;
+    height: 750px;
     flex:1;
     min-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: -100px;
 }
 
 #zone-combat{
@@ -112,8 +113,8 @@ body{
 
 #logo-porte-monnaie{
     flex:4;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     background: url('../images/icons/coin.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -128,9 +129,10 @@ body{
     flex-wrap: wrap;
     background:#2e1a00;
     width: 75%;
-    max-height:300px;
-    height: 300px;
-    padding-bottom: 24px;    
+    max-height:700px;
+    height: 700px;
+    padding-bottom: 10px;    
+ 
 }
 
 #titre-boutique{
@@ -147,12 +149,12 @@ body{
 }
 .objet-parent{
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 }
 .objet  {
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
     background-repeat: no-repeat;
     background-position: center;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
@@ -172,7 +174,7 @@ body{
     justify-content: space-around;
     align-items: center;
     display: none;
-    left: 100px;
+    left: 90px;
     z-index: 10000;
     border:solid gold 2px;
     border-style: ridge;
@@ -215,7 +217,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.8em;
+    font-size: 0.6em;
     background-image: url('../images/icons/coin.png');
     background-size: 13px;
     background-repeat: no-repeat;
@@ -319,8 +321,8 @@ body{
 
 #monster{
     left:43%;
-    height: 150px;
-    width: 135px;
+    height: 250px;
+    width: 180px;
     position: absolute;
     bottom:8%;
     background-size: contain;
@@ -430,7 +432,7 @@ body{
             flex: 2;
             display: flex;
             color:white;
-            border-radius:8px;
+            border-radius:10px;
             position: relative;
 
         }
@@ -472,7 +474,7 @@ body{
         #epee-equipe, #cape-equipe{
             width: 60px;
             height: 60px;
-            border-radius:7px;
+            border-radius:10px;
             margin:0px 3px 0px 3px;
             box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
             display: block;
@@ -555,6 +557,8 @@ body{
     margin:0px;
     font-weight: bold;
     font-size: 0.8em;
+    margin-left: 15px;
+
 }
 
 #stamina div i{
@@ -565,6 +569,7 @@ body{
     display: block;
     width:30px;
     height: 30px;
+    margin-left: 6px;
 }
 
 #strength div i{
@@ -575,6 +580,7 @@ body{
     display: block;
     width:30px;
     height: 30px;
+    margin-left: 6px;
 }
 
 .stats-add-icon{
@@ -704,11 +710,12 @@ body{
 }
 
 #niveau-hero{
-    margin-top:20px;
+    margin-top:10px;
     width: 100%;
     color:white;
     text-align: center;
     font-weight: bolder;
+    font-size: 16px;
 }
 /*FIN DE : partie droite */
 
@@ -758,6 +765,7 @@ body{
     #boutique{
         width: 100%;
         border-radius: 0px;
+        
     }
     
     #conteneur-inventaire-stats{
