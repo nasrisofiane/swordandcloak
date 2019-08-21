@@ -53,19 +53,30 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         boutique.appendChild(this.objetContainerParent);
     }
     
-    equipeItem(){ // fonction qui permet d'équipé l'objet(Jeu) visuellement et fonctionnellement. supprime l'objet de la boutique, le met dans les objets équipé et l'affiche sur héro.
+    equipeItem(saved){ // fonction qui permet d'équipé l'objet(Jeu) visuellement et fonctionnellement. supprime l'objet de la boutique, le met dans les objets équipé et l'affiche sur héro.
         if(this.bought == false){
-            if(heroArgent >= this.prix){
-                heroArgent -= this.prix;
-                heroStrenght += this.strenght;
-                heroStamina += this.stamina;
+            if(heroArgent >= this.prix || saved == true){
+                if(saved == true){
+
+                }
+                else{
+                    heroArgent -= this.prix;
+                    heroStrenght += this.strenght;
+                    heroStamina += this.stamina;
+                }
+                
                 this.hideItem();
                 if(this.type == "epee"){
                     if(equippedSword != null || equippedSword != undefined){
                         console.log("cleared");
                         itemsShop[equippedSword].desequipeItem();
                     }
-                    this.updateDmgandVie();
+                    if(saved == true){
+
+                    }
+                    else{
+                        this.updateDmgandVie();
+                    }
                     equippedSword = this.itemId;
                     equippedSword = this.itemId;
                     this.itemInfos();
@@ -79,10 +90,14 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                         console.log("cleared");
                         itemsShop[equippedCloak].desequipeItem();
                     }
-                    hpWithoutStamina += this.vie;
+                    if(saved == true){
+
+                    }
+                    else{
+                        hpWithoutStamina += this.vie;
+                    }
                     equippedCloak = this.itemId;
                     this.itemInfos();
-
                 }
                 this.elementHTML.style.background = `url(images/items/${this.image}.png)`;
                 this.elementHTML.style.backgroundSize = "contain";
