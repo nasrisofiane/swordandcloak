@@ -277,8 +277,10 @@ function randomBonus () {
     if (chance == 1) {
         addElement(true);
     }
-    console.log(chance);
-}
+
+    }
+    
+
 
 function addElement (addOrdelete) {
     var newDiv = document.createElement("div");
