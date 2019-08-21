@@ -300,7 +300,6 @@ function addElement (addOrdelete) {
        }
     else if(addOrdelete == false){
          // durée du bonus
-        
         var getBonus = document.getElementById("bonus");
         getBonus.parentNode.removeChild(getBonus);
     }
