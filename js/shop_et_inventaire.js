@@ -104,7 +104,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                     if(equippedSword != null || equippedSword != undefined){
                         console.log("cleared");
                         itemsShop[equippedSword].desequipeItem();
-                    }
+                    }   
                     equippedSword = this.itemId;
                     swordInfosText[3].innerHTML = `Degats + ${this.degat}`;
                     swordInfosText[5].innerHTML = `Strength + ${this.strenght}`;
