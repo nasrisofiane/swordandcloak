@@ -60,8 +60,8 @@ for(let i = 0; i <= 1; i++){ // boucle qui fait le tour de tout les element HTML
 }
 
 function updateHeroStats(){//met à jour les stats du héro avec ses modificateur pour qu'à chaque points de stats les dmg et la vie soit bien recalculer. (fonction appelée dans displayHeroInfo())
-    staminaToHp = heroStamina;
-    heroVieMax = hpWithoutStamina + staminaToHp *2;
+    staminaToHp = heroStamina*2;
+    heroVieMax = hpWithoutStamina + staminaToHp;
     strenghtToDmg = heroStrenght * 1.7;
     degatsHero = dmgWithoutStrength + strenghtToDmg ;
 }

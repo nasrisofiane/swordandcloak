@@ -114,7 +114,7 @@ function checkMonsterHealth(monstreInfos){ //vérifie la vie du monstre. fonctio
         }, 50);
             itemsShop[equippedSword].priseDeNiveau();
         }
-        
+        save();
         clearActualMonster();
         clearInterval(attackinterval);
         monsterRandomPop();
