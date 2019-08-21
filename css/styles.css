@@ -78,6 +78,20 @@ body{
     position: relative;
 }
 
+#bonus {
+    
+    background-image: url(../images/bonus/bonus.png);
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    border : solid, red;
+    
+/*    background-size: cover;*/
+
+}
+    
+
 #zone-droite{
     font-size:0.7em;
     height: 753px;
@@ -367,7 +381,11 @@ body{
     height: 115px;
     width: 100px;
     position: absolute;
-    bottom:0px;
+    top : 0;
+    transition: top 1s, transform 1s;
+    transform: 100%
+    
+    
 }
 
  #bras-hero{

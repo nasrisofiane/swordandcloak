@@ -170,8 +170,8 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 this.updateDmgandVie(); 
                 
             }   
-            console.log("Monstre tue = "+this.monstreTue);
-            console.log("Nombre a tué = "+this.nombreTue);
+/*            console.log("Monstre tue = "+this.monstreTue);
+            console.log("Nombre a tué = "+this.nombreTue);*/
         } 
 
 

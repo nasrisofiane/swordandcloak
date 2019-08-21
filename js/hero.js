@@ -255,10 +255,10 @@ function heroWalkAnimation(){ //créer l'animation de course jusqu'au monstre.
         }
 }
 
-setInterval (randomBonus, 10000);
+setInterval (randomBonus, 10000); //déclenche la fonction pour le bonus random
 
 
-function doubleDamage (){
+function doubleDamage (){ 
     if (bonus == true){
         degatsBonus = degatsHero*2;
         dmgWithoutStrength += degatsBonus;
@@ -277,9 +277,6 @@ function randomBonus () {
     if (chance == 1) {
         addElement(true);
     }
-    else {
-        
-    }
     console.log(chance);
 }
 
@@ -291,10 +288,7 @@ function addElement (addOrdelete) {
         setTimeout (doubleDamage, 5000); 
     });
     if(addOrdelete == true){
-        setTimeout (addElement, 7000, false);
-        newDiv.style.width = "50px";
-        newDiv.style.height = "50px";
-        newDiv.style.border="solid red";
+        setTimeout (addElement, 7000, false)
         newDiv.id = "bonus";
         getZoneCombat.appendChild(newDiv);
        }
@@ -305,4 +299,3 @@ function addElement (addOrdelete) {
     }
     
 }
-
