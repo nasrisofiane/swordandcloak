@@ -1,106 +1,36 @@
-if(window.localStorage.length > 0){
+restore();
+
+function restore(){
     getSave();
-    displayHeroInfo();
+    restoreMonsterChoosed();
 }
 
-function setCookie(cname, cvalue) {
-    localStorage.setItem(cname,cvalue);
-  }
-
-function getCookie(cname) {
-    return localStorage.getItem(cname);
+function stringifyJson(key, objet){
+    var toStringItem = JSON.stringify(objet);
+    localStorage.setItem(key ,toStringItem);
+    console.log(toStringItem);
+   }
+   
+function parseJson(key){
+    var parseItem = JSON.parse(localStorage.getItem(key));
+    return parseItem;
 }
 
-function deleteAllCookies(){
-      for(let b = 0; b < allValues.length; b++){
-        localStorage.removeItem(allValues[b][0]);
-      }
-}
-
-function getNewValues(){
-  allValues = [
-    ["heroXpMax", heroXpMax],
-    ["heroXpActuel", heroXpActuel],
-    ["heroNiveau", heroNiveau],
-    ["heroStamina", heroStamina],
-    ["heroStrenght", heroStrenght],
-    ["heroCaracteristique",heroCaracteristique ],
-    ["staminaToHp", staminaToHp = heroStamina],
-    ["strenghtToDmg", strenghtToDmg = heroStrenght],
-    ["hpWithoutStamina", hpWithoutStamina],
-    ["dmgWithoutStrength", dmgWithoutStrength],
-    ["heroVieMax", heroVieMax],
-    ["heroVie", heroVie],
-    ["heroArgent", heroArgent],
-    ["degatsHero", degatsHero] ,
-    ["heroXpRestant", heroXpRestant],
-    ["equippedSword", equippedSword],
-    ["equippedCloak", equippedCloak],
-    ["dmgToText1", dmgToText1], 
-    ["gameOverInterval", gameOverInterval],
-    ["die", die], 
-    ["gameOverOpacity", gameOverOpacity],
-    ["combatTextOpacity", combatTextOpacity],
-    ["combatTextfontSize", combatTextfontSize],
-    ["opacityDownInterval", opacityDownInterval],
-    ["heroImageNb", heroImageNb],
-    ["heroWalk", heroWalk],
-    ["startHeroAnimation", startHeroAnimation],
-    ["startAttackAnimation", startAttackAnimation], 
-    ["heroTimeOutWalkBack", heroTimeOutWalkBack], 
-    ["itemsShopBought", itemsShopBought],
-    ["incremenationItemShopBought", incremenationItemShopBought]
-  ];
-}
-getNewValues();
 function save(){
-    getNewValues();
-    deleteAllCookies();
-    for(let i = 0; i<allValues.length; i++){
-        setCookie(allValues[i][0], allValues[i][1]);
-        }
+    stringifyJson("monsterChoosed", monsterChoosed);
+    stringifyJson("RandomMonsterNumber", RandomMonsterNumber);
+    stringifyJson("RandomDifficulte", RandomDifficulte);
 }
-
+var restoreMonster;
 function getSave(){
-heroXpMax = parseInt(getCookie("heroXpMax"));
-heroXpActuel = parseInt(getCookie("heroXpActuel"));
-heroNiveau = parseInt(getCookie("heroNiveau"));
-heroStamina = parseInt(getCookie("heroStamina"));
-heroStrenght = parseInt(getCookie("heroStrenght"));
-heroCaracteristique = parseInt(getCookie("heroCaracteristique"));
-staminaToHp = parseInt(getCookie("staminaToHp"));
-strenghtToDmg = parseInt(getCookie("strenghtToDmg"));
-hpWithoutStamina = parseInt(getCookie("hpWithoutStamina"));
-dmgWithoutStrength = parseInt(getCookie("dmgWithoutStrength"));
-heroVieMax = parseInt(getCookie("heroVieMax"));
-heroVie = parseInt(getCookie("heroVie"));
-heroArgent = parseInt(getCookie("heroArgent"));
-degatsHero = parseInt(getCookie("degatsHero"));
-heroXpRestant = parseInt(getCookie("heroXpRestant"));
-equippedSword = null;
-equippedCloak = null;
-if(!isNaN(getCookie("equippedSword")) &&  getCookie("equippedSword") != ""){
-    itemsShop[parseInt(getCookie("equippedSword"))].showVisuel();
-}
-if(!isNaN(getCookie("equippedCloak")) &&  getCookie("equippedCloak") != ""){
-    itemsShop[parseInt(getCookie("equippedCloak"))].showVisuel();
+    
+    restoreMonster = parseJson("monsterChoosed");
+    RandomMonsterNumber = parseJson("RandomMonsterNumber");
+    RandomDifficulte = parseJson("RandomDifficulte");
+    console.log(restoreMonsterChoosed);
 }
 
-clearActualMonster();
-clearInterval(attackinterval);
-monsterRandomPop();
-/*dmgToText1; 
-gameOverInterval;
-die;
-gameOverOpacity = 0;
-combatTextOpacity = 1;
-combatTextfontSize = 1.9;
-opacityDownInterval;
-heroImageNb = 0;
-heroWalk = [0, true];
-startHeroAnimation;
-startAttackAnimation; 
-heroTimeOutWalkBack;*/
+function restoreMonsterChoosed(){
+    clearActualMonster();
+ monsterRandomPop(true);
 }
-  
-
