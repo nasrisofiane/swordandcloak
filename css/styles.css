@@ -101,7 +101,7 @@ body{
     background:#603106;
     box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
     height: 120px;
-    width: 75%;
+    width: 65%;
 }
 
 #argent{
@@ -119,6 +119,7 @@ body{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    margin-left: -20px;
 }
 
 #boutique{
@@ -128,7 +129,7 @@ body{
     align-items: center;
     flex-wrap: wrap;
     background:#2e1a00;
-    width: 75%;
+    width: 65%;
     max-height:700px;
     height: 700px;
     padding-bottom: 10px;    
@@ -137,7 +138,7 @@ body{
 
 #titre-boutique{
     border-radius: 4px 4px 0px 0px;
-    width: 75%;
+    width: 65%;
     height: 50px;
     top:-38px;
     margin:0px;
@@ -389,11 +390,12 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     transform: rotate(30deg);
-    /*left:18px;*/
     position: absolute;
-    width: 100px;
-    height: 60px;
+    width: 120px;
+    height: 100px;
     z-index: 10000;
+    margin-top: -28px;
+    margin-left: 12px;
 }
 /* FIN DE :zone de combat*/
 
@@ -424,6 +426,10 @@ body{
             background:#603106;
             align-items: center;
             color:white;
+            z-index: 10000;
+            margin-bottom:-18px;
+            padding-top: 10px;
+
         }
 
         #inventaire{
@@ -434,6 +440,10 @@ body{
             color:white;
             border-radius:10px;
             position: relative;
+            z-index: 10;
+            padding-top: 30px;
+            padding-bottom: 25px;
+            margin-bottom: -28px;
 
         }
         #inventaire-part-gauche{
@@ -488,6 +498,80 @@ body{
             flex-direction: column;
             justify-content: center;
         }
+
+
+        #niveau-items{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding-bottom: 10px;
+            justify-content: space-around;
+        }
+
+    #niveau-epee{
+        width: 170px;
+        height: 30px;
+        border-radius:3px;
+        background:#603106;
+        align-items: center;
+        color:white;
+
+    }
+
+    #niveau-cape{
+        width: 170px;
+        height: 30px;
+        border-radius:3px;
+        background:#603106;
+        align-items: center;
+        color:white;
+    }
+
+    #up-epee{
+        font-size: 7px;
+        margin-top: 5px;
+        margin-left: 5px;
+        margin-bottom: 3px;
+        color: gold;
+    }
+
+    #up-cape{
+        font-size: 7px;
+        margin-top: 5px;
+        margin-left: 5px;
+        margin-bottom: 3px;
+        color:gold;
+    }
+
+    #monstre-tue{
+        font-size: 7px;
+        margin-left: 5px;
+        margin-top: 0px;
+    }
+
+    #coup-pris{
+        font-size: 7px;
+        margin-left: 5px;
+        margin-top: 0px;
+    }
+
+   .bloc-marron{
+        width: 60px;
+        height: 20px;
+        background:#2e1a00;
+        border-radius: 3px 3px 3px 3px;
+        box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+        margin-top: -28px;
+        margin-left: 100px;
+    }
+
+    .bloc-lvl{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
         /*FIN DE : inventaire */
 
 
@@ -758,12 +842,12 @@ body{
     }
 
     #porte-monnaie{
-        width: 100%;
+        width: 65%;
         border-radius: 0px;
     }
 
     #boutique{
-        width: 100%;
+        width: 65%;
         border-radius: 0px;
         
     }

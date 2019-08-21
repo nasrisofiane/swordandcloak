@@ -280,7 +280,7 @@ function randomBonus () {
     else {
         
     }
-    console.log(chance);
+    
 }
 
 function addElement (addOrdelete) {
