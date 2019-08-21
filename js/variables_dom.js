@@ -43,3 +43,5 @@ var swordInfosText = document.getElementById("inventaire-part-gauche").childNode
 var cloakInfosText = document.getElementById("inventaire-part-droite").childNodes;
 var vieTextStats = document.getElementById("vie-text");
 var degatTextStats = document.getElementById("degats-text");
+var blocLvl = document.getElementsByClassName("bloc-lvl");
+

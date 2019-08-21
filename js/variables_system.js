@@ -64,15 +64,15 @@ var itemsShop = [//Contient les informations des objets(boutique) en forme de ta
     ['La Hrustchnurps', 180000, 1350, 1000, "sword6", "epee",1000],
     ['La Aie Sapik', 250000, 2000, 1200, "sword7", "epee",1500],
     ['Le Demon De Minuit', 666666, 6666, 6666, "sword8", "epee",2666],
-    ['Cape Haute', 500, 6, 1, "cloak0", "cloak",110],
-    ['Cape Oral', 1800, 27, 4, "cloak1", "cloak",240],
-    ['Cape Cake', 4700, 68, 12, "cloak2", "cloak",451],
-    ['Cape Pougne', 8000, 180, 35, "cloak3", "cloak",650],
-    ['Cape Risti', 10000, 300, 90, "cloak4", "cloak",800],
-    ['Cape Rice Des Dieux', 15000, 600, 150, "cloak5", "cloak",1000],
-    ['Cape Ayrokei', 22000, 850, 250, "cloak6", "cloak",1200],
-    ['Cape Udepied', 28000, 1000, 400, "cloak7", "cloak",1500],
-    ['Cape De Staline', 40000, 1500, 869, "cloak8", "cloak",2000]
+    ['Cape Haute', 500, 6, 1, "cloak0", "cloak",60],
+    ['Cape Oral', 1800, 18, 4, "cloak1", "cloak",120],
+    ['Cape Cake', 4700, 36, 12, "cloak2", "cloak",240],
+    ['Cape Pougne', 8000, 100, 20, "cloak3", "cloak",480],
+    ['Cape Risti', 10000, 240, 60, "cloak4", "cloak",800],
+    ['Cape Rice Des Dieux', 15000, 500, 120, "cloak5", "cloak",1000],
+    ['Cape Ayrokei', 22000, 850, 200, "cloak6", "cloak",1200],
+    ['Cape Udepied', 28000, 1000, 380, "cloak7", "cloak",1500],
+    ['Cape De Staline', 40000, 1500, 669, "cloak8", "cloak",2000]
 ];
 var itemsShopBought = [];
 var incremenationItemShopBought = 0;

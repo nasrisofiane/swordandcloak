@@ -110,6 +110,7 @@ function checkMonsterHealth(monstreInfos){ //vérifie la vie du monstre. fonctio
         if(equippedSword != null || equippedSword != undefined){
         monsterKilled = setTimeout(() => {
             itemsShop[equippedSword].monstreTue += 1;
+            console.log(itemsShop[equippedSword].monstreTue );
         }, 50);
             itemsShop[equippedSword].priseDeNiveau();
         }

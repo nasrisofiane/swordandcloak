@@ -167,17 +167,16 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
     }
   
     priseDeNiveau(){
+        
         if(this.type == "epee"){   
-
             if(this.monstreTue == this.nombreTue-1){
                 this.nombreTue =this.nombreTue * 2;
                 this.niveau += 1;
                 this.degat += (this.degat * 10) /100;
                 this.updateDmgandVie(); 
+                this.monstreTue =0;
                 
             }   
-            console.log("Monstre tue = "+this.monstreTue);
-            console.log("Nombre a tué = "+this.nombreTue);
         } 
 
 
@@ -188,11 +187,12 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 this.niveau += 1;
                 this.vie = (this.vie *20) /100;
                 hpWithoutStamina += this.vie; 
+                this.nombreDeCoup =0;
                 displayHeroInfo();
             }
         }
         this.itemInfos();
-
+        nextUpgrade();      
     }
 
     updateDmgandVie(){
@@ -200,6 +200,22 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         displayHeroInfo();
     }
 }
+
+function nextUpgrade(){
+    if(itemsShop[equippedSword].type == "epee"){
+        var compteur = itemsShop[equippedSword].nombreTue;
+        var decompte = itemsShop[equippedSword].monstreTue ;
+        blocLvl[0].innerHTML=(`${decompte}/${compteur}`);
+    }
+    
+        var compteur2 = itemsShop[equippedCloak].nombreCoupMax;
+        var decompte2 = itemsShop[equippedCloak].nombreDeCoup ;
+        blocLvl[1].innerHTML=(`${decompte2}/${compteur2}`);
+    
+}
+
+
+
 
 for(let i = 0; i < itemsShop.length; i++){ // boucle qui ajoute la fonction equipeItem() à tout les objets présent dans la boutique.
     itemsShop[i] = new items(itemsShop[i][0], itemsShop[i][1], itemsShop[i][2], itemsShop[i][3], itemsShop[i][4], itemsShop[i][5], itemsShop[i][6]);
