@@ -31,9 +31,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         this.imageObjet();
     }
 
-    imageObjet(){// affiche l'image de l'objet dans une div dans la boutique.
-
-        
+    imageObjet(){// affiche l'image de l'objet dans une div dans la boutique
         this.floutageDiv = document.createElement("div");
         this.floutageDiv.style.position ="absolute";
         this.floutageDiv.style.width ="100%";
@@ -71,12 +69,12 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 }
                 this.hideItem();
                 if(this.type == "epee"){
-                    if(equippedSword != null || equippedSword != undefined){
+                    if(equippedSword != null && saved == undefined || equippedSword != undefined && saved == undefined){
                         console.log("cleared");
                         itemsShop[equippedSword].desequipeItem();
                     }
                     if(saved == true){
-
+                        
                     }
                     else{
                         this.updateDmgandVie();
@@ -87,12 +85,9 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                     getHeroWeapon.style.backgroundSize = "contain";
                     getHeroWeapon.style.backgroundRepeat  = "no-repeat";
                     getHeroWeapon.style.backgroundPosition  = "center";
-                    degatsHero -= itemsShopBought[itemsShopBought.length-1].degat;
-                    console.log(itemsShopBought[itemsShopBought.length-1]);
-                   
                 }
                 else{
-                    if(equippedCloak != null || equippedCloak != undefined){
+                    if(equippedCloak != null && saved == undefined|| equippedCloak != undefined && saved == undefined){
                         console.log("cleared");
                         itemsShop[equippedCloak].desequipeItem();
                     }
@@ -103,6 +98,8 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                         hpWithoutStamina += this.vie;
                     }
                     equippedCloak = this.itemId;
+                    compteur2 = itemsShop[equippedCloak].nombreCoupMax;
+                    decompte2 = itemsShop[equippedCloak].nombreDeCoup ;
                     this.itemInfos();
                 }
                 this.elementHTML.style.background = `url(images/items/${this.image}.png)`;
@@ -110,6 +107,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 this.elementHTML.style.backgroundRepeat  = "no-repeat";
                 this.elementHTML.style.backgroundPosition  = "center";
                 heroVie = heroVieMax;
+                saved = false;
             }
             else{
                 alert("Pas assez d'or");
@@ -121,10 +119,6 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
     showVisuel(){
                 this.hideItem();
                 if(this.type == "epee"){
-                    if(equippedSword != null || equippedSword != undefined){
-                        console.log("cleared");
-                        itemsShop[equippedSword].desequipeItem();
-                    }   
                     equippedSword = this.itemId;
                     this.itemInfos();
                     getHeroWeapon.style.background = `url(images/items/${this.image}.png)`;
@@ -133,10 +127,6 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                     getHeroWeapon.style.backgroundPosition  = "center";
                 }
                 else{
-                    if(equippedCloak != null || equippedCloak != undefined){
-                        console.log("cleared");
-                        itemsShop[equippedCloak].desequipeItem();
-                    }
                     equippedCloak = this.itemId;
                     this.itemInfos();
                 } 
@@ -150,7 +140,6 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
     itemInfos(){
         if(this.type == "epee"){
             inventairePartGauche.innerHTML = `<strong>Epée bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>Degats + ${this.degat}</p><p> Strength + ${this.strenght}</p><p> Stamina + ${this.stamina}</p>`;
-
         }
         else{
             inventairePartDroite.innerHTML = ` <strong>Cape bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>vie + ${this.vie}</p><p> Strength + ${this.strenght}</p><p> Stamina + ${this.stamina}</p>`;
@@ -181,14 +170,20 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
             this.elementHTML.style.backgroundSize = "contain";
             this.elementHTML.style.backgroundRepeat  = "no-repeat";
         }
+        degatsHero = dmgWithoutStrength + strenghtToDmg;
         displayHeroInfo();
     }
     
     priseDeNiveau(){
         if(this.type == "epee"){   
+            
+            compteur = itemsShop[equippedSword].nombreTue;
+            decompte = itemsShop[equippedSword].monstreTue;
+            blocLvl[0].innerHTML=(`${decompte}/${compteur}`);
             if(this.monstreTue == this.nombreTue-1){
                 this.nombreTue =this.nombreTue * 2;
                 this.niveau += 1;
+                dmgWithoutStrength -= this.degat;
                 this.degat += (this.degat * 10) /100;
                 this.updateDmgandVie(); 
                 this.monstreTue =0;
@@ -196,6 +191,9 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         } 
         if(this.type == "cloak"){
             this.nombreDeCoup += 1;
+            compteur2 = itemsShop[equippedCloak].nombreCoupMax;
+            decompte2 = itemsShop[equippedCloak].nombreDeCoup ;
+            blocLvl[1].innerHTML=(`${decompte2}/${compteur2}`);
             if(this.nombreDeCoup == this.nombreCoupMax){
                 this.nombreCoupMax = this.nombreCoupMax * 2;
                 this.niveau += 1;
@@ -205,32 +203,13 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 displayHeroInfo();
             }
         }
-        this.itemInfos();
-        nextUpgrade();      
+        this.itemInfos();   
     }
-
     updateDmgandVie(){
-        dmgWithoutStrength += this.degat;
+        dmgWithoutStrength = this.degat;
         displayHeroInfo();
     }
 }
-
-function nextUpgrade(){
-    if(equippedSword != null && equippedSword != undefined && equippedSword != ""){
-        var compteur = itemsShop[equippedSword].nombreTue;
-        var decompte = itemsShop[equippedSword].monstreTue ;
-        blocLvl[0].innerHTML=(`${decompte}/${compteur}`);
-    }
-    
-    if(equippedCloak != null && equippedCloak != undefined && equippedCloak != ""){
-        var compteur2 = itemsShop[equippedCloak].nombreCoupMax;
-        var decompte2 = itemsShop[equippedCloak].nombreDeCoup ;
-        blocLvl[1].innerHTML=(`${decompte2}/${compteur2}`);
-    }
-    
-}
-
-
 
 
 for(let i = 0; i < itemsShop.length; i++){ // boucle qui ajoute la fonction equipeItem() à tout les objets présent dans la boutique.
