@@ -183,11 +183,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         }
         displayHeroInfo();
     }
-
-    niveauObjet(){
-        console.log(this.objetLevel);
-    }
-  
+    
     priseDeNiveau(){
         if(this.type == "epee"){   
             if(this.monstreTue == this.nombreTue-1){

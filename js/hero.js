@@ -271,10 +271,11 @@ function doubleDamage (){
         degatsBonus = degatsHero*2;
         dmgWithoutStrength += degatsBonus;
         bonus = false;
+        bonusPos=0;
     }
     else {
         dmgWithoutStrength -= degatsBonus;
-        bonus = true;
+        bonus = true;  
     }
     updateHeroStats();
     displayHeroInfo();
@@ -285,21 +286,25 @@ function randomBonus () {
     if (chance == 1) {
         addElement(true);
     }
-
-    }
     
-
-
+    console.log("bonus ? "+chance);
+}
+    
+var bonusAnimationInterval;
+var bonusPos = 0;
 function addElement (addOrdelete) {
     var newDiv = document.createElement("div");
     newDiv.addEventListener("click", function(){
         addElement(false); 
         doubleDamage();
         setTimeout (doubleDamage, 5000); 
+   
     });
     if(addOrdelete == true){
         setTimeout (addElement, 7000, false)
         newDiv.id = "bonus";
+        bonusAnimationInterval = setInterval(fallDownBonus, 40, newDiv);
+        //randomDirectionBonus();
         getZoneCombat.appendChild(newDiv);
        }
     else if(addOrdelete == false){
@@ -309,3 +314,17 @@ function addElement (addOrdelete) {
     }
     
 }
+
+function fallDownBonus(element){
+    bonusPos +=4;
+    if(bonusPos >= 100){
+        clearInterval(bonusAnimationInterval);
+    }
+    return newDiv = element.style.top = `${bonusPos}%`;
+}
+/*
+function randomDirectionBonus(){
+    bonusHposition = Math.floor(Math.random(+1)*50);
+    
+    return newDiv = element.style.left = `${bonusHposition}%`;
+}*/
