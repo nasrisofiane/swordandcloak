@@ -1,3 +1,16 @@
+function convertIntToText(i){
+    var convert = i.toString();
+    if(convert.indexOf(".") > -1){
+        var n = convert.indexOf(".");
+        var x =n+2;
+        return convert.substring(0, x);
+    }
+    else{
+        return convert;
+    }
+}
+
+
 class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
     constructor(nom, prix, strenght, stamina ,image, type, bonus){
         this.nom = nom;
@@ -21,12 +34,12 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         if(this.type == "epee"){
             this.degat = bonus * this.niveau;
             this.elementHTML = epeeEquipe;
-            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Degats : ${this.degat} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Degats : ${convertIntToText(this.degat)} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
         }
         else{
             this.vie = bonus
             this.elementHTML = capeEquipe;
-            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Vie : ${this.vie} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Vie : ${convertIntToText(this.vie)} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
         }
         this.imageObjet();
     }

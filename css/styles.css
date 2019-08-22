@@ -59,12 +59,13 @@ body{
 #zone-gauche{
     height: 750px;
     flex:1;
-    min-width: 350px;
+    min-width: 550px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: -100px;
+    max-width: 500px;
 }
 
 #zone-combat{
@@ -147,7 +148,8 @@ body{
     width: 65%;
     max-height:700px;
     height: 700px;
-    padding-bottom: 10px;    
+    padding-bottom: 10px;
+     
  
 }
 
@@ -822,92 +824,3 @@ body{
     font-size: 16px;
 }
 /*FIN DE : partie droite */
-
-@media only screen and (max-width: 1400px) {
-    html{
-        height: 100%;
-        padding:0px;
-        margin:0px;
-        min-height: 0px;  
-    }
-
-    body{
-        height: 100%;
-        padding:0px;
-        margin:0px;
-        font-family: 'Press Start 2P', cursive;
-        font-size: 0.8em;
-    }
-
-    #conteneur-principal{
-        background:url("../images/background.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: -40px;
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    #infos-hero{
-        margin-top:0px;
-        width: 100%;
-        border-radius: 0px;
-    }
-
-    #titre-boutique{
-        width: 100%;
-        border-radius: 0px;
-    }
-
-    #porte-monnaie{
-        width: 65%;
-        border-radius: 0px;
-    }
-
-    #boutique{
-        width: 65%;
-        border-radius: 0px;
-        
-    }
-    
-    #conteneur-inventaire-stats{
-        width: 100%;
-        border-radius: 0px;
-    }
-        
-    #zone-gauche{
-        height: 100%;
-        flex:1;
-        min-width: 350px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #zone-combat{
-        border:solid lightgrey 1px;
-        border-top:none;
-        border-bottom:none;
-        height:100%;
-        flex:2;
-        min-width: 500px;
-        display: flex;
-        justify-content: center;
-        position: relative;
-    }
-
-    #zone-droite{
-        font-size:0.7em;
-        height: 100%;
-        align-self: flex-start;
-        flex:1;
-        min-width: 350px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
