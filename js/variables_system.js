@@ -74,7 +74,13 @@ var itemsShop = [//Contient les informations des objets(boutique) en forme de ta
     ['Cape Udepied', 28000, 1000, 380, "cloak7", "cloak",1500],
     ['Cape De Staline', 40000, 1500, 669, "cloak8", "cloak",2000]
 ];
+
+//4.0 Cookies system
 var itemsShopBought = [];
 var incremenationItemShopBought = 0;
-//4.0 Cookies system
-var allValues; //var qui contiendra toutes les valeurs de vars.
+var restoreMonster;
+var lastEquippedSword;
+var lastEquippedCloak;
+var swordSaved;
+var cloakSaved;
+var skip = false;

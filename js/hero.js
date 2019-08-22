@@ -1,4 +1,12 @@
 displayHeroInfo();
+
+function heroAtStartGame(){
+    heroArgent += itemsShop[0].prix;
+    itemsShop[0].equipeItem();
+    
+
+}
+heroAtStartGame();
 function augmenterXp_Argent(){ // fonction d'incrémentation d'argent et d'exp à chaque mort de monstre, et appel levelUP si l'exp depasse 100%.
     //augement l'experience du hero a chaque mort du monstre//  
     heroXpActuel += monsterChoosed.experience;
@@ -60,8 +68,8 @@ for(let i = 0; i <= 1; i++){ // boucle qui fait le tour de tout les element HTML
 }
 
 function updateHeroStats(){//met à jour les stats du héro avec ses modificateur pour qu'à chaque points de stats les dmg et la vie soit bien recalculer. (fonction appelée dans displayHeroInfo())
-    staminaToHp = heroStamina;
-    heroVieMax = hpWithoutStamina + staminaToHp *2;
+    staminaToHp = heroStamina*2;
+    heroVieMax = hpWithoutStamina + staminaToHp;
     strenghtToDmg = heroStrenght * 1.7;
     degatsHero = dmgWithoutStrength + strenghtToDmg ;
 }
@@ -197,7 +205,7 @@ function heroAnimation(){ // créer l'animation d'attaque, le bras de héro est 
                     getHeroArm.style.transform = "rotate(0deg)";
                     getHeroArm.style.top = "70px";
                     getHeroWeapon.style.transform = "rotate(20deg)";
-                    getHeroWeapon.style.top = "30px";
+                    getHeroWeapon.style.top = "58px";
                     getHeroWeapon.style.left = "42px";
                     break;
             case 1: 
@@ -255,10 +263,10 @@ function heroWalkAnimation(){ //créer l'animation de course jusqu'au monstre.
         }
 }
 
-setInterval (randomBonus, 10000);
+setInterval (randomBonus, 10000); //déclenche la fonction pour le bonus random
 
 
-function doubleDamage (){
+function doubleDamage (){ 
     if (bonus == true){
         degatsBonus = degatsHero*2;
         dmgWithoutStrength += degatsBonus;
@@ -277,11 +285,10 @@ function randomBonus () {
     if (chance == 1) {
         addElement(true);
     }
-    else {
-        
+
     }
     
-}
+
 
 function addElement (addOrdelete) {
     var newDiv = document.createElement("div");
@@ -291,10 +298,7 @@ function addElement (addOrdelete) {
         setTimeout (doubleDamage, 5000); 
     });
     if(addOrdelete == true){
-        setTimeout (addElement, 7000, false);
-        newDiv.style.width = "50px";
-        newDiv.style.height = "50px";
-        newDiv.style.border="solid red";
+        setTimeout (addElement, 7000, false)
         newDiv.id = "bonus";
         getZoneCombat.appendChild(newDiv);
        }
@@ -305,4 +309,3 @@ function addElement (addOrdelete) {
     }
     
 }
-

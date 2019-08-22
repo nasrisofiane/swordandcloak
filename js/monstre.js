@@ -62,21 +62,30 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
     }
 }
  
-function monsterRandomPop(){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
-        //Propriétés du monstre généré plus ou moins aléatoirement.
+function monsterRandomPop(restoreSave){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
         MonsterAttackSpeed = Math.floor(Math.random() * 1800) + 2300 ;
         MonsterAttackSpeedToSecond = MonsterAttackSpeed/100;
-        RandomDifficulte = Math.floor(Math.random()*3);
-        RandomMonsterNumber = Math.floor(Math.random()*5);
-        //FIN DE :Propriétés du monstre généré plus ou moins aléatoirement.
+
         if(nombreMonstreTue >= 5 && heroNiveau > 3){
             RandomDifficulte = 6;
             nombreMonstreTue = 0;
         }
-        // créer une instance de l'objet spriteImage.
-        monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
-        monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
-        //fin de la création de l'instance spriteImage.
+        if(restoreSave == true){
+            monsterChoosed = new monster(restoreMonster.nom, heroNiveau, RandomDifficulte);
+            monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
+        }
+        else{
+            //Propriétés du monstre généré plus ou moins aléatoirement.
+            
+            RandomDifficulte = Math.floor(Math.random()*3);
+            RandomMonsterNumber = Math.floor(Math.random()*5);
+            //FIN DE :Propriétés du monstre généré plus ou moins aléatoirement.
+            // créer une instance de l'objet spriteImage.
+            monsterChoosed = new monster( monsters[RandomMonsterNumber][0], heroNiveau , RandomDifficulte);
+            monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
+            //fin de la création de l'instance spriteImage.
+        }
+        
         monsterImage.apply(0); //applique l'image 0 du monstre au lancement de la page, sinon le monstre ne s'afficher qu'àprès le premier setInterval.
         monsterChoosed.autoAttack();
         intervalMonsterImage = startInterval(monsterImage,monsters[RandomMonsterNumber][2]);
@@ -105,12 +114,11 @@ function checkMonsterHealth(monstreInfos){ //vérifie la vie du monstre. fonctio
         }, 50);
             itemsShop[equippedSword].priseDeNiveau();
         }
-        
         clearActualMonster();
         clearInterval(attackinterval);
         monsterRandomPop();
         regenHealthPoint();
-        save();
+        //setTimeout(save, 40);
     } 
 }
 
@@ -130,6 +138,7 @@ function clearActualMonster(){ // nettoire les variables de fonction du monstres
     monsterChoosed = null;
     monsterImage = null;
     getMonsterWindow.style.background = "none";
+    clearInterval(attackinterval);
 }
 monsterRandomPop();
 

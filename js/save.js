@@ -1,106 +1,106 @@
-if(window.localStorage.length > 0){
-    getSave();
+function restore(){
+    //if(localStorage.getItem("saved")){
+    for(let i = 0; i< localStorage.length; i++){
+        parseJson(localStorage.key(i));
+    }
+    restoreMonsterChoosed();
+    restoreItems();
     displayHeroInfo();
+    //localStorage.removeItem("saved");
+    //}
+    //else{
+        
+    //save();
+    //}
 }
 
-function setCookie(cname, cvalue) {
-    localStorage.setItem(cname,cvalue);
-  }
 
-function getCookie(cname) {
-    return localStorage.getItem(cname);
+function stringifyJson(key, objet){
+    var toStringItem = JSON.stringify(objet);
+    localStorage.setItem(key ,toStringItem);
+   }
+   
+function parseJson(key){
+    var parseItem = JSON.parse(localStorage.getItem(key));
+    return window[key] = parseItem;
 }
 
-function deleteAllCookies(){
-      for(let b = 0; b < allValues.length; b++){
-        localStorage.removeItem(allValues[b][0]);
-      }
-}
-
-function getNewValues(){
-  allValues = [
-    ["heroXpMax", heroXpMax],
-    ["heroXpActuel", heroXpActuel],
-    ["heroNiveau", heroNiveau],
-    ["heroStamina", heroStamina],
-    ["heroStrenght", heroStrenght],
-    ["heroCaracteristique",heroCaracteristique ],
-    ["staminaToHp", staminaToHp = heroStamina],
-    ["strenghtToDmg", strenghtToDmg = heroStrenght],
-    ["hpWithoutStamina", hpWithoutStamina],
-    ["dmgWithoutStrength", dmgWithoutStrength],
-    ["heroVieMax", heroVieMax],
-    ["heroVie", heroVie],
-    ["heroArgent", heroArgent],
-    ["degatsHero", degatsHero] ,
-    ["heroXpRestant", heroXpRestant],
-    ["equippedSword", equippedSword],
-    ["equippedCloak", equippedCloak],
-    ["dmgToText1", dmgToText1], 
-    ["gameOverInterval", gameOverInterval],
-    ["die", die], 
-    ["gameOverOpacity", gameOverOpacity],
-    ["combatTextOpacity", combatTextOpacity],
-    ["combatTextfontSize", combatTextfontSize],
-    ["opacityDownInterval", opacityDownInterval],
-    ["heroImageNb", heroImageNb],
-    ["heroWalk", heroWalk],
-    ["startHeroAnimation", startHeroAnimation],
-    ["startAttackAnimation", startAttackAnimation], 
-    ["heroTimeOutWalkBack", heroTimeOutWalkBack], 
-    ["itemsShopBought", itemsShopBought],
-    ["incremenationItemShopBought", incremenationItemShopBought]
-  ];
-}
-getNewValues();
 function save(){
-    getNewValues();
-    deleteAllCookies();
-    for(let i = 0; i<allValues.length; i++){
-        setCookie(allValues[i][0], allValues[i][1]);
+    if(skip != true){
+    //localStorage.setItem("saved", true);
+    stringifyJson("restoreMonster", monsterChoosed);
+    if(equippedSword != null && equippedSword != undefined && equippedSword != "" ){
+        stringifyJson("swordSaved", itemsShop[equippedSword]);
+        stringifyJson("lastEquippedSword", equippedSword);
+    }
+    if(equippedCloak != null && equippedCloak != undefined && equippedCloak != "" ){
+        stringifyJson("cloakSaved", itemsShop[equippedCloak]);
+        stringifyJson("lastEquippedCloak", equippedCloak);
+    }
+    
+    stringifyJson("itemsShopBought", itemsShopBought);
+    stringifyJson("RandomMonsterNumber", RandomMonsterNumber);
+    stringifyJson("RandomDifficulte", RandomDifficulte);
+    stringifyJson("heroXpMax", heroXpMax);
+    stringifyJson("heroNiveau", heroNiveau);
+    stringifyJson("heroStamina", heroStamina);
+    stringifyJson("heroStrenght", heroStrenght);
+    stringifyJson("heroCaracteristique", heroCaracteristique);
+    stringifyJson("hpWithoutStamina", hpWithoutStamina);
+    stringifyJson("dmgWithoutStrength", dmgWithoutStrength);
+    stringifyJson("heroXpActuel", heroXpActuel);
+    stringifyJson("heroArgent", heroArgent);
+    console.log("nouvelle sauvegarde.");
+    }
+}
+
+function restoreMonsterChoosed(){
+    clearActualMonster();
+    monsterRandomPop(true);
+}
+var newShop = [];
+function restoreItems(){
+
+
+    if(lastEquippedCloak != null && lastEquippedCloak != undefined && lastEquippedCloak != "" && !isNaN(lastEquippedCloak)){ 
+        itemsShop[lastEquippedCloak].equipeItem(true);
+        itemsShop[lastEquippedCloak].niveau = cloakSaved.niveau;
+        itemsShop[lastEquippedCloak].nombreDeCoup = cloakSaved.nombreDeCoup;
+        itemsShop[lastEquippedCloak].nombreCoupMax = cloakSaved.nombreCoupMax;
+        itemsShop[lastEquippedCloak].vie = cloakSaved.vie;
+        itemsShop[lastEquippedCloak].itemInfos();
+    }
+    if(lastEquippedSword != null && lastEquippedSword != undefined && lastEquippedSword != "" && !isNaN(lastEquippedSword)){
+        itemsShop[lastEquippedSword].equipeItem(true);
+        itemsShop[lastEquippedSword].niveau = swordSaved.niveau;
+        itemsShop[lastEquippedSword].monstreTue = swordSaved.monstreTue;
+        itemsShop[lastEquippedSword].nombreTue = swordSaved.nombreTue;
+        itemsShop[lastEquippedSword].degat = swordSaved.degat;
+        itemsShop[lastEquippedSword].itemInfos();
+    }
+    nextUpgrade();
+    
+    if(itemsShopBought.length > 0){
+        for(let i = 0; i < itemsShopBought.length; i++){ 
+            var id = itemsShopBought[i].itemId;
+            console.log(id);
+            newShop[i] = itemsShop[id];
+            
         }
+        for(let a = 0; a < newShop.length; a++){
+            newShop[a].hideItem();
+        }
+    }
+    
 }
 
-function getSave(){
-heroXpMax = parseInt(getCookie("heroXpMax"));
-heroXpActuel = parseInt(getCookie("heroXpActuel"));
-heroNiveau = parseInt(getCookie("heroNiveau"));
-heroStamina = parseInt(getCookie("heroStamina"));
-heroStrenght = parseInt(getCookie("heroStrenght"));
-heroCaracteristique = parseInt(getCookie("heroCaracteristique"));
-staminaToHp = parseInt(getCookie("staminaToHp"));
-strenghtToDmg = parseInt(getCookie("strenghtToDmg"));
-hpWithoutStamina = parseInt(getCookie("hpWithoutStamina"));
-dmgWithoutStrength = parseInt(getCookie("dmgWithoutStrength"));
-heroVieMax = parseInt(getCookie("heroVieMax"));
-heroVie = parseInt(getCookie("heroVie"));
-heroArgent = parseInt(getCookie("heroArgent"));
-degatsHero = parseInt(getCookie("degatsHero"));
-heroXpRestant = parseInt(getCookie("heroXpRestant"));
-equippedSword = null;
-equippedCloak = null;
-if(!isNaN(getCookie("equippedSword")) &&  getCookie("equippedSword") != ""){
-    itemsShop[parseInt(getCookie("equippedSword"))].showVisuel();
-}
-if(!isNaN(getCookie("equippedCloak")) &&  getCookie("equippedCloak") != ""){
-    itemsShop[parseInt(getCookie("equippedCloak"))].showVisuel();
+if(localStorage.getItem("heroXpMax")){
+    restore();
 }
 
-clearActualMonster();
-clearInterval(attackinterval);
-monsterRandomPop();
-/*dmgToText1; 
-gameOverInterval;
-die;
-gameOverOpacity = 0;
-combatTextOpacity = 1;
-combatTextfontSize = 1.9;
-opacityDownInterval;
-heroImageNb = 0;
-heroWalk = [0, true];
-startHeroAnimation;
-startAttackAnimation; 
-heroTimeOutWalkBack;*/
+function eraseGame(){
+    localStorage.clear();
+    skip = true;
+    document.location.reload(true);
 }
-  
-
+window.addEventListener("unload", save);
