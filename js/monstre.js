@@ -101,7 +101,7 @@ var monsterKilled;
 function checkMonsterHealth(monstreInfos){ //vérifie la vie du monstre. fonction appelé à chaque degats infligé.
     if(monstreInfos.vie > 0){
         getMonsterHealthBar.value = monstreInfos.vie;
-        getHealthValueMonster.innerHTML = `${monstreInfos.vie.toFixed(1)} / ${getMonsterHealthBar.max}`;   
+        getHealthValueMonster.innerHTML = `${convertIntToText(monstreInfos.vie)} / ${convertIntToText(getMonsterHealthBar.max)}`;   
     }
     else if(monstreInfos.vie <= 0){
         nombreMonstreTue +=1;

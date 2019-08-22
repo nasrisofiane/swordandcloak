@@ -24,7 +24,7 @@ function displayHeroInfo(){ // function qui actualise toutes infos visuel avec l
     heroNiveauhtml.innerHTML = `LEVEL ${heroNiveau}`;
     heroBarreViehtml.max = heroVieMax;
     heroBarreViehtml.value = heroVie;
-    heroHealthNumber.innerHTML =  `${heroVie.toFixed(1)} / ${heroBarreViehtml.max}`;
+    heroHealthNumber.innerHTML =  `${convertIntToText(heroVie)} / ${convertIntToText(heroBarreViehtml.max)}`;
     heroBarreXphtml.value = heroXpActuel;
     heroXpNumber.innerHTML = `${heroXpActuel} / ${heroBarreXphtml.max}`;
     heroBarreXphtml.max = heroXpMax;
@@ -329,3 +329,4 @@ function randomDirectionBonus(){
     
     return newDiv = element.style.left = `${bonusHposition}%`;
 }*/
+
