@@ -83,9 +83,7 @@ function restoreItems(){
     if(itemsShopBought.length > 0){
         for(let i = 0; i < itemsShopBought.length; i++){ 
             var id = itemsShopBought[i].itemId;
-            console.log(id);
             newShop[i] = itemsShop[id];
-            
         }
         for(let a = 0; a < newShop.length; a++){
             newShop[a].hideItem();
