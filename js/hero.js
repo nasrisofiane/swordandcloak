@@ -1,11 +1,12 @@
 displayHeroInfo();
 
 function heroAtStartGame(){
-    heroArgent += itemsShop[0].prix;
-    itemsShop[0].equipeItem();
+    equippedSword = 0;
+    heroArgent += itemsShop[equippedSword].prix;
+    itemsShop[equippedSword].equipeItem();
     
-
 }
+
 heroAtStartGame();
 function augmenterXp_Argent(){ // fonction d'incrémentation d'argent et d'exp à chaque mort de monstre, et appel levelUP si l'exp depasse 100%.
     //augement l'experience du hero a chaque mort du monstre//  
@@ -268,13 +269,13 @@ setInterval (randomBonus, 10000); //déclenche la fonction pour le bonus random
 
 function doubleDamage (){ 
     if (bonus == true){
-        degatsBonus = degatsHero*2;
-        dmgWithoutStrength += degatsBonus;
+        degatsBonus = heroStrenght * 1.4;
+        heroStrenght += degatsBonus;
         bonus = false;
         bonusPos=0;
     }
     else {
-        dmgWithoutStrength -= degatsBonus;
+        heroStrenght -= degatsBonus;
         bonus = true;  
     }
     updateHeroStats();
@@ -317,7 +318,7 @@ function addElement (addOrdelete) {
 
 function fallDownBonus(element){
     bonusPos +=4;
-    if(bonusPos >= 100){
+    if(bonusPos >= 80){
         clearInterval(bonusAnimationInterval);
     }
     return newDiv = element.style.top = `${bonusPos}%`;
