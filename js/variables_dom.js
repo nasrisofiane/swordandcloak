@@ -44,3 +44,4 @@ var cloakInfosText = document.getElementById("inventaire-part-droite").childNode
 var vieTextStats = document.getElementById("vie-text");
 var degatTextStats = document.getElementById("degats-text");
 var blocLvl = document.getElementsByClassName("bloc-lvl");
+var getBonus;

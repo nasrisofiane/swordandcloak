@@ -295,22 +295,21 @@ var bonusAnimationInterval;
 var bonusPos = 0;
 function addElement (addOrdelete) {
     var newDiv = document.createElement("div");
+    newDiv.id = "bonus";
     newDiv.addEventListener("click", function(){
-        addElement(false); 
         doubleDamage();
+        addElement(false); 
         setTimeout (doubleDamage, 5000); 
-   
     });
     if(addOrdelete == true){
-        setTimeout (addElement, 7000, false)
-        newDiv.id = "bonus";
+        setTimeout (addElement, 7000, false);
         bonusAnimationInterval = setInterval(fallDownBonus, 40, newDiv);
         //randomDirectionBonus();
         getZoneCombat.appendChild(newDiv);
        }
     else if(addOrdelete == false){
          // durée du bonus
-        var getBonus = document.getElementById("bonus");
+        getBonus = document.getElementById("bonus");
         getBonus.parentNode.removeChild(getBonus);
     }
     
