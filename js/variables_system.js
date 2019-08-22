@@ -75,9 +75,15 @@ var itemsShop = [//Contient les informations des objets(boutique) en forme de ta
     ['Cape De Staline', 40000, 1500, 669, "cloak8", "cloak",2000]
 ];
 
+var compteur;
+var decompte ;
+var compteur2;
+var decompte2;
+
 //4.0 Cookies system
 var itemsShopBought = [];
 var incremenationItemShopBought = 0;
+var newShop = [];
 var restoreMonster;
 var lastEquippedSword;
 var lastEquippedCloak;

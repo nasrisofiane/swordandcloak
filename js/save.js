@@ -14,7 +14,6 @@ function restore(){
     //}
 }
 
-
 function stringifyJson(key, objet){
     var toStringItem = JSON.stringify(objet);
     localStorage.setItem(key ,toStringItem);
@@ -37,7 +36,6 @@ function save(){
         stringifyJson("cloakSaved", itemsShop[equippedCloak]);
         stringifyJson("lastEquippedCloak", equippedCloak);
     }
-    
     stringifyJson("itemsShopBought", itemsShopBought);
     stringifyJson("RandomMonsterNumber", RandomMonsterNumber);
     stringifyJson("RandomDifficulte", RandomDifficulte);
@@ -58,28 +56,26 @@ function restoreMonsterChoosed(){
     clearActualMonster();
     monsterRandomPop(true);
 }
-var newShop = [];
+
 function restoreItems(){
-
-
     if(lastEquippedCloak != null && lastEquippedCloak != undefined && lastEquippedCloak != "" && !isNaN(lastEquippedCloak)){ 
-        itemsShop[lastEquippedCloak].equipeItem(true);
         itemsShop[lastEquippedCloak].niveau = cloakSaved.niveau;
         itemsShop[lastEquippedCloak].nombreDeCoup = cloakSaved.nombreDeCoup;
         itemsShop[lastEquippedCloak].nombreCoupMax = cloakSaved.nombreCoupMax;
         itemsShop[lastEquippedCloak].vie = cloakSaved.vie;
+        itemsShop[lastEquippedCloak].equipeItem(true);
         itemsShop[lastEquippedCloak].itemInfos();
     }
     if(lastEquippedSword != null && lastEquippedSword != undefined && lastEquippedSword != "" && !isNaN(lastEquippedSword)){
-        itemsShop[lastEquippedSword].equipeItem(true);
         itemsShop[lastEquippedSword].niveau = swordSaved.niveau;
         itemsShop[lastEquippedSword].monstreTue = swordSaved.monstreTue;
         itemsShop[lastEquippedSword].nombreTue = swordSaved.nombreTue;
         itemsShop[lastEquippedSword].degat = swordSaved.degat;
+        itemsShop[lastEquippedSword].equipeItem(true);
         itemsShop[lastEquippedSword].itemInfos();
+        itemsShop[lastEquippedSword].priseDeNiveau();
     }
-    nextUpgrade();
-    
+
     if(itemsShopBought.length > 0){
         for(let i = 0; i < itemsShopBought.length; i++){ 
             var id = itemsShopBought[i].itemId;
@@ -89,7 +85,6 @@ function restoreItems(){
             newShop[a].hideItem();
         }
     }
-    
 }
 
 if(localStorage.getItem("heroXpMax")){
@@ -102,3 +97,4 @@ function eraseGame(){
     document.location.reload(true);
 }
 window.addEventListener("unload", save);
+
