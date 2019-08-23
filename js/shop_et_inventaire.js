@@ -34,12 +34,12 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         if(this.type == "epee"){
             this.degat = bonus * this.niveau;
             this.elementHTML = epeeEquipe;
-            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Degats : ${convertIntToText(this.degat)} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Degats : ${convertIntToText(this.degat)} </div> <div>Force : ${convertIntToText(this.strenght)}</div><div> Endurance : ${convertIntToText(this.stamina)} </div>`;
         }
         else{
             this.vie = bonus
             this.elementHTML = capeEquipe;
-            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Vie : ${convertIntToText(this.vie)} </div> <div>Force : ${this.strenght}</div><div> Endurance : ${this.stamina} </div>`;
+            this.objetContainerInfos.innerHTML = `<div class ="nom">${this.nom}</div>  <div>Vie : ${convertIntToText(this.vie)} </div> <div>Force : ${convertIntToText(this.strenght)}</div><div> Endurance : ${convertIntToText(this.stamina)} </div>`;
         }
         this.imageObjet();
     }

@@ -26,7 +26,9 @@ function parseJson(key){
 
 function save(){
     if(skip != true){
-    //localStorage.setItem("saved", true);
+    if(bonus == false){
+        heroStrenght -= degatsBonus;
+    }
     stringifyJson("restoreMonster", monsterChoosed);
     if(equippedSword != null && equippedSword != undefined && equippedSword != "" ){
         stringifyJson("swordSaved", itemsShop[equippedSword]);
@@ -58,37 +60,45 @@ function restoreMonsterChoosed(){
 }
 
 function restoreItems(){
-    if(lastEquippedCloak != null && lastEquippedCloak != undefined && lastEquippedCloak != "" && !isNaN(lastEquippedCloak)){ 
         itemsShop[lastEquippedCloak].niveau = cloakSaved.niveau;
         itemsShop[lastEquippedCloak].nombreDeCoup = cloakSaved.nombreDeCoup;
         itemsShop[lastEquippedCloak].nombreCoupMax = cloakSaved.nombreCoupMax;
         itemsShop[lastEquippedCloak].vie = cloakSaved.vie;
         itemsShop[lastEquippedCloak].equipeItem(true);
         itemsShop[lastEquippedCloak].itemInfos();
-    }
-    if(lastEquippedSword != null && lastEquippedSword != undefined && lastEquippedSword != "" && !isNaN(lastEquippedSword)){
+    
         itemsShop[lastEquippedSword].niveau = swordSaved.niveau;
         itemsShop[lastEquippedSword].monstreTue = swordSaved.monstreTue;
         itemsShop[lastEquippedSword].nombreTue = swordSaved.nombreTue;
         itemsShop[lastEquippedSword].degat = swordSaved.degat;
-        itemsShop[lastEquippedSword].equipeItem(true);
         itemsShop[lastEquippedSword].itemInfos();
-        itemsShop[lastEquippedSword].priseDeNiveau();
-    }
+        itemsShop[lastEquippedSword].hideItem();
+        
+    
 
+    
+}
+
+function loopShop(){
     if(itemsShopBought.length > 0){
         for(let i = 0; i < itemsShopBought.length; i++){ 
             var id = itemsShopBought[i].itemId;
             newShop[i] = itemsShop[id];
         }
         for(let a = 0; a < newShop.length; a++){
+            if(newShop[a].itemId == 0){
+                newShop[a].equipeItem(true); 
+            }
             newShop[a].hideItem();
         }
     }
 }
 
+
+
 if(localStorage.getItem("heroXpMax")){
     restore();
+    
 }
 
 function eraseGame(){
@@ -97,4 +107,3 @@ function eraseGame(){
     document.location.reload(true);
 }
 window.addEventListener("unload", save);
-

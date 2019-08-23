@@ -55,6 +55,7 @@ const monsters = [ // tableau des noms de monstres et infos
 //3.0 Variables de fonctionnement de la boutique.
 var itemNumber = 0; //Ce nombre représente le nombre d'items créer dans la boutique, est incrémenté à chaque création d'item et fournit un itemID à chaque item.
 var itemsShop = [//Contient les informations des objets(boutique) en forme de tableau multidimensionn el.
+    ['bug', 500, 1, 1, "sword0", "epee",1],
     ['Le Cure-dent', 500, 1, 1, "sword0", "epee",1],//(nom, prix, strenght, stamina ,image, type, bonus ), type = epee ou cape, bonus c'est les degats en + ou la vie en + en fonction de son type.
     ['La Fisteuse', 5000, 40, 190, "sword1", "epee",100],
     ['La Defourailleuse de Fion', 15000, 150, 280, "sword2", "epee",200],

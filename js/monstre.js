@@ -63,9 +63,8 @@ class spriteImage{ //Objet qui récupère le background et lui applique le css q
 }
  
 function monsterRandomPop(restoreSave){ // fonction avec un random number qui récupère aléatoirement le nom d'un monstre dans le tableau "monsters"
-        MonsterAttackSpeed = Math.floor(Math.random() * 1800) + 2300 ;
+        MonsterAttackSpeed = Math.floor(Math.random() * 1800) + 2300;
         MonsterAttackSpeedToSecond = MonsterAttackSpeed/100;
-
         if(nombreMonstreTue >= 5 && heroNiveau > 3){
             RandomDifficulte = 6;
             nombreMonstreTue = 0;
@@ -85,17 +84,16 @@ function monsterRandomPop(restoreSave){ // fonction avec un random number qui r�
             monsterImage = new spriteImage(getMonsterWindow, monsters[RandomMonsterNumber][1]);
             //fin de la création de l'instance spriteImage.
         }
-        
         monsterImage.apply(0); //applique l'image 0 du monstre au lancement de la page, sinon le monstre ne s'afficher qu'àprès le premier setInterval.
         monsterChoosed.autoAttack();
         intervalMonsterImage = startInterval(monsterImage,monsters[RandomMonsterNumber][2]);
         //infos du monstre
-            getMonsterHealthBar.max = monsterChoosed.vie;
-            getMonsterName.innerHTML = monsterChoosed.nom; 
-            getDifficulteMonster.innerHTML = `${monsterChoosed.difficulte}`;
-            getDegatsTexteMonster.innerHTML = `Degats : ${monsterChoosed.degats}`;
-            getVitesseAttaqueTexteMonster.innerHTML = `Vitesse D'attaque : ${MonsterAttackSpeedToSecond.toString().charAt(0)}.${MonsterAttackSpeedToSecond.toString().charAt(1)}s`;
-            checkMonsterHealth(monsterChoosed);
+        getMonsterHealthBar.max = monsterChoosed.vie;
+        getMonsterName.innerHTML = monsterChoosed.nom; 
+        getDifficulteMonster.innerHTML = `${monsterChoosed.difficulte}`;
+        getDegatsTexteMonster.innerHTML = `Degats : ${monsterChoosed.degats}`;
+        getVitesseAttaqueTexteMonster.innerHTML = `Vitesse D'attaque : ${MonsterAttackSpeedToSecond.toString().charAt(0)}.${MonsterAttackSpeedToSecond.toString().charAt(1)}s`;
+        checkMonsterHealth(monsterChoosed);
 }
 var monsterKilled;
 function checkMonsterHealth(monstreInfos){ //vérifie la vie du monstre. fonction appelé à chaque degats infligé.

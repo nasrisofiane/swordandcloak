@@ -7,7 +7,6 @@ function heroAtStartGame(){
     
 }
 
-heroAtStartGame();
 function augmenterXp_Argent(){ // fonction d'incrémentation d'argent et d'exp à chaque mort de monstre, et appel levelUP si l'exp depasse 100%.
     //augement l'experience du hero a chaque mort du monstre//  
     heroXpActuel += monsterChoosed.experience;
@@ -26,13 +25,13 @@ function displayHeroInfo(){ // function qui actualise toutes infos visuel avec l
     heroBarreViehtml.value = heroVie;
     heroHealthNumber.innerHTML =  `${convertIntToText(heroVie)} / ${convertIntToText(heroBarreViehtml.max)}`;
     heroBarreXphtml.value = heroXpActuel;
-    heroXpNumber.innerHTML = `${heroXpActuel} / ${heroBarreXphtml.max}`;
+    heroXpNumber.innerHTML = `${convertIntToText(heroXpActuel)} / ${convertIntToText(heroBarreXphtml.max)}`;
     heroBarreXphtml.max = heroXpMax;
-    strengthText.innerHTML = `Strength ${heroStrenght}`;
-    staminaText.innerHTML = `Stamina ${heroStamina}`;
+    strengthText.innerHTML = `Strength ${convertIntToText(heroStrenght)}`;
+    staminaText.innerHTML = `Stamina ${convertIntToText(heroStamina)}`;
     skillPointText.innerHTML = `${heroCaracteristique} point(s) de statistique disponible`;
-    vieTextStats.innerHTML = `Vie Max ${heroVieMax.toFixed(1)}`;
-    degatTextStats.innerHTML= `Degats ${degatsHero.toFixed(1)}`;
+    vieTextStats.innerHTML = `Vie Max ${convertIntToText(heroVieMax)}`;
+    degatTextStats.innerHTML= `Degats ${convertIntToText(degatsHero)}`;
 }
 
 function lvlUp(){  //Changements des stats ou autres au level up !
@@ -129,7 +128,7 @@ class combatText{
         this.pos = positionDmg;
         this.ScrollOrStatic = ScrollOrStatic;
         this.para = document.createElement("div");
-        this.text = document.createTextNode(`-${degat.toFixed(1)}`);
+        this.text = document.createTextNode(`-${convertIntToText(degat)}`);
         this.para.appendChild(this.text);
         this.para.style.position = "absolute";
         this.elementHtml = elementHtml;
@@ -266,17 +265,16 @@ function heroWalkAnimation(){ //créer l'animation de course jusqu'au monstre.
 
 setInterval (randomBonus, 10000); //déclenche la fonction pour le bonus random
 
-
 function doubleDamage (){ 
     if (bonus == true){
-        degatsBonus = heroStrenght * 1.4;
+        degatsBonus = heroStrenght +1 * 1.4;
         heroStrenght += degatsBonus;
         bonus = false;
         bonusPos=0;
     }
     else {
         heroStrenght -= degatsBonus;
-        bonus = true;  
+        bonus = true;
     }
     updateHeroStats();
     displayHeroInfo();
