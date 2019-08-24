@@ -190,80 +190,7 @@ function create(degat, elementHtml, positionDmg, ScrollOrStatic){
 }
 // FIN DE :creer un combat text à droite du monstre qui afficher les degats du hero en temps reel.
 
-
-//skin hero, animation             
-heroAnimation();
-function heroAnimation(){ // créer l'animation d'attaque, le bras de héro est découpé de son corps, les mouvements de bras et d'épée sont précis.
-        getHeroWeapon.style.bottom = "0px";
-        getHeroSkin.style.background = `url('images/hero/heromodulable0.png')`;
-        getHeroSkin.style.backgroundSize = "contain";
-        getHeroSkin.style.backgroundRepeat = "no-repeat";
-        getHeroSkin.style.backgroundPosition = "center";
-        switch(heroImageNb){
-            case 0: //chaque case représente une position différente du bras et de l'épée.
-                    getHeroArm.style.left ="10px";
-                    getHeroArm.style.transform = "rotate(0deg)";
-                    getHeroArm.style.top = "70px";
-                    getHeroWeapon.style.transform = "rotate(20deg)";
-                    getHeroWeapon.style.top = "58px";
-                    getHeroWeapon.style.left = "42px";
-                    break;
-            case 1: 
-                    /*getHeroArm.style.left ="20px";
-                    getHeroArm.style.transform = "rotate(-20deg)";
-                    getHeroWeapon.style.left = "57px";*/
-                    getHeroArm.style.left ="20px";
-                    getHeroArm.style.transform = "rotate(-40deg)";
-                    getHeroArm.style.top = "70px";
-                    getHeroWeapon.style.transform = "rotate(0deg)";
-                    getHeroWeapon.style.top = "20px";
-                    getHeroWeapon.style.left = "54px";
-                    break;
-            case 2:
-                    getHeroArm.style.left ="10px";
-                    getHeroArm.style.transform = "rotate(-80deg)";
-                    getHeroArm.style.top = "60px";
-                    getHeroWeapon.style.transform = "rotate(-10deg)";
-                    getHeroWeapon.style.top = "-5px";
-                    break;
-        }
-        heroImageNb += 1;
-        if(heroImageNb > 2){
-            heroImageNb = 0;
-            //getHeroSkin.style.background = `url('images/hero/heroFille${heroImageNb}.png')`;
-            heroAnimation();
-            clearInterval(startAttackAnimation);
-         }
-}
-
-function heroWalkAnimation(){ //créer l'animation de course jusqu'au monstre.
-        if(heroWalk[1] == true){
-            if(heroWalk[0] < 38/*représente la distance parcourue en pourcentage sur l'écran.*/){
-                heroWalk[0] +=2;
-                if(equippedSword != null && equippedSword != undefined){
-                    getHeroCompleteSKin.style.left = `${heroWalk[0]-5}%`;
-                }
-                else{
-                    getHeroCompleteSKin.style.left = `${heroWalk[0]-3}%`;
-                }
-            }
-            else{
-              
-            }
-        }
-        else if(heroWalk[1] == false){
-            if(heroWalk[0] >= 0){
-                getHeroCompleteSKin.style.left = `${heroWalk[0]}%`;
-                heroWalk[0] -=2;
-            }
-            else{
-                heroWalk[1] = true;
-                clearInterval(startHeroAnimation);
-            }
-        }
-}
-
-setInterval (randomBonus, 10000); //déclenche la fonction pour le bonus random
+//System de bonus pour héro.
 
 function doubleDamage (){ 
     if (bonus == true){
@@ -288,9 +215,7 @@ function randomBonus () {
     
     console.log("bonus ? "+chance);
 }
-    
-var bonusAnimationInterval;
-var bonusPos = 0;
+
 function addElement (addOrdelete) {
     var newDiv = document.createElement("div");
     newDiv.id = "bonus";
@@ -310,7 +235,6 @@ function addElement (addOrdelete) {
         getBonus = document.getElementById("bonus");
         getBonus.parentNode.removeChild(getBonus);
     }
-    
 }
 
 function fallDownBonus(element){
@@ -327,3 +251,7 @@ function randomDirectionBonus(){
     return newDiv = element.style.left = `${bonusHposition}%`;
 }*/
 
+
+setInterval (randomBonus, 10000); //déclenche la fonction pour le bonus random
+
+//FIN DE: system bonus pour héro.

@@ -1,8 +1,12 @@
+
 function restore(){
     //if(localStorage.getItem("saved")){
+        
     for(let i = 0; i< localStorage.length; i++){
         parseJson(localStorage.key(i));
     }
+    
+    itemsShopBought = [...new Set(itemShopBug)]; 
     restoreMonsterChoosed();
     restoreItems();
     displayHeroInfo();
@@ -26,19 +30,20 @@ function parseJson(key){
 
 function save(){
     if(skip != true){
+        
+    stringifyJson("itemShopBug", itemShopBug);
     if(bonus == false){
         heroStrenght -= degatsBonus;
     }
     stringifyJson("restoreMonster", monsterChoosed);
     if(equippedSword != null && equippedSword != undefined && equippedSword != "" ){
-        stringifyJson("swordSaved", itemsShop[equippedSword]);
-        stringifyJson("lastEquippedSword", equippedSword);
+        stringifyJson("equippedSword", equippedSword);
+        stringifyJson("swordSaved", itemsShop[equippedSword]); 
     }
     if(equippedCloak != null && equippedCloak != undefined && equippedCloak != "" ){
+        stringifyJson("equippedCloak", equippedCloak);
         stringifyJson("cloakSaved", itemsShop[equippedCloak]);
-        stringifyJson("lastEquippedCloak", equippedCloak);
     }
-    stringifyJson("itemsShopBought", itemsShopBought);
     stringifyJson("RandomMonsterNumber", RandomMonsterNumber);
     stringifyJson("RandomDifficulte", RandomDifficulte);
     stringifyJson("heroXpMax", heroXpMax);
@@ -54,47 +59,49 @@ function save(){
     }
 }
 
+
 function restoreMonsterChoosed(){
     clearActualMonster();
     monsterRandomPop(true);
 }
 
 function restoreItems(){
-        itemsShop[lastEquippedCloak].niveau = cloakSaved.niveau;
-        itemsShop[lastEquippedCloak].nombreDeCoup = cloakSaved.nombreDeCoup;
-        itemsShop[lastEquippedCloak].nombreCoupMax = cloakSaved.nombreCoupMax;
-        itemsShop[lastEquippedCloak].vie = cloakSaved.vie;
-        itemsShop[lastEquippedCloak].equipeItem(true);
-        itemsShop[lastEquippedCloak].itemInfos();
-    
-        itemsShop[lastEquippedSword].niveau = swordSaved.niveau;
-        itemsShop[lastEquippedSword].monstreTue = swordSaved.monstreTue;
-        itemsShop[lastEquippedSword].nombreTue = swordSaved.nombreTue;
-        itemsShop[lastEquippedSword].degat = swordSaved.degat;
-        itemsShop[lastEquippedSword].itemInfos();
-        itemsShop[lastEquippedSword].hideItem();
-        
-    
 
-    
-}
-
-function loopShop(){
     if(itemsShopBought.length > 0){
         for(let i = 0; i < itemsShopBought.length; i++){ 
-            var id = itemsShopBought[i].itemId;
-            newShop[i] = itemsShop[id];
-        }
-        for(let a = 0; a < newShop.length; a++){
-            if(newShop[a].itemId == 0){
-                newShop[a].equipeItem(true); 
+            if(itemsShop[itemsShopBought[i]].type == "epee"){
+                equippedSword = itemsShopBought[i];
+                console.log("Arme équipée = "+equippedSword);
             }
-            newShop[a].hideItem();
         }
     }
+
+
+    if(equippedCloak != undefined && equippedCloak != null && equippedCloak != ""){
+        itemsShop[equippedCloak].bought = cloakSaved.bought;
+        itemsShop[equippedCloak].niveau = cloakSaved.niveau;
+        itemsShop[equippedCloak].nombreDeCoup = cloakSaved.nombreDeCoup;
+        itemsShop[equippedCloak].nombreCoupMax = cloakSaved.nombreCoupMax;
+        itemsShop[equippedCloak].vie = cloakSaved.vie;
+        itemsShop[equippedCloak].equipeItem(true);
+        itemsShop[equippedCloak].itemInfos();
+        itemsShop[equippedCloak].priseDeNiveau();
+        itemsShop[equippedCloak].showVisuel();
+    }
+
+    if(equippedSword != undefined && equippedSword != null && equippedSword != ""){
+        itemsShop[equippedSword].bought = swordSaved.bought;
+        itemsShop[equippedSword].niveau = swordSaved.niveau;
+        itemsShop[equippedSword].monstreTue = swordSaved.monstreTue;
+        itemsShop[equippedSword].nombreTue = swordSaved.nombreTue;
+        itemsShop[equippedSword].degat = swordSaved.degat;
+        itemsShop[equippedSword].itemInfos();
+        itemsShop[equippedSword].equipeItem(true);
+        itemsShop[equippedSword].priseDeNiveau();
+        itemsShop[equippedSword].showVisuel();
+    }
+    checkItemsBought();
 }
-
-
 
 if(localStorage.getItem("heroXpMax")){
     restore();
@@ -107,3 +114,10 @@ function eraseGame(){
     document.location.reload(true);
 }
 window.addEventListener("unload", save);
+
+function checkItemsBought(){
+    for(let a = 0; a < itemsShopBought.length; a++){
+        itemsShop[itemsShopBought[a]].hideItem();
+    }
+}
+displayHeroInfo();

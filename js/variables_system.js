@@ -30,6 +30,8 @@ var startAttackAnimation;
 var heroTimeOutWalkBack; // un set timeout est assigné quand on attack le monstre.
 var bonus = true;
 var degatsBonus;
+var bonusAnimationInterval;
+var bonusPos = 0;
 
 //2.0 Variables de fonctionnement des monstres.
 var monsterChoosed; // variable qui contiendra toutes les informations du monstre sur lequel on tape.
@@ -43,6 +45,7 @@ var RandomDifficulte;
 var RandomMonsterNumber; // nombre aléatoire entre 0 et la longueur du tableau qui contient les monstres, pour faire aparaitre un monstre aléatoirement.
 var intervalMonsterImage;
 var imageAlea; //nombre aleatoire generer qui sera égal à une image aléatoire du monstre actuel, pour que son animation ne soit pas pareil à chaque fois.
+var monsterKilled;
 
 const monsters = [ // tableau des noms de monstres et infos
     ['Le mage ancestral', 'images/sprites/disciple', 5], // premier index est égal au nom du monstre, le deuxième au chemin de l'image et le troisième au nombre d'image disponible pour l'animé.
@@ -55,7 +58,7 @@ const monsters = [ // tableau des noms de monstres et infos
 //3.0 Variables de fonctionnement de la boutique.
 var itemNumber = 0; //Ce nombre représente le nombre d'items créer dans la boutique, est incrémenté à chaque création d'item et fournit un itemID à chaque item.
 var itemsShop = [//Contient les informations des objets(boutique) en forme de tableau multidimensionn el.
-    ['bug', 500, 1, 1, "sword0", "epee",1],
+    ['Le Cure-dent', 500, 1, 1, "sword0", "epee",1],
     ['Le Cure-dent', 500, 1, 1, "sword0", "epee",1],//(nom, prix, strenght, stamina ,image, type, bonus ), type = epee ou cape, bonus c'est les degats en + ou la vie en + en fonction de son type.
     ['La Fisteuse', 5000, 40, 190, "sword1", "epee",100],
     ['La Defourailleuse de Fion', 15000, 150, 280, "sword2", "epee",200],
@@ -82,12 +85,25 @@ var compteur2;
 var decompte2;
 
 //4.0 Cookies system
-var itemsShopBought = [];
-var incremenationItemShopBought = 0;
+var itemShopBug = [];
+var itemsShopBought;
 var newShop = [];
 var restoreMonster;
-var lastEquippedSword;
-var lastEquippedCloak;
 var swordSaved;
 var cloakSaved;
 var skip = false;
+
+
+function avoidDuplicateEntries(){
+    for(let b = 0; b < itemShopBug.length; b++){
+        if(itemShopBug[b] == this.itemId){
+            return duplicate = true;
+            break;
+            alert();
+        }
+        else{
+            return duplicate = false;
+        }
+    }
+}
+var duplicate;
