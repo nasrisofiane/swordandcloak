@@ -114,12 +114,12 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
                 this.elementHTML.style.backgroundPosition  = "center";
                 heroVie = heroVieMax;
                 saved = false;
+                this.priseDeNiveau();
             }
             else{
                 alert("Pas assez d'or");
             }
         }
-        this.priseDeNiveau();
         displayHeroInfo();
     }
 
@@ -146,10 +146,10 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
 
     itemInfos(){
         if(this.type == "epee"){
-            inventairePartGauche.innerHTML = `<strong>Epée bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>Degats + ${this.degat}</p><p> Strength + ${this.strenght}</p><p> Stamina + ${this.stamina}</p>`;
+            inventairePartGauche.innerHTML = `<strong>Epée bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>Degats + ${convertIntToText(this.degat)}</p><p> Strength + ${convertIntToText(this.strenght)}</p><p> Stamina + ${convertIntToText(this.stamina)}</p>`;
         }
         else{
-            inventairePartDroite.innerHTML = ` <strong>Cape bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>vie + ${this.vie}</p><p> Strength + ${this.strenght}</p><p> Stamina + ${this.stamina}</p>`;
+            inventairePartDroite.innerHTML = ` <strong>Cape bonus</strong><p class="niveau-objet">Niveau objet : ${this.niveau}</p><p>vie + ${convertIntToText(this.vie)}</p><p> Strength + ${convertIntToText(this.strenght)}</p><p> Stamina + ${convertIntToText(this.stamina)}</p>`;
         }
     }
 

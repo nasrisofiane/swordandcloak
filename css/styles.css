@@ -388,8 +388,9 @@ body{
 #player-character-window{
     position: absolute;
     left: 0px;
+    width: 100px;
     bottom:8%;
-    height: 90px;
+    height: 115px;
 }
 #hero{ 
     height: 115px;

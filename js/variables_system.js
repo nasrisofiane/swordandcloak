@@ -11,7 +11,7 @@ var hpWithoutStamina = 100;
 var dmgWithoutStrength = 1;
 var heroVieMax = hpWithoutStamina + staminaToHp;
 var heroVie = heroVieMax;
-var heroArgent = 500000;
+var heroArgent = 0;
 var degatsHero = dmgWithoutStrength + strenghtToDmg ;
 var heroXpRestant;
 var equippedSword;
@@ -49,9 +49,9 @@ var monsterKilled;
 
 const monsters = [ // tableau des noms de monstres et infos
     ['Le mage ancestral', 'images/sprites/disciple', 5], // premier index est égal au nom du monstre, le deuxième au chemin de l'image et le troisième au nombre d'image disponible pour l'animé.
-    ['La chèvre en robe', 'images/sprites/chevreWarrior', 1],
-    ['Le cancer', 'images/sprites/mage', 1],
-    ['La grosse tête', 'images/sprites/grosseTete', 1],
+    ['La chèvre en robe', 'images/sprites/chevreWarrior', 6],
+    ['Le cancer', 'images/sprites/mage', 4],
+    ['La grosse tête', 'images/sprites/grosseTete', 15],
     ['Le chien du concierge', 'images/sprites/chienBoss', 4]
 ];
 
@@ -60,23 +60,23 @@ var itemNumber = 0; //Ce nombre représente le nombre d'items créer dans la bou
 var itemsShop = [//Contient les informations des objets(boutique) en forme de tableau multidimensionn el.
     ['Le Cure-dent', 500, 1, 1, "sword0", "epee",1],
     ['Le Cure-dent', 500, 1, 1, "sword0", "epee",1],//(nom, prix, strenght, stamina ,image, type, bonus ), type = epee ou cape, bonus c'est les degats en + ou la vie en + en fonction de son type.
-    ['La Fisteuse', 5000, 40, 190, "sword1", "epee",100],
-    ['La Defourailleuse de Fion', 15000, 150, 280, "sword2", "epee",200],
-    ['L Ecarteuleuse', 30000, 399, 501, "sword3", "epee",400],
-    ['La Fendanus', 50000, 600, 740, "sword4", "epee",600],
-    ['La Douce Pin', 100000, 1000, 900, "sword5", "epee",800],
-    ['La Hrustchnurps', 180000, 1350, 1000, "sword6", "epee",1000],
-    ['La Aie Sapik', 250000, 2000, 1200, "sword7", "epee",1500],
+    ['La Fisteuse', 5000, 12, 4, "sword1", "epee",8],
+    ['La Defourailleuse de Fion', 15000, 21, 8, "sword2", "epee",23],
+    ['L Ecarteuleuse', 30000, 35, 13, "sword3", "epee",40],
+    ['La Fendanus', 50000, 52, 20, "sword4", "epee",72],
+    ['La Douce Pin', 100000, 90, 35, "sword5", "epee",130],
+    ['La Hrustchnurps', 180000, 130, 52, "sword6", "epee",210],
+    ['La Aie Sapik', 250000, 170, 60, "sword7", "epee",235],
     ['Le Demon De Minuit', 666666, 6666, 6666, "sword8", "epee",2666],
-    ['Cape Haute', 500, 6, 1, "cloak0", "cloak",60],
-    ['Cape Oral', 1800, 18, 4, "cloak1", "cloak",120],
-    ['Cape Cake', 4700, 36, 12, "cloak2", "cloak",240],
-    ['Cape Pougne', 8000, 100, 20, "cloak3", "cloak",480],
-    ['Cape Risti', 10000, 240, 60, "cloak4", "cloak",800],
-    ['Cape Rice Des Dieux', 15000, 500, 120, "cloak5", "cloak",1000],
-    ['Cape Ayrokei', 22000, 850, 200, "cloak6", "cloak",1200],
-    ['Cape Udepied', 28000, 1000, 380, "cloak7", "cloak",1500],
-    ['Cape De Staline', 40000, 1500, 669, "cloak8", "cloak",2000]
+    ['Cape Haute', 500, 1, 1, "cloak0", "cloak",20],
+    ['Cape Oral', 1800, 4, 19, "cloak1", "cloak",45],
+    ['Cape Cake', 4700, 7, 45, "cloak2", "cloak",98],
+    ['Cape Pougne', 8000, 15, 70, "cloak3", "cloak",152],
+    ['Cape Risti', 10000, 18, 95, "cloak4", "cloak",180],
+    ['Cape Rice Des Dieux', 15000, 22, 120, "cloak5", "cloak",203],
+    ['Cape Ayrokei', 22000, 25, 169, "cloak6", "cloak",231],
+    ['Cape Udepied', 28000, 30, 187, "cloak7", "cloak",268],
+    ['Cape De Staline', 40000, 45, 274, "cloak8", "cloak",354]
 ];
 
 var compteur;

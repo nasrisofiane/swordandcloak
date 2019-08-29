@@ -1,11 +1,9 @@
 
 function restore(){
     //if(localStorage.getItem("saved")){
-        
     for(let i = 0; i< localStorage.length; i++){
         parseJson(localStorage.key(i));
     }
-    
     itemsShopBought = [...new Set(itemShopBug)]; 
     restoreMonsterChoosed();
     restoreItems();
@@ -21,7 +19,7 @@ function restore(){
 function stringifyJson(key, objet){
     var toStringItem = JSON.stringify(objet);
     localStorage.setItem(key ,toStringItem);
-   }
+}
    
 function parseJson(key){
     var parseItem = JSON.parse(localStorage.getItem(key));
@@ -44,8 +42,10 @@ function save(){
         stringifyJson("equippedCloak", equippedCloak);
         stringifyJson("cloakSaved", itemsShop[equippedCloak]);
     }
+    stringifyJson("monsterLife", monsterChoosed.vie);
     stringifyJson("RandomMonsterNumber", RandomMonsterNumber);
     stringifyJson("RandomDifficulte", RandomDifficulte);
+    stringifyJson("heroVie", heroVie);
     stringifyJson("heroXpMax", heroXpMax);
     stringifyJson("heroNiveau", heroNiveau);
     stringifyJson("heroStamina", heroStamina);
@@ -59,10 +59,11 @@ function save(){
     }
 }
 
-
 function restoreMonsterChoosed(){
     clearActualMonster();
     monsterRandomPop(true);
+    monsterChoosed.vie = monsterLife;
+    checkMonsterHealth(monsterChoosed);
 }
 
 function restoreItems(){
