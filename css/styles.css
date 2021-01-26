@@ -2,7 +2,6 @@ html{
     height: 100%;
     padding:0px;
     margin:0px;
-    min-height: 966px;
 }
 
 body{
@@ -16,12 +15,12 @@ body{
 /* 3 parties du jeu.*/
 #conteneur-principal{
     background:url("../images/background.png");
+    background-position-y: -7em;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     position: relative;
 }
 
@@ -61,18 +60,10 @@ body{
 }
 
 #zone-gauche{
-    height: 750px;
-    flex:1;
-    min-width: 550px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: -100px;
-
-    max-width: 500px;
-
-
+    flex:2;
+    max-width: 297px;
+    min-width: 297px;
+    margin: 8px;
 }
 
 #zone-combat{
@@ -81,7 +72,6 @@ body{
     border-bottom:none;
     height:100% ;
     flex:2;
-    min-width: 500px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -105,13 +95,13 @@ body{
 
 #zone-droite{
     font-size:0.7em;
-    height: 753px;
+    height: 100%;
     align-self: flex-start;
     flex:1;
     min-width: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;  
 }
 /* fin de :3 parties du jeu.*/
@@ -124,8 +114,9 @@ body{
     align-items: center;
     background:#603106;
     box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
-    height: 120px;
-    width: 65%;
+    height: 60px;
+    width: 100%;
+    position : relative;
 }
 
 #argent{
@@ -137,13 +128,14 @@ body{
 
 #logo-porte-monnaie{
     flex:4;
-    width: 50px;
-    height: 50px;
+    width: 3em;
+    height: 3em;
     background: url('../images/icons/coin.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    margin-left: -20px;
+    position: absolute;
+    left : 15px;
 }
 
 #boutique{
@@ -153,17 +145,15 @@ body{
     align-items: center;
     flex-wrap: wrap;
     background:#2e1a00;
-    width: 65%;
+    width: 100%;
     max-height:700px;
-    height: 700px;
     padding-bottom: 10px;
      
  
 }
 
 #titre-boutique{
-    border-radius: 4px 4px 0px 0px;
-    width: 65%;
+    width: 100%;
     height: 50px;
     top:-38px;
     margin:0px;
@@ -175,8 +165,9 @@ body{
 }
 .objet-parent{
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 6em;
+    height: 6em;
+    margin:3px;
 }
 .objet  {
     height: 100%;
@@ -260,7 +251,7 @@ body{
 
 /*zone de combat*/
 #monster-window{
-    width: 500px;
+    min-width: 290px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -281,7 +272,6 @@ body{
     height:40px;
     background-color: white;
     border:solid #603106 1px;
-    border-radius: 0px 0px 0px 0px;
     overflow: hidden;
 }
 
@@ -298,11 +288,11 @@ body{
 
 #conteneur-monstre-difficulte{
     position: relative;
+    font-size: 1.2em;
 }
 
 #difficulte-monstre{
     background: #753c07;
-    border-radius: 0px 0px 0px 0px;
     color:white;
     width: 50px;
     height: 100%;
@@ -330,6 +320,7 @@ body{
     margin:0px;
     text-align: center;
     width: 100%;
+    font-size: 0.98em;
     align-self: center;
     top:42px;
     position: absolute;
@@ -338,7 +329,6 @@ body{
 #monstre-stats{
     background:#603106;
     color:white;
-    border-radius: 0px 0px 0px 0px;
     font-size: 0.6em;
     display: flex;
     justify-content: space-around;
@@ -449,7 +439,6 @@ body{
 
         #conteneur-inventaire h2{
             flex:1;
-            border-radius:3px 3px 0px 0px;
             margin:0px;
             display: flex;
             justify-content: center;
@@ -468,7 +457,6 @@ body{
             flex: 2;
             display: flex;
             color:white;
-            border-radius:10px;
             position: relative;
             z-index: 10;
             padding-top: 30px;
@@ -514,7 +502,6 @@ body{
         #epee-equipe, #cape-equipe{
             width: 60px;
             height: 60px;
-            border-radius:10px;
             margin:0px 3px 0px 3px;
             box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
             display: block;
@@ -541,7 +528,6 @@ body{
     #niveau-epee{
         width: 170px;
         height: 30px;
-        border-radius:3px;
         background:#603106;
         align-items: center;
         color:white;
@@ -551,7 +537,6 @@ body{
     #niveau-cape{
         width: 170px;
         height: 30px;
-        border-radius:3px;
         background:#603106;
         align-items: center;
         color:white;
@@ -589,7 +574,6 @@ body{
         width: 60px;
         height: 20px;
         background:#2e1a00;
-        border-radius: 3px 3px 3px 3px;
         box-shadow:inset -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
         margin-top: -28px;
         margin-left: 100px;
@@ -614,7 +598,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 4px 4px 0px 0px;
 }
 
 #stats{
@@ -623,7 +606,6 @@ body{
     color: white;
     height: 150px;
     flex-wrap: wrap;
-    border-radius: 0px 0px 3px 3px;
 }
 
 #up-stats{
@@ -721,7 +703,6 @@ body{
    display: flex;
    justify-content: center;
    align-items: center;
-   border-radius:0px 0px 3px 3px;
 }
 
 #skill-point p{
@@ -795,7 +776,7 @@ body{
     #barre-de-vie{
         border:solid black 1px;
         height: 30px;
-        width: 80%;
+        width: 75%;
         position: absolute;
         top:23px;
         z-index:10;
@@ -806,7 +787,7 @@ body{
     #barre-xp{
         border:solid black 1px;
         height: 30px;
-        width:80%;
+        width:75%;
         position: absolute;
         top:65px;
         z-index:10;
@@ -833,3 +814,16 @@ body{
     font-size: 16px;
 }
 /*FIN DE : partie droite */
+
+@media screen and (max-width: 1400px) {
+    #conteneur-principal{
+        background:url("../images/background.png");
+        background-position: 0px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+  }

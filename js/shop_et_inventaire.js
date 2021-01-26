@@ -55,9 +55,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
         this.objetContainer.style.backgroundRepeat  = "no-repeat";
         this.objetContainer.className="objet";
         this.objetContainer.style.backgroundPosition  = "top";
-        //test
         this.objetContainer.id = this.itemId;
-        //fin de test
         this.objetContainerPrix.innerHTML = `${this.prix}`;
         this.objetContainerPrix.className = "prix-objet";
         this.objetContainerInfos.className = "infos-objet";
