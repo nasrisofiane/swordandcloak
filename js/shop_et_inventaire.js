@@ -205,7 +205,7 @@ class items{ //Objet(JAVASCRIPT) qui permet de créer un Objet(Boutique)
             if(this.nombreDeCoup == this.nombreCoupMax){
                 this.nombreCoupMax = this.nombreCoupMax * 2;
                 this.niveau += 1;
-                this.vie = (this.vie *20) /100;
+                this.vie = this.vie + (1.5 * this.stamina);
                 hpWithoutStamina += this.vie; 
                 this.nombreDeCoup =0;
             }
