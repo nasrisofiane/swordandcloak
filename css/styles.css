@@ -817,13 +817,179 @@ body{
 
 @media screen and (max-width: 1400px) {
     #conteneur-principal{
-        background:url("../images/background.png");
         background-position: 0px;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+
+    #game-over{
+        height: 500px;
+    }
+    
+    #game-over h2{
+        font-size: 2em;
+    }
+
+    #game-over h3{
+        font-size: 1em;
+    }
+
+    #game-over h4{
+        font-size: 0.6em;
+    }
+
+    #conteneur-principal{
+        flex-direction: column;
+        background: none;
+    }
+
+    #zone-gauche{
+        order : 3;
+        max-width: unset;
+        width: 100%;
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        background: #603106;
+    }
+
+    #boutique{
+        width: 80%;
+        align-self: center;
+    }
+    
+    #zone-combat{
+        background:url("../images/background.png");
         background-size: cover;
         background-repeat: no-repeat;
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        position: relative;
+        height: 500px;
+        order : 1;
     }
+
+    #monster-infos{
+        margin-top : 65px;
+    }
+
+    #zone-droite{
+        order : 2;
+        display: block;
+        width: 100%;
+        background: #603106;
+    }
+
+    #infos-hero{
+        margin-top : 0px;
+        width: 100%;
+    }
+
+    #barre-de-vie{
+        width: 98%;
+        margin: 0px;
+    }
+
+    #barre-xp{
+        width: 98%;
+        margin: 0px;
+    }
+
+    #conteneur-life-xp{
+        justify-content: center;
+        align-items: center;
+    }
+
+    #conteneur-life-xp #health-number{
+        width: 100%;
+        margin: 0px;
+    }
+
+    #conteneur-life-xp #experience-number{
+        width: 100%;
+        margin: 0px;
+    }
+
+    #exp-icon{
+        z-index: 1000;
+    }
+
+    #vie-icon{
+        width: 26px;
+        height: 26px;
+        z-index: 1000;
+        left: 14px;
+        top: 25px;
+    }
+
+    #conteneur-inventaire{
+        margin-bottom: unset;
+        height: 180px;
+        width: 100%;
+        border-bottom: 5px solid gold;
+    }
+
+    #conteneur-inventaire h2{
+        padding: unset;
+    }
+
+    #conteneur-inventaire-stats{
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: unset;
+        width: 100%;
+        border-top: 5px solid gold;
+        border-bottom: 5px solid gold;
+    }
+
+    #inventaire-part-gauche, #inventaire-part-droite{
+        padding: 5px;
+        height: unset;
+    }
+    
+    #niveau-items{
+        flex-direction: column;
+        height: 180px;
+        padding: unset;
+        flex : 7;
+        background: #603106;
+        align-items: center;
+        
+    }
+
+    #stats-titre{
+        position: absolute;
+    }
+
+    #stats{
+        flex : 12;
+        height: 180px;
+        margin: 24px 0px;
+    }
+
+    #skill-point{
+        align-self: flex-end;
+    }
+
+    #inventaire{
+        padding: 12px 0px;
+        margin : unset;
+    }
+
+    #niveau-epee, #niveau-cape{
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+    }
+
+    #infos-stats div{
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 0.4em;
+    }
+
+    #skill-point{
+        font-size: 0.8em;
+    }
+
   }
