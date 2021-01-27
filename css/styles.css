@@ -77,6 +77,10 @@ body{
     position: relative;
 }
 
+#degat-envoyer{
+    pointer-events: none;
+}
+
 #bonus {
     
     background-image: url(../images/bonus/bonus.png);
